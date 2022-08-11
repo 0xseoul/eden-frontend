@@ -24,6 +24,11 @@
           animation: flash 0.5s linear;
 }
 
+.main__banner img,
+.main__banner span {
+  height: 100vh !important;
+}
+
 @-webkit-keyframes flash {
   0% {
     opacity: 0;

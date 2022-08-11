@@ -18,6 +18,12 @@
 .flash {
   animation: flash 0.5s linear;
 }
+.main__banner {
+  img,
+  span {
+    height: 100vh !important;
+  }
+}
 
 @keyframes flash {
   0% {
