@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+import { MAIN_IMAGES } from "../../constants/image";
 import { HEADER_HEIGHT } from "../../constants/style";
 
 const styles = {
