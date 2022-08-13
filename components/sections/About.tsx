@@ -4,11 +4,12 @@ import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
   section: `min-h-screen w-full flex justify-center items-center relative`,
-  wrapper: `flex w-full max-w-[1200px]`,
+  wrapper: `flex w-full max-w-[1200px] gap-[27rem]`,
   container: `flex items-center justify-center`,
   box: `flex-1 flex items-center justify-center`,
   textWrapper: `max-w-[17.625rem] flex flex-col gap-8`,
 };
+// gap 447 ->
 
 interface HighlightProps {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ const About = () => {
   return (
     <div className={styles.section}>
       <div className={styles.wrapper}>
-        <div className={`${styles.box} !justify-start pl-14`}>
+        <div className={`${styles.box} !justify-end`}>
           <div className={styles.textWrapper}>
             <span
               style={{ fontWeight: 900 }}
@@ -43,7 +44,7 @@ const About = () => {
           </div>
         </div>
         {/* 447 + 282 + 471 */}
-        <div className={`${styles.box} !justify-end pr-14`}>
+        <div className={`${styles.box} !justify-start`}>
           <div className="w-[471px]">
             <AutoHeightImage src={MAIN_IMAGES.logo} />
           </div>
