@@ -18,10 +18,21 @@
 .flash {
   animation: flash 0.5s linear;
 }
+
 .main__banner {
   img,
   span {
     height: 100vh !important;
+  }
+}
+
+.scroll-hidden {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  scrollbar-width: none !important; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none !important; /* Safari and Chrome */
   }
 }
 
