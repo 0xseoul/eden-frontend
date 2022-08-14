@@ -1,0 +1,15 @@
+$primary: #b6ff00;
+
+.story-line {
+  position: relative;
+  :before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: $primary;
+    transform: translateX(calc(2.5rem / 2));
+  }
+}

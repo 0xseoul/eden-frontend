@@ -1,0 +1,13 @@
+.story-line {
+  position: relative;
+}
+.story-line :before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: #b6ff00;
+  transform: translateX(1.25rem);
+}/*# sourceMappingURL=home.css.map */
