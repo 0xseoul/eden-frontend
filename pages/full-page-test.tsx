@@ -27,7 +27,15 @@ class MySection extends React.Component<Props> {
   }
 }
 
-const anchors = ["firstPage", "secondPage", "thirdPage"];
+const anchors = [
+  "firstPage",
+  "secondPage",
+  "thirdPage",
+  "fourthPage",
+  "fifthPage",
+  "sixthPage",
+  "seventhPage",
+];
 
 const FullpageWrapper = () => (
   <ReactFullpage
@@ -49,7 +57,7 @@ const FullpageWrapper = () => (
           <MySection>
             <About />
           </MySection>
-          {/* <MySection>
+          <MySection>
             <Avatar />
           </MySection>
           <MySection>
@@ -66,7 +74,7 @@ const FullpageWrapper = () => (
           <MySection>
             {" "}
             <Wearable />
-          </MySection> */}
+          </MySection>
         </div>
       );
     }}
