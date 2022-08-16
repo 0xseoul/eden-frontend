@@ -5,6 +5,7 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/AutoHeightImage.css";
 import "../styles/home.css";
+import "../styles/fullpage.css";
 
 import Layout from "../components/layout";
 
