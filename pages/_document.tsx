@@ -69,6 +69,21 @@ export default class MyDocument extends Document {
             type="font/oft"
             crossOrigin=""
           />
+          <script async type="text/javascript" src="/easings.js"></script>
+
+          <script async type="text/javascript" src="/easings.min.js"></script>
+          <script
+            async
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
+          ></script>
+          {/* fullpage.js/vendors/easings */}
+
+          {/* <script
+            async
+            type="text/javascript"
+            src="./js/fullpage/vendors/scrolloverflow.js"
+          ></script> */}
         </Head>
         <body>
           <Main />
