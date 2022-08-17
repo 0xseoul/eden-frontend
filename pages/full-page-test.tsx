@@ -53,50 +53,47 @@ const anchors = [
 
 const FullpageWrapper = () => {
   return (
-    <>
-      <ComponentsWithNoSSR />
-      <ReactFullpage
-        pluginWrapper={pluginWrapper}
-        anchors={anchors}
-        navigation={false}
-        navigationTooltips={anchors}
-        scrollOverflow={true}
-        bigSectionsDestination="top"
-        scrollOverflowReset={true}
-        render={({ state, fullpageApi }) => {
-          fullpageApi?.reBuild();
-          console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
-          return (
-            <div>
-              <MySection>
-                <MainBanner />
-              </MySection>
-              <MySection>
-                <About />
-              </MySection>
-              <MySection>
-                <Avatar />
-              </MySection>
-              <MySection>
-                <Roadmap />
-              </MySection>
-              <MySection>
-                {" "}
-                <Story />
-              </MySection>
-              <MySection>
-                {" "}
-                <Faq />
-              </MySection>
-              <MySection>
-                {" "}
-                <Wearable />
-              </MySection>
-            </div>
-          );
-        }}
-      />
-    </>
+    <ReactFullpage
+      pluginWrapper={pluginWrapper}
+      anchors={anchors}
+      navigation={false}
+      navigationTooltips={anchors}
+      scrollOverflow={true}
+      bigSectionsDestination="bottom"
+      scrollOverflowReset={true}
+      render={({ state, fullpageApi }) => {
+        fullpageApi?.reBuild();
+        console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
+        return (
+          <div>
+            <MySection>
+              <MainBanner />
+            </MySection>
+            <MySection>
+              <About />
+            </MySection>
+            <MySection>
+              <Avatar />
+            </MySection>
+            <MySection>
+              <Roadmap />
+            </MySection>
+            <MySection>
+              {" "}
+              <Story />
+            </MySection>
+            <MySection>
+              {" "}
+              <Faq />
+            </MySection>
+            <MySection>
+              {" "}
+              <Wearable />
+            </MySection>
+          </div>
+        );
+      }}
+    />
   );
 };
 

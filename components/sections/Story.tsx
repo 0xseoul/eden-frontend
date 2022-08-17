@@ -8,14 +8,6 @@ const styles = {
   content: `flex w-full`,
   img: `w-1/2`,
   title: `text-3xl font-black uppercase !sticky top-0 h-screen flex justify-center items-center`,
-  // hidden w-1/4 col-start-1 lg:block sticky top-0 h-screen pt-32
-};
-
-const cssStyles = {
-  title: {
-    position: "sticky",
-    top: 0,
-  } as CSSProperties,
 };
 
 interface ItemProps {
