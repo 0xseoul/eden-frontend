@@ -5,7 +5,7 @@ import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
-  section: `min-h-screen w-full flex justify-center items-center flex-col relative`,
+  section: `min-h-screen w-full flex justify-center items-center flex-col relative section-1`,
   imgContainer: `absolute top-0 left-0 right-0 bottom-0 z-1 object-contain`,
   text: `z-20 text-center text-xl leading-[4rem]`,
   overlay: `absolute top-0 left-0 right-0 bottom-0 max-h-screen z-10 bg-black opacity-50 `,

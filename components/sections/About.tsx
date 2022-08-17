@@ -3,7 +3,7 @@ import { MAIN_IMAGES } from "../../constants/image";
 import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
-  section: `min-h-screen w-full flex justify-center items-center relative`,
+  section: `min-h-screen w-full flex justify-center items-center relative section-2`,
   wrapper: `flex w-full max-w-[1200px] gap-[27rem]`,
   container: `flex items-center justify-center`,
   box: `flex-1 flex items-center justify-center`,

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 // import ReactDOM from "react-dom";
 import ReactFullpage from "@fullpage/react-fullpage";
 import dynamic from "next/dynamic";
@@ -13,6 +13,7 @@ import Roadmap from "../components/sections/Roadmap";
 import Story from "../components/sections/Story";
 import Faq from "../components/sections/Faq";
 import Wearable from "../components/sections/Wearable";
+import useElementScroll from "../hooks/useElementScroll";
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props.
 const pluginWrapper = () => {
@@ -30,28 +31,62 @@ const ComponentsWithNoSSR = dynamic(
 interface Props {
   children: React.ReactNode;
 }
-class MySection extends React.Component<Props> {
-  render() {
-    const { children } = this.props;
-    return (
-      <div className="section">
-        <h3>{children}</h3>
-      </div>
-    );
-  }
-}
+const MySection: FC<Props> = ({ children }) => {
+  return (
+    <div className="section">
+      <div>{children}</div>
+    </div>
+  );
+};
+
+const ScrollSection: FC<Props> = ({ children }) => {
+  // const { children } = this.props;
+  // const { isScroll, onScroll, scrollTop } = useElementScroll();
+  const [container, setContainer] = useState<HTMLElement | null>(null);
+  const [scrollPercent, setScrollPercent] = useState<number>(0);
+  // console.log(container?.clientHeight);
+  const onScroll = (e: any) => {
+    if (!container) return;
+    const { scrollTop } = e.target;
+    setScrollPercent(scrollTop / container?.clientHeight);
+  };
+
+  useEffect(() => {
+    console.log(scrollPercent);
+    const dom = document.querySelector(".avatar-container");
+    if (!dom) return;
+    const scrollLeft = scrollPercent * dom.clientWidth;
+    const scrollWidth = dom.scrollWidth;
+    const scrollLeftPercent = scrollLeft / scrollWidth;
+    console.log(scrollLeftPercent);
+    dom.scrollTo({
+      left: scrollLeft,
+      behavior: "auto",
+    });
+    // document.querySelector(".avatar-container").scrollLeft // 이거는 리덕스든 뭐든 써야할듯
+    // document.querySelector(".avatar-container").scrollWidth
+  }, [scrollPercent]);
+
+  return (
+    <div className="section" onScroll={onScroll} ref={setContainer}>
+      <div>{children}</div>
+    </div>
+  );
+};
 
 const anchors = [
-  "firstPage",
-  "secondPage",
-  "thirdPage",
-  "fourthPage",
-  "fifthPage",
-  "sixthPage",
-  "seventhPage",
+  "main-banner",
+  "about",
+  "avatar",
+  "roadmap",
+  "story",
+  "faq",
+  "wearable",
 ];
 
 const FullpageWrapper = () => {
+  const [container, setContainer] = React.useState<any>(null);
+  useEffect(() => {}, [container]);
   return (
     <ReactFullpage
       pluginWrapper={pluginWrapper}
@@ -61,6 +96,7 @@ const FullpageWrapper = () => {
       scrollOverflow={true}
       bigSectionsDestination="bottom"
       scrollOverflowReset={true}
+      ref={setContainer}
       render={({ state, fullpageApi }) => {
         fullpageApi?.reBuild();
         console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
@@ -72,22 +108,19 @@ const FullpageWrapper = () => {
             <MySection>
               <About />
             </MySection>
-            <MySection>
+            <ScrollSection>
               <Avatar />
-            </MySection>
+            </ScrollSection>
             <MySection>
               <Roadmap />
             </MySection>
             <MySection>
-              {" "}
               <Story />
             </MySection>
             <MySection>
-              {" "}
               <Faq />
             </MySection>
             <MySection>
-              {" "}
               <Wearable />
             </MySection>
           </div>
