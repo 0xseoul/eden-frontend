@@ -6,6 +6,7 @@ import MainBanner from "../components/sections/MainBanner";
 import Roadmap from "../components/sections/Roadmap";
 import Story from "../components/sections/Story";
 import Wearable from "../components/sections/Wearable";
+
 const styles = {
   section: `flex-1 flex justify-center items-center flex-col w-full`,
 };

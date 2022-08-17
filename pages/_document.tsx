@@ -70,7 +70,13 @@ export default class MyDocument extends Document {
             crossOrigin=""
           />
           <script async type="text/javascript" src="/easings.js"></script>
-
+          <script
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.10/fullpage.min.js"
+            integrity="sha512-Xaje5GN/tSuxnQNdbOMppDPWWpPMN0WGfay1St6ckxBqnm3hB66iVqBbLXmujadwsH9KOUVHJZ3GR9QpAEF1GQ=="
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
+          ></script>
           <script async type="text/javascript" src="/easings.min.js"></script>
           <script
             async

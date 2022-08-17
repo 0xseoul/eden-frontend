@@ -5,7 +5,7 @@ import AutoHeightImage from "../common/AutoHeightImage";
 const styles = {
   section: `flex px-[2.5rem] w-full scrollable h-screen`,
   container: `flex-1 flex justify-center items-start min-h-screen top-0`,
-  content: `flex w-full`,
+  content: `flex`,
   img: `w-1/2`,
   title: `text-3xl font-black uppercase !sticky top-0 h-screen flex justify-center items-center`,
   // hidden w-1/4 col-start-1 lg:block sticky top-0 h-screen pt-32
@@ -109,18 +109,16 @@ const Story = () => {
           <form className={styles.title}>
             <span>Story</span>
           </form>
-          <div className="flex-1  flex flex-col items-center justify-center">
-            <div className="max-w-[820px]">
-              {texts.map((item, index) => (
-                <ItemComponent
-                  key={item.title}
-                  title={item.title}
-                  content={item.content}
-                  year={item.year}
-                  imgSrc={item.imgSrc}
-                />
-              ))}
-            </div>
+          <div className="max-w-[820px]">
+            {texts.map((item, index) => (
+              <ItemComponent
+                key={item.title}
+                title={item.title}
+                content={item.content}
+                year={item.year}
+                imgSrc={item.imgSrc}
+              />
+            ))}
           </div>
         </div>
       </div>
