@@ -8,6 +8,7 @@ import "../styles/home.css";
 import "../styles/fullpage.css";
 
 import Layout from "../components/layout";
+import ContextProvider from "../contexts";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState<boolean>(false);
@@ -23,9 +24,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     return <></>;
   } else {
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ContextProvider>
     );
   }
 }
