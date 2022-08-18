@@ -6,7 +6,7 @@ import useScrolling from "../../hooks/useScroll";
 // wrapper: `flex flex-col items-center justify-center h-screen max-h-screen max-w-full`,
 const styles = {
   wrapper: `flex flex-col items-center justify-center h-screen max-h-screen max-w-full section-3`,
-  section: `min-h-[300vh] flex bg-white flex-col justify-start items-center max-w-full`,
+  section: `min-h-[400vh] flex bg-white flex-col justify-start items-center max-w-full`,
   container: `max-h-screen w-full max-w-[100%] flex justify-center items-center relative sticky top-0`,
   avatarContainer: `min-w-full h-full flex justify-start items-center absolute`,
   text: `absolute text-white text-center text-3xl z-10 font-black leading-[153px]`,

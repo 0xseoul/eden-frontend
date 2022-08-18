@@ -48,7 +48,7 @@ const ScrollSection: FC<Props> = ({ children }) => {
   const onScroll = (e: any) => {
     if (!container) return;
     const { scrollTop } = e.target;
-    setScrollPercent(scrollTop / container?.clientHeight);
+    setScrollPercent(((scrollTop / container?.clientHeight) * 2) / 3);
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const ScrollSection: FC<Props> = ({ children }) => {
     const scrollLeft = scrollPercent * dom.clientWidth;
     const scrollWidth = dom.scrollWidth;
     const scrollLeftPercent = scrollLeft / scrollWidth;
-    console.log(scrollLeftPercent);
+    // console.log(scrollLeftPercent);
     dom.scrollTo({
       left: scrollLeft,
       behavior: "auto",
