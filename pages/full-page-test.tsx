@@ -97,6 +97,9 @@ const FullpageWrapper = () => {
       bigSectionsDestination="bottom"
       scrollOverflowReset={true}
       ref={setContainer}
+      afterLoad={(origin, destination, direction) => {
+        console.log(origin, destination, direction);
+      }}
       render={({ state, fullpageApi }) => {
         fullpageApi?.reBuild();
         console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console

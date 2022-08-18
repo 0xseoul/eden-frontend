@@ -26,9 +26,6 @@ const NavBtn: FC<NavProps> = ({ navItem, children }) => {
 };
 const Footer = () => {
   const [navDoms, setNavDoms] = useState<NodeListOf<Element> | null>(null);
-  // const router = useRouter();
-  // const { pathname, } = router;
-  // console.log(pathname);
   useEffect(() => {
     const dom = document.querySelector("#fp-nav > ul");
     if (!dom) return;
