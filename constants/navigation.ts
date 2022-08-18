@@ -1,3 +1,13 @@
+export const SECTION_NAME = {
+  mainBanner: "main-banner",
+  about: "about",
+  avatar: "avatar",
+  roadmap: "roadmap",
+  story: "story",
+  faq: "faq",
+  wearable: "wearable",
+};
+
 export const NAV_ORDER = {
   "main-banner": 0,
   about: 1,

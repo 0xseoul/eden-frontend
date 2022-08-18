@@ -25,6 +25,10 @@ export const FooterProvider: FC<IFooterProviderProps> = ({
 }): ReactElement => {
   const [currentSection, setCurrentSection] = useState<string>("");
 
+  useEffect(() => {
+    console.log(currentSection);
+  }, [currentSection]);
+
   const value = { currentSection, setCurrentSection };
   return (
     <FooterContext.Provider value={value}>{children}</FooterContext.Provider>

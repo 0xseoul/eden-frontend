@@ -14,6 +14,7 @@ import Story from "../components/sections/Story";
 import Faq from "../components/sections/Faq";
 import Wearable from "../components/sections/Wearable";
 import useElementScroll from "../hooks/useElementScroll";
+import { useFooter } from "../contexts/FooterContext";
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props.
 const pluginWrapper = () => {
@@ -85,8 +86,7 @@ const anchors = [
 ];
 
 const FullpageWrapper = () => {
-  const [container, setContainer] = React.useState<any>(null);
-  useEffect(() => {}, [container]);
+  const { setCurrentSection } = useFooter();
   return (
     <ReactFullpage
       pluginWrapper={pluginWrapper}
@@ -96,13 +96,13 @@ const FullpageWrapper = () => {
       scrollOverflow={true}
       bigSectionsDestination="bottom"
       scrollOverflowReset={true}
-      ref={setContainer}
       afterLoad={(origin, destination, direction) => {
-        console.log(origin, destination, direction);
+        // console.log(origin, destination, direction);
+        setCurrentSection(destination.anchor.toString());
       }}
       render={({ state, fullpageApi }) => {
         fullpageApi?.reBuild();
-        console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
+        // console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
         return (
           <div>
             <MySection>
