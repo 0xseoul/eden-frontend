@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { NAV_ORDER } from "../../constants/navigation";
+import { useFooter } from "../../contexts/FooterContext";
 
 const styles = {
   section: `w-full flex fixed bottom-0 left-0 right-0 z-10 items-center flex-col text-xs px-[40px] py-[26px] gap-[2rem]`,
@@ -15,12 +16,30 @@ interface NavProps {
   children: React.ReactNode;
 }
 const NavBtn: FC<NavProps> = ({ navItem, children }) => {
+  const { currentSection } = useFooter();
+  const isActive = navItem?.textContent === currentSection;
+  console.log(`isActive ${isActive}`);
+  console.log(
+    `currentSection : ${currentSection} || navItem : ${navItem?.textContent}`
+  );
+
   const onClick = () => {
     if (navItem) navItem.click();
+    console.log(navItem?.textContent);
+  };
+
+  const style = {
+    color: `#B6FF00`,
   };
   return (
     <div onClick={onClick}>
-      <span className={styles.navBtn}>{children}</span>
+      <span
+        className={`${styles.navBtn} transition-all ${
+          isActive && "text-primary font-extrabold"
+        } `}
+      >
+        {children}
+      </span>
     </div>
   );
 };

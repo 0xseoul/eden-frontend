@@ -7,6 +7,7 @@ export const SECTION_NAME = {
   faq: "faq",
   wearable: "wearable",
 };
+export const SECTION_NAME_ARR = Object.values(SECTION_NAME);
 
 export const NAV_ORDER = {
   "main-banner": 0,

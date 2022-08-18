@@ -15,6 +15,7 @@ import Faq from "../components/sections/Faq";
 import Wearable from "../components/sections/Wearable";
 import useElementScroll from "../hooks/useElementScroll";
 import { useFooter } from "../contexts/FooterContext";
+import { SECTION_NAME_ARR } from "../constants/navigation";
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props.
 const pluginWrapper = () => {
@@ -75,15 +76,7 @@ const ScrollSection: FC<Props> = ({ children }) => {
   );
 };
 
-const anchors = [
-  "main-banner",
-  "about",
-  "avatar",
-  "roadmap",
-  "story",
-  "faq",
-  "wearable",
-];
+const anchors = SECTION_NAME_ARR;
 
 const FullpageWrapper = () => {
   const { setCurrentSection } = useFooter();
