@@ -52,7 +52,7 @@ const ScrollSection: FC<Props> = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(scrollPercent);
+    // console.log(scrollPercent);
     const dom = document.querySelector(".avatar-container");
     if (!dom) return;
     const scrollLeft = scrollPercent * dom.clientWidth;
@@ -91,7 +91,7 @@ const FullpageWrapper = () => {
     <ReactFullpage
       pluginWrapper={pluginWrapper}
       anchors={anchors}
-      navigation={false}
+      navigation={true}
       navigationTooltips={anchors}
       scrollOverflow={true}
       bigSectionsDestination="bottom"

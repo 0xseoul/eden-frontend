@@ -10,4 +10,8 @@
   height: 100%;
   background: #b6ff00;
   transform: translateX(1.25rem);
+}
+
+#fp-nav {
+  visibility: hidden;
 }/*# sourceMappingURL=home.css.map */
