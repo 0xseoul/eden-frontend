@@ -25,7 +25,7 @@ const useIntersection = (target: any) => {
     if (target) {
       // console.log(target);
       observer = new IntersectionObserver(onIntersect, {
-        threshold: 1,
+        threshold: 0.61,
       });
       // console.log(observer);
       observer.observe(target);

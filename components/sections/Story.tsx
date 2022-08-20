@@ -1,5 +1,13 @@
-import React, { CSSProperties, FC, ReactNode } from "react";
+import React, {
+  CSSProperties,
+  FC,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
+
 import { MAIN_IMAGES } from "../../constants/image";
+import useIntersection from "../../hooks/useIntersection";
 import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
@@ -68,8 +76,15 @@ const texts: ItemProps[] = [
 ];
 
 const ItemComponent: FC<ItemProps> = ({ title, content, year, imgSrc }) => {
+  const [container, setContainer] = useState<HTMLElement | null>(null);
+  const { isIntersecting } = useIntersection(container);
+
+  useEffect(() => {
+    console.log(container);
+    console.log(isIntersecting);
+  }, [isIntersecting]);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" ref={setContainer}>
       <div className="flex gap-10">
         <div className="flex flex-1 justify-end">
           <div className="story-line">
