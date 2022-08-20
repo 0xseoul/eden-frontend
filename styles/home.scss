@@ -36,7 +36,7 @@ $animation-speed: 1s;
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) 100%
     );
-    animation: shadow-down $animation-speed ease-in-out;
+    animation: shadow-down 1.3s ease-in-out;
   }
 }
 
@@ -83,6 +83,10 @@ $animation-speed: 1s;
 
 @keyframes shadow-down {
   0% {
+    transform: translateY(0);
+    background: #000;
+  }
+  30% {
     transform: translateY(0);
     background: #000;
   }

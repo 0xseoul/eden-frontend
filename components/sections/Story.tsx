@@ -123,7 +123,7 @@ const ItemComponent: FC<ItemProps> = ({ title, content, year, imgSrc }) => {
       <div
         className={`${styles.img} ${shadowOnce && "shadow-down"} ${
           classNameMethod.shadowOnce
-        }`}
+        } `}
       >
         <AutoHeightImage src={imgSrc} />
       </div>
