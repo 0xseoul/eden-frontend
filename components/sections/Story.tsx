@@ -77,14 +77,21 @@ const texts: ItemProps[] = [
 
 const ItemComponent: FC<ItemProps> = ({ title, content, year, imgSrc }) => {
   const [container, setContainer] = useState<HTMLElement | null>(null);
+  const [shadowOnce, setShadowOnce] = useState<boolean>(false);
   const { isIntersecting } = useIntersection(container);
+  const classNameMethod = {
+    shadowOnce: !shadowOnce && "invisible",
+    isVisible: isIntersecting ? "opacity-100" : "opacity-0",
+  };
 
   useEffect(() => {
-    console.log(container);
-    console.log(isIntersecting);
+    if (isIntersecting) setShadowOnce(true);
   }, [isIntersecting]);
   return (
-    <div className="flex flex-col" ref={setContainer}>
+    <div
+      className={`flex flex-col ${classNameMethod.isVisible} transition-opacity duration-1000`}
+      ref={setContainer}
+    >
       <div className="flex gap-10">
         <div className="flex flex-1 justify-end">
           <div className="story-line">
@@ -94,14 +101,30 @@ const ItemComponent: FC<ItemProps> = ({ title, content, year, imgSrc }) => {
           </div>
         </div>
         <div className="flex flex-1 flex-col">
-          <span className="text-lg font-extrabold flex items-center justify-center">
-            {title}
+          <span
+            className={`${shadowOnce && "shadow-right"} ${
+              classNameMethod.shadowOnce
+            }`}
+          >
+            <span className="text-lg font-extrabold flex items-center justify-center">
+              {title}
+            </span>
           </span>
-          <span className="font-sm font-normal">{content}</span>
+          <span
+            className={`${shadowOnce && "shadow-left"} ${
+              classNameMethod.shadowOnce
+            }`}
+          >
+            <span className="font-sm font-normal">{content}</span>
+          </span>
         </div>
       </div>
 
-      <div className={styles.img}>
+      <div
+        className={`${styles.img} ${shadowOnce && "shadow-down"} ${
+          classNameMethod.shadowOnce
+        }`}
+      >
         <AutoHeightImage src={imgSrc} />
       </div>
     </div>
