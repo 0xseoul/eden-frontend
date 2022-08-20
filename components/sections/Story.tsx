@@ -132,15 +132,34 @@ const ItemComponent: FC<ItemProps> = ({ title, content, year, imgSrc }) => {
 };
 
 const Story = () => {
+  const [sectionRef, setSectionRef] = useState<HTMLElement | null>(null);
+  const [shadowOnce, setShadowOnce] = useState<boolean>(false);
+
+  const { isIntersecting } = useIntersection(sectionRef, 0.1);
+  useEffect(() => {
+    if (isIntersecting) setShadowOnce(true);
+  }, [isIntersecting]);
+
   return (
     <div className={styles.section}>
       <div className={styles.container}>
         <div className={styles.content}>
           <form className={styles.title}>
-            <span>Story</span>
+            <span
+              className={`story-title-container flex ${shadowOnce && "active"}`}
+            >
+              <span className="letter-up !delay-75">S</span>
+              <span className="letter-up !delay-100">t</span>
+              <span className="letter-up !delay-150">o</span>
+              <span className="letter-up !delay-200">r</span>
+              <span className="letter-up !delay-300">y</span>
+            </span>
           </form>
-          <div className="flex-1  flex flex-col items-center justify-center">
-            <div className="max-w-[820px]">
+          <div
+            className="flex-1  flex flex-col items-center justify-center"
+            ref={setSectionRef}
+          >
+            <div className="max-w-[820px] py-20">
               {texts.map((item, index) => (
                 <ItemComponent
                   key={item.title}

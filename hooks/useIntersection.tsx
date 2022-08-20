@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useIntersection = (target: any) => {
+const useIntersection = (target: any, threshold?: number) => {
+  const _threshold = threshold || 0.61;
   const [isIntersecting, setIsIntersecting] = useState(false);
   const onIntersect = async (
     [entry]: IntersectionObserverEntry[],
@@ -25,7 +26,7 @@ const useIntersection = (target: any) => {
     if (target) {
       // console.log(target);
       observer = new IntersectionObserver(onIntersect, {
-        threshold: 0.61,
+        threshold: _threshold,
       });
       // console.log(observer);
       observer.observe(target);

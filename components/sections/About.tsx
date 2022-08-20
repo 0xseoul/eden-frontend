@@ -34,11 +34,11 @@ const About = () => {
               WE ARE
             </span>
             <span className="text-sm font-normal leading-[24px]">
-              Studio <Highlight>0XSEOUL</Highlight> uses NFT,
-              <Highlight>blockchain</Highlight>
-              authentication and <Highlight>augmented reality</Highlight>,
-              combined with manufacturing expertise to create wearable digital
-              fashion <Highlight>collectibles</Highlight> and{" "}
+              Studio <Highlight>0XSEOUL</Highlight> uses NFT,{" "}
+              <Highlight>blockchain</Highlight> authentication and{" "}
+              <Highlight>augmented reality</Highlight>, combined with
+              manufacturing expertise to create wearable digital fashion{" "}
+              <Highlight>collectibles</Highlight> and{" "}
               <Highlight>avatars</Highlight>.
             </span>
           </div>

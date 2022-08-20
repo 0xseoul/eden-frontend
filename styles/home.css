@@ -12,6 +12,21 @@
   transform: translateX(1.25rem);
 }
 
+.story-title-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.letter-up {
+  transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateY(100%);
+}
+
+.story-title-container.active .letter-up {
+  transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateY(0%);
+}
+
 #fp-nav {
   visibility: hidden;
 }
@@ -134,5 +149,21 @@
   100% {
     transform: translateX(100%);
     background: #000;
+  }
+}
+@-webkit-keyframes letter-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes letter-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }/*# sourceMappingURL=home.css.map */
