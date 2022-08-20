@@ -119,40 +119,40 @@ $animation-speed: 1s;
 @keyframes shadow-down {
   0% {
     transform: translateY(0);
-    background: #000;
+    background: #181818;
   }
   30% {
     transform: translateY(0);
-    background: #000;
+    background: #181818;
   }
 
   100% {
     transform: translateY(100%);
-    background: #000;
+    background: #181818;
   }
 }
 
 @keyframes shadow-left {
   0% {
     transform: translateX(0);
-    background: #000;
+    background: #181818;
   }
 
   100% {
     transform: translateX(-100%);
-    background: #000;
+    background: #181818;
   }
 }
 
 @keyframes shadow-right {
   0% {
     transform: translateX(0);
-    background: #000;
+    background: #181818;
   }
 
   100% {
     transform: translateX(100%);
-    background: #000;
+    background: #181818;
   }
 }
 
