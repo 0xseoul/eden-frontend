@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
+import { ICONS } from "../../constants/icons";
 
 const Wearables = () => {
   const router = useRouter();
