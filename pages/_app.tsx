@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import "../styles/AutoHeightImage.css";
 import "../styles/home.css";
 import "../styles/fullpage.css";
+import "../styles/wearable.css";
 
 import Layout from "../components/layout";
 import ContextProvider from "../contexts";

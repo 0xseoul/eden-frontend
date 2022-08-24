@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 
 const styles = {
-  section: `w-full min-h-screen flex justify-center items-center flex-col`,
+  section: `w-full min-h-screen flex justify-center items-center flex-col relative overflow-hidden`,
 };
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
