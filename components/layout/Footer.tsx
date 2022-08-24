@@ -58,7 +58,11 @@ const Footer = () => {
 
   return (
     <section className={styles.section}>
-      <form className={`${styles.row} justify-between ${!isHome && "hidden"}`}>
+      <form
+        className={`${styles.row} justify-between transition-all ${
+          !isHome && "hidden"
+        } `}
+      >
         <div className="flex gap-[1.5rem] text-c-gray300">
           <NavBtn
             navItem={
