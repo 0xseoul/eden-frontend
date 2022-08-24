@@ -1,7 +1,7 @@
 import React from "react";
 
 const Tab = () => {
-  return <div></div>;
+  return <div>tab</div>;
 };
 
 export default Tab;
