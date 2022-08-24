@@ -6,7 +6,7 @@ interface LayoutProps {
 
 const styles = {
   layout:
-    "flex flex-col max-w-wearable-max h-full w-full justify-center items-center flex-1 wearable-layout",
+    "flex flex-col max-w-wearable-max h-full w-full justify-center items-center flex-1 mt-header mb-footer",
 };
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
   return (

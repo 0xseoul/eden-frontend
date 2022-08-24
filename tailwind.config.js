@@ -35,6 +35,10 @@ module.exports = {
       maxWidth: {
         "wearable-max": "78rem",
       },
+      margin: {
+        header: "150px",
+        footer: "70px",
+      },
     },
   },
   plugins: [],
