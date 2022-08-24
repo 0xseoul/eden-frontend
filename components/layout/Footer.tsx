@@ -18,10 +18,10 @@ interface NavProps {
 const NavBtn: FC<NavProps> = ({ navItem, children }) => {
   const { currentSection } = useFooter();
   const isActive = navItem?.textContent === currentSection;
-  console.log(`isActive ${isActive}`);
-  console.log(
-    `currentSection : ${currentSection} || navItem : ${navItem?.textContent}`
-  );
+  // console.log(`isActive ${isActive}`);
+  // console.log(
+  //   `currentSection : ${currentSection} || navItem : ${navItem?.textContent}`
+  // );
 
   const onClick = () => {
     if (navItem) navItem.click();
@@ -45,6 +45,10 @@ const NavBtn: FC<NavProps> = ({ navItem, children }) => {
 };
 const Footer = () => {
   const [navDoms, setNavDoms] = useState<NodeListOf<Element> | null>(null);
+  const router = useRouter();
+  const currNavName = router.pathname;
+  const isHome = currNavName === "/" || currNavName === "/full-page-test";
+
   useEffect(() => {
     const dom = document.querySelector("#fp-nav > ul");
     if (!dom) return;
@@ -54,7 +58,7 @@ const Footer = () => {
 
   return (
     <section className={styles.section}>
-      <form className={`${styles.row} justify-between`}>
+      <form className={`${styles.row} justify-between ${!isHome && "hidden"}`}>
         <div className="flex gap-[1.5rem] text-c-gray300">
           <NavBtn
             navItem={
