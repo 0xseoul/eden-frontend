@@ -26,6 +26,15 @@ module.exports = {
         "2xl": "6rem",
         "3xl": "8rem",
       },
+      width: {
+        wearable: "78rem",
+      },
+      height: {
+        header: "150px",
+      },
+      maxWidth: {
+        "wearable-max": "78rem",
+      },
     },
   },
   plugins: [],

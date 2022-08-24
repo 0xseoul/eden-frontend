@@ -4,8 +4,16 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const styles = {
+  layout:
+    "flex flex-col max-w-wearable-max h-full w-full justify-center items-center flex-1 wearable-layout",
+};
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <section className={styles.layout}>
+      <div className="h-full flex-1">{children}</div>
+    </section>
+  );
 };
 
 export default WearableLayout;
