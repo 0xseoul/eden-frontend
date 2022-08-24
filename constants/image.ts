@@ -28,3 +28,10 @@ export const MAIN_IMAGES = {
 export const COMMON_IMAGES = {
   textLogo: "/images/text-logo.png",
 };
+
+export const WEARABLE_IMAGES = {
+  hero: "/images/wearable/hero.png",
+  bg: "/images/wearable/bg.gif",
+  shoes: "/images/wearable/shoes.png",
+  top: "/images/wearable/top.png",
+} as const;
