@@ -16,7 +16,7 @@ const styles = {
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <section className={styles.layout}>
-      <form className="h-full flex-1 z-30">
+      <form className="h-full flex-1 z-30 w-full">
         <Top />
         <Tab />
         <div className={styles.container}>{children}</div>
