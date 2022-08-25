@@ -4,13 +4,13 @@ import { ICONS } from "../../constants/icons";
 const styles = {
   section: `flex justify-between w-full`,
   titleContainer: `flex flex-col w-[24rem]`,
-  iconContainer: `flex cursor-pointer`,
+  iconContainer: `flex`,
   titleTop: `flex flex-row text-lg font-light`,
   titleBottom: `flex flex-row text-xs justify-between`,
   titleItem: `flex gap-[0.75rem]`,
   titleItemContainer: `flex gap-[1.5rem]`,
   subtitle: `text-c-gray200`,
-  icon: `w-[3rem] h-[3rem] flex items-center justify-center`,
+  icon: `w-[3rem] h-[3rem] flex items-center justify-center  cursor-pointer`,
 };
 
 const Top = () => {
