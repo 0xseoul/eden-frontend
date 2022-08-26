@@ -2,10 +2,9 @@ import React from "react";
 import { ICONS } from "../../constants/icons";
 
 const styles = {
-  tab: `flex px-[1.5rem] py-[1rem] w-full justify-between items-center`,
+  tab: `flex px-[1.5rem] py-[1rem] w-full justify-between items-center pb-[2.5625rem]`,
   container: `flex gap-[1.2rem]`,
   searchbar: `w-[24rem] h-[3rem] bg-[#202122] flex items-center justify-center relative`,
-  text: ``,
   input: `w-full px-2`,
   icon: `absolute right-2`,
 };

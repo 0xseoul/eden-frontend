@@ -2,7 +2,7 @@ import React from "react";
 import { ICONS } from "../../constants/icons";
 
 const styles = {
-  section: `flex justify-between w-full`,
+  section: `flex justify-between w-full pb-[3rem]`,
   titleContainer: `flex flex-col w-[24rem]`,
   iconContainer: `flex`,
   titleTop: `flex flex-row text-lg font-light`,
