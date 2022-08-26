@@ -7,15 +7,14 @@
   z-index: 1;
 }
 
-.wearable-card-v2 {
+.wearable-card-container {
   position: relative;
   cursor: default;
   pointer-events: none;
 }
-.wearable-card-v2 .button {
+.wearable-card-container .button {
   top: 0;
   left: 0;
-  --background-color: url("/images/wearable/hero.png");
   --border-color: #7aab00;
   --border-width: 0.05em;
   --edge-size: 1rem;
@@ -32,14 +31,14 @@
           clip-path: polygon(var(--edge-size) 0%, 100% 0, 100% calc(100% - var(--edge-size)), calc(100% - var(--edge-size)) 100%, 0 100%, 0% var(--edge-size));
   transition: color 250ms;
 }
-.wearable-card-v2 button::before {
+.wearable-card-container button::before {
   content: "";
   position: absolute;
   inset: 0;
   background: var(--border-color);
   z-index: -2;
 }
-.wearable-card-v2 button::after {
+.wearable-card-container button::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -52,10 +51,10 @@
   transition: clip-path 500ms;
   transition: clip-path 500ms, -webkit-clip-path 500ms;
 }
-.wearable-card-v2 button:hover {
+.wearable-card-container button:hover {
   color: white;
 }
-.wearable-card-v2 button:hover::after {
+.wearable-card-container button:hover::after {
   -webkit-clip-path: polygon(calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)));
           clip-path: polygon(calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)));
 }/*# sourceMappingURL=wearable.css.map */
