@@ -10,62 +10,62 @@
   z-index: 1;
 }
 
-.wearable-avatar-card {
-  // --edge-size: 2rem;
-  // --border-color: #7aab00;
-  // --border-width: 4px;
-  // --background-color: rgba(0, 0, 0, 0.8);
+// .wearable-avatar-card {
+//   // --edge-size: 2rem;
+//   // --border-color: #7aab00;
+//   // --border-width: 4px;
+//   // --background-color: rgba(0, 0, 0, 0.8);
 
-  --background-color: white;
-  --border-color: linear-gradient(to bottom right, red, blue);
-  --border-width: 0.5em;
-  --edge-size: 0.5em;
-  // background-color:
-  // border: solid 1px #7aab00;
-  place-content: center;
-  isolation: isolate;
-  clip-path: polygon(
-    var(--edge-size) 0%,
-    100% 0,
-    100% calc(100% - var(--edge-size)),
-    calc(100% - var(--edge-size)) 100%,
-    0 100%,
-    0% var(--edge-size)
-  );
+//   --background-color: white;
+//   --border-color: linear-gradient(to bottom right, red, blue);
+//   --border-width: 0.5em;
+//   --edge-size: 0.5em;
+//   // background-color:
+//   // border: solid 1px #7aab00;
+//   place-content: center;
+//   isolation: isolate;
+//   clip-path: polygon(
+//     var(--edge-size) 0%,
+//     100% 0,
+//     100% calc(100% - var(--edge-size)),
+//     calc(100% - var(--edge-size)) 100%,
+//     0 100%,
+//     0% var(--edge-size)
+//   );
 
-  ::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--border-color);
-    z-index: -2;
-  }
+//   ::before {
+//     content: "";
+//     position: absolute;
+//     inset: 0;
+//     background: var(--border-color);
+//     z-index: -2;
+//   }
 
-  ::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--background-color);
-    z-index: -1;
-    clip-path: polygon(
-      // top left 1
-      var(--border-width) calc(var(--edge-size) + var(--border-width) * 0.5),
-      // top left 2
-      calc(var(--edge-size) + var(--border-width) * 0.5) var(--border-width),
-      // top right
-      calc(100% - var(--border-width)) var(--border-width),
-      //bottom right - 1
-      calc(100% - var(--border-width))
-        calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5)),
-      // bottom right - 2
-      calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5))
-        calc(100% - var(--border-width)),
-      // bottom left
-      calc(var(--border-width)) calc(100% - var(--border-width))
-    );
-    transition: clip-path 500ms;
-  }
-}
+//   ::after {
+//     content: "";
+//     position: absolute;
+//     inset: 0;
+//     background: var(--background-color);
+//     z-index: -1;
+//     clip-path: polygon(
+//       // top left 1
+//       var(--border-width) calc(var(--edge-size) + var(--border-width) * 0.5),
+//       // top left 2
+//       calc(var(--edge-size) + var(--border-width) * 0.5) var(--border-width),
+//       // top right
+//       calc(100% - var(--border-width)) var(--border-width),
+//       //bottom right - 1
+//       calc(100% - var(--border-width))
+//         calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5)),
+//       // bottom right - 2
+//       calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5))
+//         calc(100% - var(--border-width)),
+//       // bottom left
+//       calc(var(--border-width)) calc(100% - var(--border-width))
+//     );
+//     transition: clip-path 500ms;
+//   }
+// }
 
 .wearable-card-v2 {
   position: relative;
@@ -76,6 +76,8 @@
   //   width: 300px;
   // }
   .button {
+    top: 0;
+    left: 0;
     --background-color: url("/images/wearable/hero.png");
     --border-color: #7aab00;
     // --border-color: linear-gradient(to bottom right, red, blue);

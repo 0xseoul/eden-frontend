@@ -7,42 +7,14 @@
   z-index: 1;
 }
 
-.wearable-avatar-card {
-  --background-color: white;
-  --border-color: linear-gradient(to bottom right, red, blue);
-  --border-width: 0.5em;
-  --edge-size: 0.5em;
-  place-content: center;
-  isolation: isolate;
-  -webkit-clip-path: polygon(var(--edge-size) 0%, 100% 0, 100% calc(100% - var(--edge-size)), calc(100% - var(--edge-size)) 100%, 0 100%, 0% var(--edge-size));
-          clip-path: polygon(var(--edge-size) 0%, 100% 0, 100% calc(100% - var(--edge-size)), calc(100% - var(--edge-size)) 100%, 0 100%, 0% var(--edge-size));
-}
-.wearable-avatar-card ::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--border-color);
-  z-index: -2;
-}
-.wearable-avatar-card ::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--background-color);
-  z-index: -1;
-  -webkit-clip-path: polygon(var(--border-width) calc(var(--edge-size) + var(--border-width) * 0.5), calc(var(--edge-size) + var(--border-width) * 0.5) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(var(--border-width)) calc(100% - var(--border-width)));
-          clip-path: polygon(var(--border-width) calc(var(--edge-size) + var(--border-width) * 0.5), calc(var(--edge-size) + var(--border-width) * 0.5) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(var(--border-width)) calc(100% - var(--border-width)));
-  transition: -webkit-clip-path 500ms;
-  transition: clip-path 500ms;
-  transition: clip-path 500ms, -webkit-clip-path 500ms;
-}
-
 .wearable-card-v2 {
   position: relative;
   cursor: default;
   pointer-events: none;
 }
 .wearable-card-v2 .button {
+  top: 0;
+  left: 0;
   --background-color: url("/images/wearable/hero.png");
   --border-color: #7aab00;
   --border-width: 0.05em;

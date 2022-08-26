@@ -11,7 +11,7 @@ const Card: FC<Props> = ({ src }) => {
   return (
     <div className={styles.container}>
       {/* 안녕 */}
-      <div className="wearable-card-v2 w-[24rem] h-[24rem]">
+      <div className="wearable-card-v2 w-[24rem] h-[24rem] flex items-center justify-center">
         <button className="button w-[24rem] h-[24rem]">
           <AutoHeightImage src={src} />
         </button>
