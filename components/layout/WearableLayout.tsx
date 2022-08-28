@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { CSSProperties, FC } from "react";
 import Tab from "../wearable/Tab";
 import Top from "../wearable/Top";
 
@@ -13,13 +13,23 @@ const styles = {
   overlay: `flex bg-black/80 w-full h-full absolute top-0 left-0 w-screen h-screen z-10`,
   container: `flex flex-1`,
 };
+
+const cssStyles = {
+  container: {
+    background: "rgba(32, 33, 34, 0.5)",
+    backdropFilter: "blur(32px)",
+  } as CSSProperties,
+};
+
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <section className={styles.layout}>
       <form className="h-full flex-1 z-30 w-full">
         <Top />
-        <Tab />
-        <div className={styles.container}>{children}</div>
+        <div style={cssStyles.container}>
+          <Tab />
+          <div className={styles.container}>{children}</div>
+        </div>
       </form>
       <div className={styles.background} />
       <div className={styles.overlay} />

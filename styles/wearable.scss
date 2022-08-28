@@ -14,10 +14,7 @@
   position: relative;
   cursor: default;
   pointer-events: none;
-  // .autoImage__wrapper {
-  //   height: 300px;
-  //   width: 300px;
-  // }
+
   .button {
     top: 0;
     left: 0;
@@ -108,4 +105,12 @@
         calc(100% - var(--border-width))
     );
   }
+}
+
+.filter-icon:hover {
+  background: linear-gradient(
+    92.73deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
