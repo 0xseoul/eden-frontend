@@ -5,7 +5,7 @@ import { NAV_ORDER } from "../../constants/navigation";
 import { useFooter } from "../../contexts/FooterContext";
 
 const styles = {
-  section: `w-full flex fixed bottom-0 left-0 right-0 z-10 items-center flex-col text-xs px-[40px] py-[26px] gap-[2rem]`,
+  section: `w-full flex fixed bottom-0 left-0 right-0 z-30 items-center flex-col text-xs px-[40px] py-[26px] gap-[2rem]`,
   row: `flex items-center  w-full`,
   container: `flex items-center`,
   navBtn: `cursor-pointer`,
