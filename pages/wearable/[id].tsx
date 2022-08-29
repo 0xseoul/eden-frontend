@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { CSSProperties, FC } from "react";
 import AutoHeightImage from "../../components/common/AutoHeightImage";
+import { CuttinEdgeBtn } from "../../components/common/Buttons";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCard from "../../components/wearable/AvatarCard";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
@@ -96,22 +97,27 @@ const Wearables = () => {
           </div>
           <div className="flex-1 flex items-end w-full justify-center mt-[69px]">
             {/* TODO: cuttnig button container */}
-            <span
-              className="w-full font-black py-4 flex items-center justify-center cursor-pointer"
-              style={cssStyles.downloadBtn}
-            >
-              <span className="translate-y-0.5">DOWNLOAD IMAGE</span>
-            </span>
+            <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
+              DOWNLOAD IMAGE
+            </CuttinEdgeBtn>
+            {/* <div className="cutting-button-container w-full">
+              <div
+                className="w-full font-black py-4 flex items-center justify-center cursor-pointer button"
+                style={cssStyles.downloadBtn}
+              >
+                <span className="translate-y-0.5">DOWNLOAD IMAGE</span>
+              </div>
+            </div> */}
           </div>
         </form>
         <form className="flex flex-col items-start justify-start h-full">
           <ul className={styles.filterContainer}>{filterListComponents}</ul>
           <div className="w-full">
             {/* TODO: cuttnig button container */}
-
-            <div className="bg-primary w-full font-black py-4 flex items-center justify-center cursor-pointer text-black">
+            <CuttinEdgeBtn tw="bg-primary text-black">SAVE</CuttinEdgeBtn>
+            {/* <div className="bg-primary w-full font-black py-4 flex items-center justify-center cursor-pointer text-black">
               <span className="translate-y-0.5">SAVE</span>
-            </div>
+            </div> */}
           </div>
         </form>
         <form className={styles.inventoryContainer}>

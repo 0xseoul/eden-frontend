@@ -59,6 +59,22 @@
           clip-path: polygon(calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)));
 }
 
+.cutting-button-container .button {
+  --border-width: 1rem;
+  --edge-size: 1rem;
+  cursor: pointer;
+  -webkit-clip-path: polygon(0 0, calc(100% - var(--edge-size)) 0, 100% var(--edge-size), 100% 100%, var(--edge-size) 100%, 0 calc(100% - var(--edge-size)));
+          clip-path: polygon(0 0, calc(100% - var(--edge-size)) 0, 100% var(--edge-size), 100% 100%, var(--edge-size) 100%, 0 calc(100% - var(--edge-size)));
+  transition: color 250ms;
+}
+.cutting-button-container div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--border-color);
+  z-index: -2;
+}
+
 .wearable-card-container-v2 {
   position: relative;
 }
@@ -68,6 +84,7 @@
 }
 .wearable-card-container-v2 :last-child {
   z-index: 1;
+  position: absolute;
 }
 
 .filter-icon:hover {

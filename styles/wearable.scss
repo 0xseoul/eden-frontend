@@ -106,21 +106,44 @@
     );
   }
 }
+// cutting button
+.cutting-button-container {
+  .button {
+    --border-width: 1rem;
+    --edge-size: 1rem;
+    cursor: pointer;
+
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--edge-size)) 0,
+      100% var(--edge-size),
+      100% 100%,
+      var(--edge-size) 100%,
+      0 calc(100% - var(--edge-size))
+    );
+
+    transition: color 250ms;
+  }
+
+  div::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--border-color);
+    z-index: -2;
+  }
+}
 
 .wearable-card-container-v2 {
   position: relative;
   :first-child {
     position: absolute;
     z-index: 2;
-    // overflow: hidden;
   }
   :last-child {
     z-index: 1;
+    position: absolute;
   }
-  // background: url("/images/wearable/avatar-frame.png") no-repeat center center;
-  // background-size: contain;
-  // position: relative;
-  // overflow: hidden;
 }
 
 .filter-icon:hover {
