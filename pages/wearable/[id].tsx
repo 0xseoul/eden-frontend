@@ -3,6 +3,7 @@ import React, { CSSProperties, FC } from "react";
 import AutoHeightImage from "../../components/common/AutoHeightImage";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCard from "../../components/wearable/AvatarCard";
+import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
 import { ICONS } from "../../constants/icons";
@@ -77,7 +78,8 @@ const Wearables = () => {
       <div className={styles.container}>
         <form className={styles.avatarContainer}>
           <div className="flex flex-col">
-            <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
+            <AvatarCardV2 src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
+            {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
             <span className="text-xs text-c-gray300 mt-4">Code Name</span>
             <span>ADAM #2946 //</span>
             <div className={styles.icon}>

@@ -59,6 +59,17 @@
           clip-path: polygon(calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) var(--border-width), calc(100% - var(--border-width)) calc(100% - (var(--edge-size) + var(--border-width) * 0.5)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)), calc(100% - (var(--edge-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)));
 }
 
+.wearable-card-container-v2 {
+  position: relative;
+}
+.wearable-card-container-v2 :first-child {
+  position: absolute;
+  z-index: 2;
+}
+.wearable-card-container-v2 :last-child {
+  z-index: 1;
+}
+
 .filter-icon:hover {
   background: linear-gradient(92.73deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
 }
