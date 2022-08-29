@@ -12,8 +12,8 @@ const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[40rem] h-[40rem] mx-[1.5rem] gap-[2rem]`,
   avatarContainer: `w-[24rem] h-full flex flex-col`,
   filterContainer: `w-[11.25rem] h-full`,
-  inventoryContainer: `flex-1 flex h-full overflow-y-auto`,
-  grid: `grid grid-cols-3 auto-rows-[250px] w-full`,
+  inventoryContainer: `flex-1 flex h-full overflow-y-auto wearable-custom-scrollbar-container `,
+  grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
 };
@@ -84,8 +84,9 @@ const Wearables = () => {
   const inventoryListComponents = arr.map((i) => (
     <InventoryCard
       src={WEARABLE_IMAGES.shoes}
-      name={`Wearable ${i}`}
+      name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
       key={`Wearable ${i}`}
+      itemNumber="#111"
     />
   ));
   return (

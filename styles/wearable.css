@@ -61,4 +61,20 @@
 
 .filter-icon:hover {
   background: linear-gradient(92.73deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.wearable-custom-scrollbar-container::-webkit-scrollbar {
+  width: 7px;
+  height: 10px !important;
+  max-height: 10px !important;
+}
+
+.wearable-custom-scrollbar-container::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.wearable-custom-scrollbar-container::-webkit-scrollbar-track {
+  background-color: transparent;
 }/*# sourceMappingURL=wearable.css.map */
