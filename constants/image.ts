@@ -34,4 +34,5 @@ export const WEARABLE_IMAGES = {
   bg: "/images/wearable/bg.gif",
   shoes: "/images/wearable/shoes.png",
   top: "/images/wearable/top.png",
+  "avatar-frame": "images/wearable/avatar-frame.png",
 } as const;

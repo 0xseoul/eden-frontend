@@ -4,6 +4,7 @@ import AutoHeightImage from "../../components/common/AutoHeightImage";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCard from "../../components/wearable/AvatarCard";
 import FilterBtn from "../../components/wearable/FilterBtn";
+import InventoryCard from "../../components/wearable/InventoryCard";
 import { ICONS } from "../../constants/icons";
 import { WEARABLE_IMAGES } from "../../constants/image";
 
@@ -11,7 +12,7 @@ const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[40rem] h-[40rem] mx-[1.5rem] gap-[2rem]`,
   avatarContainer: `w-[24rem] h-full flex flex-col`,
   filterContainer: `w-[11.25rem] h-full`,
-  inventoryContainer: `flex-1 bg-blue-300 flex h-full overflow-y-auto`,
+  inventoryContainer: `flex-1 flex h-full overflow-y-auto`,
   grid: `grid grid-cols-3 auto-rows-[250px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
@@ -61,11 +62,13 @@ interface CardComponentProps {
 }
 const CardComponent: FC<CardComponentProps> = ({ src, name }) => {
   return (
-    <div>
-      <div>
-        <AutoHeightImage src={src} />
+    <div className={styles.inventoryCard}>
+      <div className="p-2">
+        <div className="w-full object-contain rounded-[8px] overflow-hidden border-[1px] border-primary">
+          <AutoHeightImage src={src} />
+        </div>
+        <div>{name}</div>
       </div>
-      <div>{name}</div>
     </div>
   );
 };
@@ -75,6 +78,15 @@ const Wearables = () => {
   const { id } = router.query;
   const filterListComponents = filterList.map((filter) => (
     <FilterBtn text={filter.name} key={filter.name} />
+  ));
+
+  const arr = Array.from({ length: 10 }, (_, i) => i);
+  const inventoryListComponents = arr.map((i) => (
+    <InventoryCard
+      src={WEARABLE_IMAGES.shoes}
+      name={`Wearable ${i}`}
+      key={`Wearable ${i}`}
+    />
   ));
   return (
     <WearableLayout>
@@ -118,18 +130,10 @@ const Wearables = () => {
         </form>
         <form className={styles.inventoryContainer}>
           <div className={styles.grid}>
-            <div className={styles.inventoryCard}>1</div>
-            <div className={styles.inventoryCard}>2</div>
-            <div className={styles.inventoryCard}>3</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
-            <div className={styles.inventoryCard}>4</div>
+            {/* <div className={styles.inventoryCard}> */}
+            {inventoryListComponents}
+
+            {/* </div> */}
           </div>
         </form>
       </div>
