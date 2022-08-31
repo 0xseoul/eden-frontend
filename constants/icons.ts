@@ -6,6 +6,8 @@ import Search from "../public/icons/search-icon.svg";
 import Twitter from "../public/icons/Twitter.svg";
 import Discord from "../public/icons/Discord.svg";
 import Opensea from "../public/icons/Opensea.svg";
+import Twitter2 from "../public/icons/Twitter-2.svg";
+import Discord2 from "../public/icons/Discord-2.svg";
 
 export const ICONS = {
   arrow: Arrow,
@@ -16,4 +18,6 @@ export const ICONS = {
   twitter: Twitter,
   discord: Discord,
   opensea: Opensea,
+  twitter2: Twitter2,
+  discord2: Discord2,
 };
