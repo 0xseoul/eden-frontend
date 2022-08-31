@@ -99,6 +99,30 @@
           animation: shadow-right 1s ease-in-out;
 }
 
+.home-tag-container {
+  -webkit-clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 21%);
+          clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 21%);
+}
+.home-tag-container ::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: #b6ff00;
+}
+.home-tag-container ::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
 @-webkit-keyframes shadow-down {
   0% {
     transform: translateY(0);

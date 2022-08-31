@@ -23,6 +23,7 @@ export const MAIN_IMAGES = {
   logo: "/images/main/logo.png",
   "main-hero": "/images/main/main-hero.png",
   "wearable-banner": "/images/main/wearable-banner.png",
+  "tag-bg": "/images/main/tag-bg.gif",
 };
 
 export const COMMON_IMAGES = {

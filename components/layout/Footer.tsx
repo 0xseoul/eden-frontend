@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
+import { MAIN_IMAGES } from "../../constants/image";
 import { NAV_ORDER } from "../../constants/navigation";
 import { useFooter } from "../../contexts/FooterContext";
+import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
   section: `w-full flex fixed bottom-0 left-0 right-0 z-30 items-center flex-col text-xs px-[40px] py-[26px] gap-[2rem]`,
-  row: `flex items-center  w-full`,
+  row: `flex items-end w-full`,
   container: `flex items-center`,
   navBtn: `cursor-pointer`,
 };
@@ -92,7 +94,15 @@ const Footer = () => {
             WEARABLES
           </NavBtn>
         </div>
-        <div>tag</div>
+        <div>
+          <div className="w-[240px] h-[96px] flex items-center justify-center flex-col relative home-tag-container overflow-hidden">
+            <span className="text-primary font-black text-md">WEARABLES</span>
+            <span className="text-c-gray300 text-xs">GO TO MY INVENTORY</span>
+            <div className="absolute w-full -z-10">
+              <AutoHeightImage src={MAIN_IMAGES["tag-bg"]} />
+            </div>
+          </div>
+        </div>
       </form>
       <form className={styles.row}>ⓒ 2022. 0xSEOUL</form>
     </section>
