@@ -97,7 +97,9 @@ const Footer = () => {
         <div>
           <div className="w-[240px] h-[96px] flex items-center justify-center flex-col relative home-tag-container overflow-hidden">
             <span className="text-primary font-black text-md">WEARABLES</span>
-            <span className="text-c-gray300 text-xs">GO TO MY INVENTORY</span>
+            <span className="text-c-gray300 text-xs cursor-pointer">
+              <Link href="/wearable">GO TO MY INVENTORY</Link>
+            </span>
             <div className="absolute w-full -z-10">
               <AutoHeightImage src={MAIN_IMAGES["tag-bg"]} />
             </div>
