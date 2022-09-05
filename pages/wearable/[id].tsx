@@ -11,7 +11,7 @@ import { ICONS } from "../../constants/icons";
 import { WEARABLE_IMAGES } from "../../constants/image";
 
 const styles = {
-  container: `w-full h-full flex justify-center items-center min-h-[40rem] h-[40rem] mx-[1.5rem] gap-[2rem]`,
+  container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
   avatarContainer: `w-[24rem] h-full flex flex-col`,
   filterContainer: `w-[11.25rem] h-full`,
   inventoryContainer: `flex-1 flex h-full overflow-y-auto wearable-custom-scrollbar-container `,
@@ -19,6 +19,7 @@ const styles = {
   grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
+  downloadBtnContainer: `absolute bottom-0 left-[50%] translate-x-[-50%] z-50`,
 };
 
 const cssStyles = {
@@ -76,62 +77,66 @@ const Wearables = () => {
     />
   ));
   return (
-    <WearableLayout>
-      <div className={styles.container}>
-        <form className={styles.avatarContainer}>
-          <div className="flex flex-col">
-            <AvatarCardV2 src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
-            {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
-            <span className="text-xs text-c-gray300 mt-4">Code Name</span>
-            <span>ADAM #2946 //</span>
-            <div className={styles.icon}>
-              <span>
-                <ICONS.opensea />
-              </span>
-              <span>
-                <ICONS.twitter />
-              </span>
-              <span>
-                <ICONS.discord />
-              </span>
-            </div>
-          </div>
-          <div className="flex-1 flex items-end w-full justify-center mt-[69px]">
-            {/* TODO: cuttnig button container */}
-            <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
-              DOWNLOAD IMAGE
-            </CuttinEdgeBtn>
-          </div>
-        </form>
-        <form className="flex flex-col items-start justify-start h-full">
-          <ul className={styles.filterContainer}>{filterListComponents}</ul>
-          <div className="w-full">
-            {/* TODO: cuttnig button container */}
-            <CuttinEdgeBtn tw="bg-primary text-black">SAVE</CuttinEdgeBtn>
-            {/* <div className="bg-primary w-full font-black py-4 flex items-center justify-center cursor-pointer text-black">
-              <span className="translate-y-0.5">SAVE</span>
-            </div> */}
-          </div>
-        </form>
-        <section className={styles.inventoryWrapper}>
-          <form className={styles.inventoryContainer}>
-            <div className={styles.grid}>{inventoryListComponents}</div>
-          </form>
-          <div>
-            <div className="flex justify-end w-full">
-              <div className="flex w-[228px] wearable-reset-button overflow-hidden">
-                <span className="btn-icon h-[3rem] w-[3rem] flex items-center justify-center">
-                  <ICONS.lock />
+    <>
+      <WearableLayout>
+        <div className={styles.container}>
+          <form className={styles.avatarContainer}>
+            <div className="flex flex-col">
+              <AvatarCardV2 src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
+              {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
+              <span className="text-xs text-c-gray300 mt-4">Code Name</span>
+              <span>ADAM #2946 //</span>
+              <div className={styles.icon}>
+                <span>
+                  <ICONS.opensea />
                 </span>
-                <div className="uppercase btn-text h-[3rem] flex-1 flex items-center justify-center">
-                  <span>RESET</span>
+                <span>
+                  <ICONS.twitter />
+                </span>
+                <span>
+                  <ICONS.discord />
+                </span>
+              </div>
+            </div>
+            <div className="flex-1 flex items-end w-full justify-center mt-[69px]">
+              {/* TODO: cuttnig button container */}
+              <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
+                DOWNLOAD IMAGE
+              </CuttinEdgeBtn>
+            </div>
+          </form>
+          <form className="flex flex-col items-start justify-start h-full">
+            <ul className={styles.filterContainer}>{filterListComponents}</ul>
+            <div className="w-full">
+              {/* TODO: cuttnig button container */}
+              <CuttinEdgeBtn tw="bg-primary text-black">SAVE</CuttinEdgeBtn>
+            </div>
+          </form>
+          <section className={styles.inventoryWrapper}>
+            <form className={styles.inventoryContainer}>
+              <div className={styles.grid}>{inventoryListComponents}</div>
+            </form>
+            <div>
+              <div className="flex justify-end w-full">
+                <div className="flex w-[228px] wearable-reset-button overflow-hidden cursor-pointer">
+                  <span className="btn-icon h-[3rem] w-[3rem] flex items-center justify-center">
+                    <ICONS.lock />
+                  </span>
+                  <div className="uppercase btn-text h-[3rem] flex-1 flex items-center justify-center font-black text-c-gray300">
+                    <span className="translate-y-0.5">RESET</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+      </WearableLayout>
+      <div className={styles.downloadBtnContainer}>
+        <div className="w-[420px] h-[70px] bg-[#202122] flex justify-center items-center cursor-pointer wearable-download-btn-top">
+          <span>Download Complate</span>
+        </div>
       </div>
-    </WearableLayout>
+    </>
   );
 };
 

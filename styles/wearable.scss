@@ -1,3 +1,4 @@
+$primary: #b6ff00;
 .wearable-background {
   background: url("/images/wearable/bg.gif") no-repeat center center;
 
@@ -191,3 +192,17 @@
   background-color: transparent;
 }
 // size down scroll thumb height
+
+.wearable-download-btn-top {
+  ::before {
+    content: "";
+    position: absolute;
+    // inset: 0;
+    width: 100%;
+    height: 2px;
+    background: $primary;
+    left: 0;
+    top: 0;
+    // z-index: -2;
+  }
+}
