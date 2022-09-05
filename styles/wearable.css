@@ -91,6 +91,22 @@
   background: linear-gradient(92.73deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
+.wearable-reset-button {
+  --edge-size: 20%;
+  -webkit-clip-path: polygon(0 0, 93% 0, 100% 30%, 100% 100%, 7% 100%, 0 70%);
+          clip-path: polygon(0 0, 93% 0, 100% 30%, 100% 100%, 7% 100%, 0 70%);
+}
+.wearable-reset-button .btn-text {
+  background: linear-gradient(92.73deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-backdrop-filter: blur(32px);
+          backdrop-filter: blur(32px);
+}
+.wearable-reset-button .btn-icon {
+  background: #202122;
+  -webkit-backdrop-filter: blur(32px);
+          backdrop-filter: blur(32px);
+}
+
 .wearable-custom-scrollbar-container::-webkit-scrollbar {
   width: 7px;
   height: 10px !important;

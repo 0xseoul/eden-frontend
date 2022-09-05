@@ -14,7 +14,7 @@ export const CuttinEdgeBtn: FC<CuttingEdgeBtnProps> = ({
   return (
     <div className="cutting-button-container w-full">
       <div
-        className={`w-full font-black py-4 flex items-center justify-center cursor-pointer button ${tw}`}
+        className={`w-full font-black h-[3rem] flex items-center justify-center cursor-pointer button ${tw}`}
         style={cssStyles}
       >
         <span className="translate-y-0.5">{children}</span>

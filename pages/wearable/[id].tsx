@@ -15,6 +15,7 @@ const styles = {
   avatarContainer: `w-[24rem] h-full flex flex-col`,
   filterContainer: `w-[11.25rem] h-full`,
   inventoryContainer: `flex-1 flex h-full overflow-y-auto wearable-custom-scrollbar-container `,
+  inventoryWrapper: `flex-1 flex h-full flex-col`,
   grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
@@ -100,14 +101,6 @@ const Wearables = () => {
             <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
               DOWNLOAD IMAGE
             </CuttinEdgeBtn>
-            {/* <div className="cutting-button-container w-full">
-              <div
-                className="w-full font-black py-4 flex items-center justify-center cursor-pointer button"
-                style={cssStyles.downloadBtn}
-              >
-                <span className="translate-y-0.5">DOWNLOAD IMAGE</span>
-              </div>
-            </div> */}
           </div>
         </form>
         <form className="flex flex-col items-start justify-start h-full">
@@ -120,14 +113,23 @@ const Wearables = () => {
             </div> */}
           </div>
         </form>
-        <form className={styles.inventoryContainer}>
-          <div className={styles.grid}>
-            {/* <div className={styles.inventoryCard}> */}
-            {inventoryListComponents}
-
-            {/* </div> */}
+        <section className={styles.inventoryWrapper}>
+          <form className={styles.inventoryContainer}>
+            <div className={styles.grid}>{inventoryListComponents}</div>
+          </form>
+          <div>
+            <div className="flex justify-end w-full">
+              <div className="flex w-[228px] wearable-reset-button overflow-hidden">
+                <span className="btn-icon h-[3rem] w-[3rem] flex items-center justify-center">
+                  <ICONS.lock />
+                </span>
+                <div className="uppercase btn-text h-[3rem] flex-1 flex items-center justify-center">
+                  <span>RESET</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </form>
+        </section>
       </div>
     </WearableLayout>
   );
