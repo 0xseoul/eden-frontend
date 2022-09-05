@@ -18,7 +18,7 @@ const Header = () => {
   const isWearable = currNavName.includes("/wearable");
   const isHome = currNavName === "/";
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${isWearable && "relative"}`}>
       <div className={`${styles.container} ${isWearable && "!justify-center"}`}>
         <div className={`${styles.logo} ${isWearable && "text-white"}`}>
           <Link href="/">EDEN</Link>

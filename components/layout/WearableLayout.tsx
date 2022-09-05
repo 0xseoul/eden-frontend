@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const styles = {
   layout:
-    "flex flex-col max-w-wearable-max h-full w-full justify-center items-center flex-1 mt-header mb-footer",
+    "flex flex-col max-w-wearable-max h-full w-full justify-center items-center flex-1 mb-footer",
   background: `wearable-background fixed top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center `,
   overlay: `flex bg-black/80 w-full h-full fixed top-0 left-0 w-screen h-screen z-10`,
   container: `flex flex-1`,
