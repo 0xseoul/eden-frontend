@@ -3,6 +3,7 @@ import Close from "../public/icons/close-icon.svg";
 import Lock from "../public/icons/lock-icon.svg";
 import Menu from "../public/icons/menu-icon.svg";
 import Search from "../public/icons/search-icon.svg";
+import SearchInactive from "../public/icons/search-inactive-icon.svg";
 import Twitter from "../public/icons/Twitter.svg";
 import Discord from "../public/icons/Discord.svg";
 import Opensea from "../public/icons/Opensea.svg";
@@ -15,6 +16,7 @@ export const ICONS = {
   lock: Lock,
   menu: Menu,
   search: Search,
+  searchInactive: SearchInactive,
   twitter: Twitter,
   discord: Discord,
   opensea: Opensea,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ICONS } from "../../constants/icons";
 
 const styles = {
@@ -10,6 +10,12 @@ const styles = {
 };
 
 const Tab = () => {
+  const [keyword, setKeyword] = React.useState<string>("");
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value);
+
+  const isSearching = keyword.length > 0;
+
   return (
     <div className={styles.tab}>
       <div className={styles.container}>
@@ -18,9 +24,20 @@ const Tab = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.searchbar}>
-          <input placeholder="search" className={styles.input} />
+          <input
+            placeholder="search"
+            className={styles.input}
+            onChange={onChange}
+            value={keyword}
+          />
           <span className={styles.icon}>
-            <ICONS.search />
+            {isSearching ? (
+              <span onClick={() => setKeyword("")} className="cursor-pointer">
+                <ICONS.searchInactive />
+              </span>
+            ) : (
+              <ICONS.search />
+            )}
           </span>
         </div>
       </div>
