@@ -1,2 +1,4 @@
 declare module "fullpage.js/vendors/easings";
-declare interface Window {}
+declare interface Window {
+  klaytn: any;
+}

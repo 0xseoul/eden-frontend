@@ -23,9 +23,6 @@ const cssStyles = {
   } as CSSProperties,
 };
 
-// const cssStyle = {
-
-// };
 const Wallet = () => {
   const onClickUrl = () => window.open(COMMON.kaikasUrl);
   return (
