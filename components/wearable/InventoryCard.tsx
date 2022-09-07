@@ -9,7 +9,7 @@ interface Props {
 
 const styles = {
   inventoryCard: `flex-1`,
-  imgContainer: `w-full object-contain rounded-[8px] overflow-hidden border-[1px] border-black hover:border-primary transition-all duration-300 cursor-pointer`,
+  imgContainer: `w-full object-contain rounded-[8px] overflow-hidden border-[1px] border-black transition-all duration-150 cursor-pointer active:border-primary  inventory-card-img-container`,
 };
 
 const InventoryCard: FC<Props> = ({ src, name, itemNumber }) => {

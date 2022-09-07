@@ -1,0 +1,26 @@
+[
+  {
+    "token_id": 1,
+    "hair": "63170696f9f60c3231f1870b",
+    "clothing": null,
+    "eyes": "63170696f9f60c3231f1870d",
+    "mouth": "63170696f9f60c3231f1870e",
+    "off_hand": null,
+    "skin": "631707a4f9f60c3231f1873b",
+    "background": "631707a4f9f60c3231f18741",
+    "base_image_url": "http://dummyimage.com/135x100.png/dddddd/000000",
+    "overlapped_image_url": "http://dummyimage.com/135x100.png/dddddd/000000"
+  },
+  {
+    "token_id": 2,
+    "hair": "631707a4f9f60c3231f18742",
+    "clothing": "631707a4f9f60c3231f1873e",
+    "eyes": null,
+    "mouth": "631707a4f9f60c3231f18746",
+    "off_hand": null,
+    "skin": null,
+    "background": "631707a4f9f60c3231f18741",
+    "base_image_url": "http://dummyimage.com/135x100.png/dddddd/000000",
+    "overlapped_image_url": "http://dummyimage.com/248x100.png/5fa2dd/ffffff"
+  }
+]

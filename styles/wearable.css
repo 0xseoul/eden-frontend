@@ -131,4 +131,28 @@
   background: #b6ff00;
   left: 0;
   top: 0;
+}
+
+.inventory-card-img-container {
+  position: relative;
+  transition: all 150ms ease-in-out;
+}
+.inventory-card-img-container ::before {
+  content: "";
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  opacity: 0;
+}
+.inventory-card-img-container :hover ::before {
+  transition: all 150ms ease-in-out;
+  content: "VIEW";
+  position: absolute;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }/*# sourceMappingURL=wearable.css.map */
