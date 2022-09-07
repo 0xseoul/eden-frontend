@@ -19,7 +19,7 @@ const styles = {
   grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
-  downloadBtnContainer: `absolute bottom-0 left-[50%] translate-x-[-50%] z-50`,
+  downloadBtnContainer: `fixed bottom-0 left-[50%] translate-x-[-50%] z-50`,
 };
 
 const cssStyles = {

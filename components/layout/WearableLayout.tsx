@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC } from "react";
+import Wallet from "../common/Wallet";
 import Tab from "../wearable/Tab";
 import Top from "../wearable/Top";
 
@@ -22,14 +23,21 @@ const cssStyles = {
 };
 
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
+  const isWalletConnected = false;
   return (
     <section className={styles.layout}>
       <form className="h-full flex-1 z-30 w-full flex flex-col justify-center">
-        <Top />
-        <div style={cssStyles.container}>
-          <Tab />
-          <div className={styles.container}>{children}</div>
-        </div>
+        {isWalletConnected ? (
+          <>
+            <Top />
+            <div style={cssStyles.container}>
+              <Tab />
+              <div className={styles.container}>{children}</div>
+            </div>
+          </>
+        ) : (
+          <Wallet />
+        )}
       </form>
       <div className={styles.background} />
       <div className={styles.overlay} />
