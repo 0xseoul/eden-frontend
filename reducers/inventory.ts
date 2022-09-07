@@ -7,7 +7,7 @@ interface IInitialState {
   loading: ILoading["loading"];
 }
 
-const initialState: IInventory = {
+const inventory: IInventory = {
   avatar: {
     _id: "",
     owner: "",
@@ -23,6 +23,11 @@ const initialState: IInventory = {
     overlapped_image_url: null,
   },
   clothes: [],
+};
+
+const initialState: IInitialState = {
+  entities: inventory,
+  loading: "idle",
 };
 
 export const inventorySlice = createSlice({

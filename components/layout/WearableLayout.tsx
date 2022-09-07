@@ -1,4 +1,6 @@
 import React, { CSSProperties, FC } from "react";
+import { getWallet } from "../../reducers/user";
+import { useTypedSelector } from "../../store";
 import Wallet from "../common/Wallet";
 import Tab from "../wearable/Tab";
 import Top from "../wearable/Top";
@@ -23,7 +25,8 @@ const cssStyles = {
 };
 
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
-  const isWalletConnected = false;
+  const wallet = useTypedSelector(getWallet);
+  const isWalletConnected = wallet.length > 0;
   return (
     <section className={styles.layout}>
       <form className="h-full flex-1 z-30 w-full flex flex-col justify-center">

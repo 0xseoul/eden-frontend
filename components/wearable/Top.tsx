@@ -1,5 +1,8 @@
 import React from "react";
 import { ICONS } from "../../constants/icons";
+import { getWallet } from "../../reducers/user";
+import { useTypedSelector } from "../../store";
+import { cutWallet } from "../../utils/common";
 
 const styles = {
   section: `flex justify-between w-full pb-[3rem]`,
@@ -14,6 +17,7 @@ const styles = {
 };
 
 const Top = () => {
+  const wallet = useTypedSelector(getWallet);
   return (
     <div className={styles.section}>
       <form className={styles.titleContainer}>
@@ -24,7 +28,7 @@ const Top = () => {
           <div className={styles.titleItemContainer}>
             <div className={styles.titleItem}>
               <span className={styles.subtitle}>Account</span>
-              <span>0x583...B23c</span>
+              <span>{cutWallet(wallet)}</span>
             </div>
           </div>
           <div className={styles.titleItemContainer}>

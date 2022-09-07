@@ -9,3 +9,6 @@ export const throttle = (callback: Function, delay: number) => {
     }, delay);
   };
 };
+
+export const cutWallet = (wallet: string) =>
+  `${wallet.slice(0, 5)}...${wallet.slice(-4)}`;

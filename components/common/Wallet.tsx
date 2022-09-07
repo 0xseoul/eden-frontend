@@ -1,5 +1,7 @@
 import React, { CSSProperties } from "react";
 import { COMMON } from "../../constants/common";
+import { SET_WALLET } from "../../reducers/user";
+import { useTypedDispatch } from "../../store";
 import { CuttinEdgeBtn } from "./Buttons";
 
 const styles = {
@@ -25,6 +27,8 @@ const cssStyles = {
 
 const Wallet = () => {
   const onClickUrl = () => window.open(COMMON.kaikasUrl);
+  const dispatch = useTypedDispatch();
+  const getWallet = async () => await dispatch(SET_WALLET());
   return (
     <div className={styles.section}>
       <div className={styles.title} style={cssStyles.text}>
@@ -32,7 +36,9 @@ const Wallet = () => {
       </div>
       <div className={styles.btnContainer}>
         <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn} tw={styles.btn}>
-          CONNECT MY WALLET
+          <div className="w-full h-full" onClick={getWallet}>
+            CONNECT MY WALLET
+          </div>
         </CuttinEdgeBtn>
         <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn} tw={styles.btn}>
           GO TO MY INVENTORY
