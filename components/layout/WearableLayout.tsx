@@ -26,10 +26,11 @@ const cssStyles = {
 
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
   const wallet = useTypedSelector(getWallet);
+  // const isWalletConnected = true;
   const isWalletConnected = wallet.length > 0;
   return (
     <section className={styles.layout}>
-      <form className="h-full flex-1 z-30 w-full flex flex-col justify-center">
+      <div className="h-full flex-1 z-30 w-full flex flex-col justify-center">
         {isWalletConnected ? (
           <>
             <Top />
@@ -41,7 +42,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
         ) : (
           <Wallet />
         )}
-      </form>
+      </div>
       <div className={styles.background} />
       <div className={styles.overlay} />
     </section>

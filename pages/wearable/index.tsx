@@ -10,29 +10,21 @@ const styles = {
   cardContainer: `flex flex-col wearable-inventory-avatar-container min-h-[330px]`,
 };
 
-const index = () => {
+const Wearable = () => {
   const arr = Array.from({ length: 10 }, (_, i) => i + 1);
-  // eslint-disable-next-line
-  const [cardWidth, setCardWidth] = React.useState<number>(0);
 
-  // eslint-disable-next-line
-  useEffect(() => {
-    const dom = document.querySelector(".wearable-inventory-avatar-container");
-    if (!dom) return;
-    console.log(dom.clientWidth);
-    setCardWidth(dom.clientWidth);
-  }, []);
+  const [cardRef, setCardRef] = React.useState<HTMLDivElement | null>(null);
 
   const cardComponent = arr.map((item, index) => (
-    <div className={styles.cardContainer} key={item}>
+    <div className={styles.cardContainer} key={item} ref={setCardRef}>
       <Link href={`/wearable/1`}>
         <div
-          className={`flex cursor-pointer h-[${cardWidth}px] w-[${cardWidth}px]`}
+          className={`flex cursor-pointer h-[${cardRef?.clientWidth}px] w-[${cardRef?.clientWidth}px]`}
         >
           <AvatarCardV3
             src={WEARABLE_IMAGES.hero}
-            w={`${cardWidth}px`}
-            h={`${cardWidth}px`}
+            w={`${cardRef?.clientWidth}px`}
+            h={`${cardRef?.clientWidth}px`}
           />
         </div>
       </Link>
@@ -49,4 +41,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Wearable;
