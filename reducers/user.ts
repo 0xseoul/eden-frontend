@@ -4,13 +4,17 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { ILoading, ISelector } from "../interfaces/redux";
-import { IUser } from "../interfaces/user";
+import Caver from "caver-js";
+import { ILoading, ISelector, SetWalletProps } from "../interfaces/redux";
+import { IAvatar, IUser } from "../interfaces/user";
+import { getSigner } from "../utils/caver-interact";
 
 const user: IUser = {
   holding_nfts: [],
   wallet: "",
+  signature: [],
   isAdmin: false,
+  isLoggedIn: false,
 };
 
 interface IInitialState {
@@ -28,28 +32,50 @@ export const SET_WALLET = createAsyncThunk(
   async () => {
     try {
       if (!window.klaytn) return;
+      const caver = new Caver(window.klaytn);
       const accounts = await window.klaytn.enable();
-      return accounts[0];
+      const wallet = accounts[0];
+      const signature = (await getSigner(
+        caver,
+        accounts[0],
+        `sign to login to eden ${accounts[0]}`
+      )) as string[];
+
+      return { wallet, signature };
     } catch (error) {
       return [];
     }
   }
 );
 
+// interface TypedPayloadAction<T> extends PayloadAction<T> {}
+
 export const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    SET_AVATARS: (state, action: PayloadAction<IAvatar[]>) => {
+      state.entities.holding_nfts = action.payload;
+    },
+    SET_LOGGED_IN: (state, action: PayloadAction<boolean>) => {
+      state.entities.isLoggedIn = action.payload;
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(
-      SET_WALLET.fulfilled,
-      (state, action: PayloadAction<string>) => {
-        state.entities.wallet = action.payload;
-      }
-    );
+    builder.addCase(SET_WALLET.fulfilled, (state, action) => {
+      if (!action.payload) return;
+      const { wallet, signature } = action.payload as SetWalletProps;
+      state.entities.wallet = wallet;
+      state.entities.signature = signature;
+    });
   },
 });
 
 export default userSlice.reducer;
 
+export const { SET_AVATARS, SET_LOGGED_IN } = userSlice.actions;
+
 export const getWallet = (state: ISelector) => state.user.entities.wallet;
+export const getSignature = (state: ISelector) => state.user.entities.signature;
+export const getIsLoggedIn = (state: ISelector) =>
+  state.user.entities.isLoggedIn;

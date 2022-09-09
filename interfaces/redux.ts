@@ -22,3 +22,8 @@ export interface ISelector {
     loading: ILoading["loading"];
   };
 }
+
+export interface SetWalletProps {
+  wallet: string;
+  signature: [string];
+}

@@ -29,6 +29,7 @@ const Wallet = () => {
   const onClickUrl = () => window.open(COMMON.kaikasUrl);
   const dispatch = useTypedDispatch();
   const getWallet = async () => await dispatch(SET_WALLET());
+
   return (
     <div className={styles.section}>
       <div className={styles.title} style={cssStyles.text}>

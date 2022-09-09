@@ -9,10 +9,10 @@ export const useCaver = () => {
   );
 
   useEffect(() => {
-    // if (window.klaytn) {
-    const caver = new Caver("https://api.baobab.klaytn.net:8651");
-    setCaver(caver);
-    // setCaver(new Caver(window.klaytn));
+    if (!window.klaytn) return;
+    // const caver = new Caver("https://api.baobab.klaytn.net:8651");
+    // setCaver(caver);
+    setCaver(new Caver(window.klaytn));
     // }
   }, []);
 

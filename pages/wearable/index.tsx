@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV3 from "../../components/wearable/AvatarCard-v3";
 import { WEARABLE_IMAGES } from "../../constants/image";
+import { getWallet } from "../../reducers/user";
+import { useTypedSelector } from "../../store";
+import { getSigner } from "../../utils/caver-interact";
 
 const styles = {
   container: `flex flex-1 h-[600px] max-h-[600px] w-full`,
@@ -14,6 +17,8 @@ const Wearable = () => {
   const arr = Array.from({ length: 10 }, (_, i) => i + 1);
 
   const [cardRef, setCardRef] = React.useState<HTMLDivElement | null>(null);
+
+  const wallet = useTypedSelector(getWallet);
 
   const cardComponent = arr.map((item, index) => (
     <div className={styles.cardContainer} key={item} ref={setCardRef}>
