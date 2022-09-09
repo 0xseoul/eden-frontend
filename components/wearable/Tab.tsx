@@ -25,15 +25,13 @@ const Tab = () => {
   ): Promise<void> => {
     const data = await api.searchClothes(_keyword, wallet);
     setData(data);
-    console.log(data);
   };
-  // const api = () => {
-  // console.log("hey");
-  // };
+
   const { data, keyword, setKeyword, loading, onChange } = useSearch({
     api: searchClothes,
   });
 
+  // console.log(loading, data);
   const avatars = useTypedSelector(getAvatars);
 
   const isSearching = keyword.length > 0;
