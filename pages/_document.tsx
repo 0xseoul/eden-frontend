@@ -10,66 +10,65 @@ export default class MyDocument extends Document {
             rel="preload"
             href="/fonts/NexaThin.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaLight.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/Nexa Light.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaBook.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaRegular.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaBold.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaXBold.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaHeavy.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
           <link
             rel="preload"
             href="/fonts/NexaBlack.otf"
             as="font"
-            type="font/oft"
+            type="font/otf"
             crossOrigin=""
           />
-          <script async type="text/javascript" src="/easings.js"></script>
           <script
             async
             src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.10/fullpage.min.js"
@@ -77,19 +76,6 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
           ></script>
-          <script async type="text/javascript" src="/easings.min.js"></script>
-          <script
-            async
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
-          ></script>
-          {/* fullpage.js/vendors/easings */}
-
-          {/* <script
-            async
-            type="text/javascript"
-            src="./js/fullpage/vendors/scrolloverflow.js"
-          ></script> */}
         </Head>
         <body>
           <Main />

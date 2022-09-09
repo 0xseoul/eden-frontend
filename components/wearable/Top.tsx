@@ -1,6 +1,6 @@
 import React from "react";
 import { ICONS } from "../../constants/icons";
-import { getWallet } from "../../reducers/user";
+import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
 import { cutWallet } from "../../utils/common";
 
@@ -18,6 +18,8 @@ const styles = {
 
 const Top = () => {
   const wallet = useTypedSelector(getWallet);
+  const avatars = useTypedSelector(getAvatars);
+  const clothes = useTypedSelector(getClothes);
   return (
     <div className={styles.section}>
       <form className={styles.titleContainer}>
@@ -34,11 +36,11 @@ const Top = () => {
           <div className={styles.titleItemContainer}>
             <div className={`${styles.titleItem} gap-[4px]`}>
               <span className={styles.subtitle}>Avatar</span>
-              <span>6</span>
+              <span>{avatars.length}</span>
             </div>
             <div className={`${styles.titleItem} gap-[4px]`}>
               <span className={styles.subtitle}>Item</span>
-              <span>2</span>
+              <span>{clothes.length}</span>
             </div>
           </div>
         </div>

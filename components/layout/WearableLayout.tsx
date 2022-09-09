@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { CSSProperties, FC, useEffect, useState } from "react";
+import { api } from "../../api";
 import { LOGIN_USER_MUTATION } from "../../GraphQL/Mutations";
 import { useCaver } from "../../hooks/useCaver";
 import {
@@ -12,8 +13,6 @@ import {
   SET_WALLET,
 } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
-import { getSigner } from "../../utils/caver-interact";
-import { saveJson } from "../../utils/common";
 import Wallet from "../common/Wallet";
 import Tab from "../wearable/Tab";
 import Top from "../wearable/Top";
@@ -75,6 +74,15 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
     };
     init();
   }, [signature, wallet]);
+
+  useEffect(() => {
+    const init = async () => {
+      const data = await api.getUser();
+      console.log("data");
+      console.log(data);
+    };
+    // init();
+  }, []);
 
   return (
     <section className={styles.layout}>

@@ -23,6 +23,7 @@ const styles = {
   grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
   inventoryCard: `flex-1`,
   icon: `flex gap-[0.5rem] mt-2`,
+  iconWrapper: `cursor-pointer`,
   downloadBtnContainer: `fixed bottom-0 left-[50%] translate-x-[-50%] z-50`,
 };
 
@@ -115,13 +116,13 @@ const Wearables = () => {
               {/* eslint-disable-next-line */}
               <span>ADAM #{id} //</span>
               <div className={styles.icon}>
-                <span>
+                <span className={styles.iconWrapper}>
                   <ICONS.opensea />
                 </span>
-                <span>
+                <span className={styles.iconWrapper}>
                   <ICONS.twitter />
                 </span>
-                <span>
+                <span className={styles.iconWrapper}>
                   <ICONS.discord />
                 </span>
               </div>
