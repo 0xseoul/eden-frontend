@@ -1,3 +1,4 @@
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { CSSProperties, FC } from "react";
 import AutoHeightImage from "../../components/common/AutoHeightImage";
@@ -9,6 +10,9 @@ import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
 import { ICONS } from "../../constants/icons";
 import { WEARABLE_IMAGES } from "../../constants/image";
+import { GET_AVATAR, GET_AVAT_AND_INVENTORY } from "../../GraphQL/Queries";
+import { getWallet } from "../../reducers/user";
+import { useTypedSelector } from "../../store";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -61,8 +65,21 @@ const filterList = [
 ];
 
 const Wearables = () => {
+  // 2개 query
+  // 아바타 정보 + 인벤토리 정보
   const router = useRouter();
   const { id } = router.query;
+  const wallet = useTypedSelector(getWallet);
+  const { data, loading, error } = useQuery(GET_AVATAR, {
+    variables: { token_id: Number(id) },
+  });
+  // const { data, loading, error } = useQuery(GET_AVAT_AND_INVENTORY, {
+  //   variables: { tokenId: Number(id), walletAddress: wallet },
+  // });
+  // GET_AVATAR
+
+  console.log(data, loading);
+
   const filterListComponents = filterList.map((filter) => (
     <FilterBtn text={filter.name} key={filter.name} />
   ));
@@ -85,7 +102,8 @@ const Wearables = () => {
               <AvatarCardV2 src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
               {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
               <span className="text-xs text-c-gray300 mt-4">Code Name</span>
-              <span>ADAM #2946 //</span>
+              {/* eslint-disable-next-line */}
+              <span>ADAM #{id} //</span>
               <div className={styles.icon}>
                 <span>
                   <ICONS.opensea />

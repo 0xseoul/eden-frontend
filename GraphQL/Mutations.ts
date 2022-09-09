@@ -11,14 +11,31 @@ export const CREATE_USER_MUTATION = gql`
 `;
 
 export const LOGIN_USER_MUTATION = gql`
-  mutation loginUser($wallet_address: String!) {
-    loginUser(wallet_address: $wallet_address) {
+  mutation loginUser(
+    $wallet_address: String!
+    $signature: [String!]
+    $signMessage: String!
+  ) {
+    loginUser(
+      wallet_address: $wallet_address
+      signature: $signature
+      signMessage: $signMessage
+    ) {
       wallet_address
-      holding_nfts {
+      holding_avatars {
         _id
         token_id
         base_image_url
         overlapped_image_url
+      }
+      holding_clothes {
+        _id
+        name
+        hash_number
+        image_url
+        type
+        token_id
+        createdAt
       }
       isAdmin
     }

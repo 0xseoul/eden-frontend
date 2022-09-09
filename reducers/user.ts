@@ -6,11 +6,12 @@ import {
 } from "@reduxjs/toolkit";
 import Caver from "caver-js";
 import { ILoading, ISelector, SetWalletProps } from "../interfaces/redux";
-import { IAvatar, IUser } from "../interfaces/user";
+import { IAvatar, IClothes, IUser } from "../interfaces/user";
 import { getSigner } from "../utils/caver-interact";
 
 const user: IUser = {
-  holding_nfts: [],
+  holding_avatars: [],
+  holding_clothes: [],
   wallet: "",
   signature: [],
   isAdmin: false,
@@ -55,7 +56,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     SET_AVATARS: (state, action: PayloadAction<IAvatar[]>) => {
-      state.entities.holding_nfts = action.payload;
+      state.entities.holding_avatars = action.payload;
+    },
+    SET_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
+      state.entities.holding_clothes = action.payload;
     },
     SET_LOGGED_IN: (state, action: PayloadAction<boolean>) => {
       state.entities.isLoggedIn = action.payload;
@@ -73,9 +77,15 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { SET_AVATARS, SET_LOGGED_IN } = userSlice.actions;
+export const { SET_AVATARS, SET_LOGGED_IN, SET_CLOTHES } = userSlice.actions;
 
 export const getWallet = (state: ISelector) => state.user.entities.wallet;
 export const getSignature = (state: ISelector) => state.user.entities.signature;
 export const getIsLoggedIn = (state: ISelector) =>
   state.user.entities.isLoggedIn;
+
+export const getAvatars = (state: ISelector) =>
+  state.user.entities.holding_avatars;
+
+export const getClothes = (state: ISelector) =>
+  state.user.entities.holding_clothes;

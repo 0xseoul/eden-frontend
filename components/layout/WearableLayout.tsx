@@ -7,6 +7,7 @@ import {
   getSignature,
   getWallet,
   SET_AVATARS,
+  SET_CLOTHES,
   SET_LOGGED_IN,
   SET_WALLET,
 } from "../../reducers/user";
@@ -43,15 +44,16 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   const isLoggined = useTypedSelector(getIsLoggedIn);
   const signMessage = `sign to login to eden ${wallet}`;
 
-  const headers = {
-    signMessage,
-    signature: saveJson(signature),
-    wallet_address: wallet,
-  };
+  // const headers = {
+  //   signMessage,
+  //   signature: saveJson(signature),
+  //   wallet_address: wallet,
+  // };
 
-  const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION, {
-    context: { headers },
-  });
+  const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION);
+  // const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION, {
+  //   context: { headers },
+  // });
   const isWalletConnected = wallet.length > 5;
   const isSignatureValid = signature.length > 2;
 
@@ -61,8 +63,11 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
     if (!isSignatureValid || !isWalletConnected || isLoggined) return;
     const init = async () => {
       try {
-        const data = await loginUser({ variables: { wallet_address: wallet } });
-        dispatch(SET_AVATARS(data.data.loginUser.holding_nfts));
+        const data = await loginUser({
+          variables: { wallet_address: wallet, signature, signMessage },
+        });
+        dispatch(SET_AVATARS(data.data.loginUser.holding_avatars));
+        dispatch(SET_CLOTHES(data.data.loginUser.holding_clothes));
         dispatch(SET_LOGGED_IN(true));
       } catch (error: any) {
         console.log(error.message);

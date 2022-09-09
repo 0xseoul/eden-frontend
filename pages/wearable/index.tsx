@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV3 from "../../components/wearable/AvatarCard-v3";
 import { WEARABLE_IMAGES } from "../../constants/image";
-import { getWallet } from "../../reducers/user";
+import { getAvatars, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
 import { getSigner } from "../../utils/caver-interact";
 
@@ -17,12 +17,13 @@ const Wearable = () => {
   const arr = Array.from({ length: 10 }, (_, i) => i + 1);
 
   const [cardRef, setCardRef] = React.useState<HTMLDivElement | null>(null);
+  const avatars = useTypedSelector(getAvatars);
 
   const wallet = useTypedSelector(getWallet);
 
-  const cardComponent = arr.map((item, index) => (
-    <div className={styles.cardContainer} key={item} ref={setCardRef}>
-      <Link href={`/wearable/1`}>
+  const cardComponent = avatars?.map((item, index) => (
+    <div className={styles.cardContainer} key={item._id} ref={setCardRef}>
+      <Link href={`/wearable/${item.token_id}`}>
         <div
           className={`flex cursor-pointer h-[${cardRef?.clientWidth}px] w-[${cardRef?.clientWidth}px]`}
         >
@@ -33,7 +34,7 @@ const Wearable = () => {
           />
         </div>
       </Link>
-      <div className="pt-6">ADAM #5384</div>
+      <div className="pt-6">ADAM #{item.token_id}</div>
     </div>
   ));
 
