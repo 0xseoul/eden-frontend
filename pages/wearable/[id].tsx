@@ -11,7 +11,7 @@ import InventoryCard from "../../components/wearable/InventoryCard";
 import { ICONS } from "../../constants/icons";
 import { WEARABLE_IMAGES } from "../../constants/image";
 import { GET_AVATAR, GET_AVAT_AND_INVENTORY } from "../../GraphQL/Queries";
-import { getWallet } from "../../reducers/user";
+import { getClothes, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
 
 const styles = {
@@ -70,6 +70,7 @@ const Wearables = () => {
   const router = useRouter();
   const { id } = router.query;
   const wallet = useTypedSelector(getWallet);
+  const clothes = useTypedSelector(getClothes);
   const { data, loading, error } = useQuery(GET_AVATAR, {
     variables: { token_id: Number(id) },
   });
@@ -84,13 +85,16 @@ const Wearables = () => {
     <FilterBtn text={filter.name} key={filter.name} />
   ));
 
-  const arr = Array.from({ length: 10 }, (_, i) => i);
-  const inventoryListComponents = arr.map((i) => (
+  // const arr = Array.from({ length: 10 }, (_, i) => i);
+  console.log(clothes);
+  const inventoryListComponents = clothes.map((item, index) => (
     <InventoryCard
-      src={WEARABLE_IMAGES.shoes}
-      name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
-      key={`Wearable ${i}`}
-      itemNumber="#111"
+      src={item.image_url}
+      // src={WEARABLE_IMAGES.shoes}
+      name={item.name}
+      // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
+      key={item._id}
+      itemNumber={`#${item.hash_number}`}
     />
   ));
   return (
@@ -99,7 +103,13 @@ const Wearables = () => {
         <div className={styles.container}>
           <form className={styles.avatarContainer}>
             <div className="flex flex-col">
-              <AvatarCardV2 src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" />
+              <AvatarCardV2
+                src={
+                  data?.getAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero
+                }
+                w="24rem"
+                h="24rem"
+              />
               {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
               <span className="text-xs text-c-gray300 mt-4">Code Name</span>
               {/* eslint-disable-next-line */}
