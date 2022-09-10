@@ -1,6 +1,12 @@
 export interface IInventory {
   avatar: IAvatar;
   clothes: IClothes[];
+  searchedClothes: IClothes[];
+  searchedAvatars: IAvatar[];
+  searching: boolean;
+  searchKeyword: string;
+  clickedFilter: string;
+  filteredClothes: IClothes[];
 }
 export interface IAvatar {
   _id: string;

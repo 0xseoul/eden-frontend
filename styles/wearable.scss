@@ -154,6 +154,13 @@ $primary: #b6ff00;
     rgba(255, 255, 255, 0) 100%
   );
 }
+.filter-icon.clicked {
+  background: linear-gradient(
+    92.73deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
 
 .wearable-reset-button {
   --edge-size: 20%;

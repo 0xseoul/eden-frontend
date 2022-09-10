@@ -1,9 +1,16 @@
+import { useRouter } from "next/router";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { api } from "../../api";
 import { ICONS } from "../../constants/icons";
 import useSearch from "../../hooks/useSearch";
+import { IClothes } from "../../interfaces/inventory";
+import {
+  SET_SEARCHED_CLOTHES,
+  SET_SEARCHING,
+  SET_SEARCH_KEYWORD,
+} from "../../reducers/inventory";
 import { getAvatars, getWallet } from "../../reducers/user";
-import { useTypedSelector } from "../../store";
+import { useTypedDispatch, useTypedSelector } from "../../store";
 
 const styles = {
   tab: `flex px-[1.5rem] py-[1rem] w-full justify-between items-center pb-[2.5625rem]`,
@@ -17,21 +24,48 @@ const Tab = () => {
   // const [keyword, setKeyword] = React.useState<string>("");
   // const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
   //   setKeyword(e.target.value);
+  const router = useRouter();
+  const pathname = router.pathname;
+  const isCustomizePage = pathname === "/wearable/[id]";
+  // console.log(pathname);
+  // /wearable/[id]
+  // /wearable
+  const dispatch = useTypedDispatch();
   const wallet = useTypedSelector(getWallet);
 
-  const searchClothes = async (
+  // used in handleSearchClothes
+  const handleCustomizePageSearch = async (
     setData: Dispatch<SetStateAction<any>>,
     _keyword: string
-  ): Promise<void> => {
+  ) => {
     const data = await api.searchClothes(_keyword, wallet);
     setData(data);
   };
 
+  const handleSearchClothes = async (
+    setData: Dispatch<SetStateAction<any>>,
+    _keyword: string
+  ): Promise<void> => {
+    isCustomizePage && handleCustomizePageSearch(setData, _keyword);
+  };
+
   const { data, keyword, setKeyword, loading, onChange } = useSearch({
-    api: searchClothes,
+    api: handleSearchClothes,
   });
 
-  // console.log(loading, data);
+  useEffect(() => {
+    dispatch(SET_SEARCHED_CLOTHES(data as IClothes[]));
+  }, [data]);
+
+  useEffect(() => {
+    dispatch(SET_SEARCH_KEYWORD(keyword));
+    if (keyword.length === 0) dispatch(SET_SEARCHED_CLOTHES([]));
+  }, [keyword]);
+
+  useEffect(() => {
+    dispatch(SET_SEARCHING(loading));
+  }, [loading]);
+
   const avatars = useTypedSelector(getAvatars);
 
   const isSearching = keyword.length > 0;

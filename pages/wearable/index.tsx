@@ -18,7 +18,6 @@ const Wearable = () => {
 
   const [cardRef, setCardRef] = React.useState<HTMLDivElement | null>(null);
   const avatars = useTypedSelector(getAvatars);
-
   const wallet = useTypedSelector(getWallet);
 
   const cardComponent = avatars?.map((item, index) => (

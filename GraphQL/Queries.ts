@@ -169,3 +169,17 @@ export const GET_AVAT_AND_INVENTORY = gql`
     }
   }
 `;
+
+export const GET_FILTERD_CLOTHES = gql`
+  query FilterClothes($type: String, $walletAddress: String) {
+    filterClothes(type: $type, wallet_address: $walletAddress) {
+      _id
+      name
+      hash_number
+      image_url
+      type
+      token_id
+      createdAt
+    }
+  }
+`;
