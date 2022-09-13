@@ -41,10 +41,3 @@ export const LOGIN_USER_MUTATION = gql`
     }
   }
 `;
-// mutation Mutation($wallet_address: String!) {
-//   createUser(wallet_address: $walletAddress) {
-//     wallet_address
-//     _id
-//     createdAt
-//   }
-// }

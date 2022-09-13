@@ -141,6 +141,39 @@ $animation-speed: 1s;
   }
 }
 
+.circle-active {
+  width: 2rem;
+  height: 2rem;
+  background: $primary;
+  color: #242834;
+}
+
+.circle-bar {
+  position: relative;
+  ::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(50% - 12px);
+    transform: translateY(-50%);
+    width: 100%;
+    height: 4px;
+    z-index: -1;
+    // background: $primary;
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+.circle-bar.active {
+  ::before {
+    background: linear-gradient(
+      270deg,
+      #b6ff00 0%,
+      rgba(182, 255, 0, 0.584078) 41.59%,
+      rgba(182, 255, 0, 0) 100%
+    );
+  }
+}
+
 @keyframes shadow-down {
   0% {
     transform: translateY(0);
