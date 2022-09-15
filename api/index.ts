@@ -1,6 +1,7 @@
 import axios from "axios";
-const url = "http://localhost:4000/graphql";
-
+// const url = "http://localhost:4000/graphql";
+const url = "https://oseoul-eden.herokuapp.com/graphql";
+// https://oseoul-eden.herokuapp.com/
 const getUser = async () => {
   const query = `
   query GetAllUsers {
