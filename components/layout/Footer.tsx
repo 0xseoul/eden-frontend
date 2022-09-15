@@ -30,9 +30,9 @@ const NavBtn: FC<NavProps> = ({ navItem, children }) => {
     console.log(navItem?.textContent);
   };
 
-  const style = {
-    color: `#B6FF00`,
-  };
+  // const style = {
+  //   color: `#B6FF00`,
+  // };
   return (
     <div onClick={onClick}>
       <span
