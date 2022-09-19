@@ -37,7 +37,6 @@ const cssStyles = {
 };
 
 const WearableLayout: FC<LayoutProps> = ({ children }) => {
-  // const [avatars, setAvatars] = useState<any[]>([]);
   const wallet = useTypedSelector(getWallet);
   const signature = useTypedSelector(getSignature);
   const isLoggined = useTypedSelector(getIsLoggedIn);

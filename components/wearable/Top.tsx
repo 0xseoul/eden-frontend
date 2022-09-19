@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { ICONS } from "../../constants";
 import { getAvatars, getClothes, getWallet } from "../../reducers/user";
@@ -20,6 +22,10 @@ const Top = () => {
   const wallet = useTypedSelector(getWallet);
   const avatars = useTypedSelector(getAvatars);
   const clothes = useTypedSelector(getClothes);
+  const pathname = useRouter().pathname;
+  const isSlugPage = pathname === "/wearable/[id]";
+  // console.log(pathname);
+
   return (
     <div className={styles.section}>
       <form className={styles.titleContainer}>
@@ -52,9 +58,11 @@ const Top = () => {
         <span className={`${styles.icon} rotate-180`}>
           <ICONS.arrow />
         </span>
-        <span className={styles.icon}>
-          <ICONS.close />
-        </span>
+        <Link href={isSlugPage ? "/wearable" : "/"}>
+          <span className={styles.icon}>
+            <ICONS.close />
+          </span>
+        </Link>
       </form>
     </div>
   );
