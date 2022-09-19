@@ -1,6 +1,6 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { CSSProperties, FC } from "react";
+import React, { CSSProperties, FC, useCallback } from "react";
 import { api } from "../../api";
 import AutoHeightImage from "../../components/common/AutoHeightImage";
 import { CuttinEdgeBtn } from "../../components/common/Buttons";
@@ -9,12 +9,16 @@ import AvatarCard from "../../components/wearable/AvatarCard";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
+import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
+import FilterContainer from "../../components/wearable/[id]/FilterContainer";
+import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
 import { ICONS, WEARABLE_IMAGES } from "../../constants";
 import {
   GET_AVATAR,
   GET_AVAT_AND_INVENTORY,
   GET_FILTERD_CLOTHES,
 } from "../../GraphQL/Queries";
+import { IGetAvatar } from "../../interfaces";
 import {
   getClickedFilter,
   getFilteredClothes,
@@ -29,23 +33,8 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
-  avatarContainer: `w-[24rem] h-full flex flex-col`,
-  filterContainer: `w-[11.25rem] h-full`,
-  inventoryContainer: `flex-1 flex h-full overflow-y-auto wearable-custom-scrollbar-container `,
-  inventoryWrapper: `flex-1 flex h-full flex-col`,
-  grid: `grid grid-cols-3 auto-rows-[270px] w-full`,
-  inventoryCard: `flex-1`,
-  icon: `flex gap-[0.5rem] mt-2`,
-  iconWrapper: `cursor-pointer`,
   downloadBtnContainer: `fixed bottom-0 left-[50%] translate-x-[-50%] z-50`,
-};
-
-const cssStyles = {
-  downloadBtn: {
-    background:
-      "linear-gradient(92.73deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.04) 100%)",
-    backdropFilter: "blur(32px)",
-  } as CSSProperties,
+  downloadBtnWrapper: `w-[420px] h-[70px] bg-[#202122] flex justify-center items-center cursor-pointer wearable-download-btn-top`,
 };
 
 const filterList = [
@@ -111,11 +100,14 @@ const Wearables = () => {
 
   // console.log(data, loading);
 
-  const handleClickFilter = async (type: string) => {
-    dispatch(SET_CLICKED_FILTER(type));
-    const data = await api.filterClothes(type, wallet);
-    dispatch(SET_FILTERD_CLOTHES(data));
-  };
+  const handleClickFilter = useCallback(
+    async (type: string) => {
+      dispatch(SET_CLICKED_FILTER(type));
+      const _data = await api.filterClothes(type, wallet);
+      dispatch(SET_FILTERD_CLOTHES(_data));
+    },
+    [wallet]
+  );
 
   const filterListComponents = filterList.map((filter) => {
     const isClicked = filter.type === clickedFilter;
@@ -130,14 +122,12 @@ const Wearables = () => {
     );
   });
 
-  // const arr = Array.from({ length: 10 }, (_, i) => i);
-  // console.log(clothes);
-
-  const inventoryItem = () => {
+  const inventoryItem = useCallback(() => {
     if (searchKeyword.length > 0) return searchedClothes;
     if (clickedFilter !== "all_items") return filteredClothes;
     return clothes;
-  };
+  }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
+
   const inventoryListComponents = inventoryItem()?.map((item, index) => (
     <InventoryCard
       src={item.image_url}
@@ -152,66 +142,16 @@ const Wearables = () => {
     <>
       <WearableLayout>
         <div className={styles.container}>
-          <form className={styles.avatarContainer}>
-            <div className="flex flex-col">
-              <AvatarCardV2
-                src={
-                  data?.getAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero
-                }
-                w="24rem"
-                h="24rem"
-              />
-              {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
-              <span className="text-xs text-c-gray300 mt-4">Code Name</span>
-              {/* eslint-disable-next-line */}
-              <span>ADAM #{id} //</span>
-              <div className={styles.icon}>
-                <span className={styles.iconWrapper}>
-                  <ICONS.opensea />
-                </span>
-                <span className={styles.iconWrapper}>
-                  <ICONS.twitter />
-                </span>
-                <span className={styles.iconWrapper}>
-                  <ICONS.discord />
-                </span>
-              </div>
-            </div>
-            <div className="flex-1 flex items-end w-full justify-center mt-[69px]">
-              {/* TODO: cuttnig button container */}
-              <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
-                DOWNLOAD IMAGE
-              </CuttinEdgeBtn>
-            </div>
-          </form>
-          <form className="flex flex-col items-start justify-start h-full">
-            <ul className={styles.filterContainer}>{filterListComponents}</ul>
-            <div className="w-full">
-              {/* TODO: cuttnig button container */}
-              <CuttinEdgeBtn tw="bg-primary text-black">SAVE</CuttinEdgeBtn>
-            </div>
-          </form>
-          <section className={styles.inventoryWrapper}>
-            <form className={styles.inventoryContainer}>
-              <div className={styles.grid}>{inventoryListComponents}</div>
-            </form>
-            <div>
-              <div className="flex justify-end w-full">
-                <div className="flex w-[228px] wearable-reset-button overflow-hidden cursor-pointer">
-                  <span className="btn-icon h-[3rem] w-[3rem] flex items-center justify-center">
-                    <ICONS.lock />
-                  </span>
-                  <div className="uppercase btn-text h-[3rem] flex-1 flex items-center justify-center font-black text-c-gray300">
-                    <span className="translate-y-0.5">RESET</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          {/* avatars container */}
+          <AvatarContainer data={data as { getAvatar: IGetAvatar }} id={id} />
+          {/* filters container */}
+          <FilterContainer>{filterListComponents}</FilterContainer>
+          {/* items container */}
+          <ItemsContainer>{inventoryListComponents}</ItemsContainer>
         </div>
       </WearableLayout>
       <div className={styles.downloadBtnContainer}>
-        <div className="w-[420px] h-[70px] bg-[#202122] flex justify-center items-center cursor-pointer wearable-download-btn-top">
+        <div className={styles.downloadBtnWrapper}>
           <span>Download Complate</span>
         </div>
       </div>
