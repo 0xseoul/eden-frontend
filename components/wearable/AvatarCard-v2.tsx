@@ -32,7 +32,9 @@ const AvatarCardV2: FC<Props> = ({ src, w, h }) => {
         className={`wearable-card-container-v2 w-[24rem] h-[24rem] ${size()}`}
       >
         <AutoHeightImage src={WEARABLE_IMAGES["avatar-frame"]} />
-        <AutoHeightImage src={src} />
+        <div className="w-full h-full" key={src}>
+          <AutoHeightImage src={src} />
+        </div>
       </div>
     </div>
   );
