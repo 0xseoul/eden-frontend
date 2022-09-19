@@ -8,6 +8,7 @@ import React, {
 
 import { MAIN_IMAGES } from "../../constants/image";
 import useIntersection from "../../hooks/useIntersection";
+import useOS from "../../hooks/useOS";
 import AutoHeightImage from "../common/AutoHeightImage";
 
 const styles = {
@@ -136,6 +137,9 @@ const Story = () => {
   const [shadowOnce, setShadowOnce] = useState<boolean>(false);
 
   const { isIntersecting } = useIntersection(sectionRef, 0.1);
+  const { currentOS } = useOS();
+  const isWindow = currentOS === "Windows";
+  console.log(isWindow);
   useEffect(() => {
     if (isIntersecting) setShadowOnce(true);
   }, [isIntersecting]);
@@ -144,7 +148,7 @@ const Story = () => {
     <div className={styles.section}>
       <div className={styles.container}>
         <div className={styles.content}>
-          <form className={styles.title}>
+          <form className={`${styles.title} ${isWindow && "text-8xl"}`}>
             <span
               className={`story-title-container flex ${shadowOnce && "active"}`}
             >
