@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { api } from "../../api";
 import WearableLayout from "../../components/layout/WearableLayout";
+import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
@@ -22,6 +23,7 @@ import {
 } from "../../reducers/inventory";
 import { getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
+import Canvas from "../../utils/canvas";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -85,6 +87,19 @@ const Wearables = () => {
     variables: { token_id: Number(id) },
   });
 
+  // const canvas = new Canvas();
+
+  // useEffect(() => {
+  //   // if (!data) return;
+  //   if (!canvas.getCanvas || !canvas.getCtx) return;
+  //   const init = async () => {
+  //     const loadedImage = await canvas.loadLayerImg(WEARABLE_IMAGES.hero);
+  //     canvas.drawElement(loadedImage);
+  //     canvas.saveImage();
+  //   };
+  //   init();
+  // }, [canvas.getCanvas, canvas.getCtx]);
+
   // const { data, loading, error } = useQuery(GET_AVAT_AND_INVENTORY, {
   //   variables: { tokenId: Number(id), walletAddress: wallet },
   // });
@@ -142,7 +157,17 @@ const Wearables = () => {
     <>
       <WearableLayout>
         <div className={styles.container}>
-          <AvatarContainer data={data as { getAvatar: IGetAvatar }} id={id} />
+          <AvatarContainer id={id}>
+            {/* res.send(`<img src="data:${mimeType};base64,${b64}" />`); */}
+            <AvatarCardV2
+              // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
+              src={
+                data?.getAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero
+              }
+              w="24rem"
+              h="24rem"
+            />
+          </AvatarContainer>
           <FilterContainer>{filterListComponents()}</FilterContainer>
           <ItemsContainer>{inventoryListComponents()}</ItemsContainer>
         </div>

@@ -19,18 +19,15 @@ const cssStyles = {
 };
 
 interface Props {
-  data: { getAvatar: IGetAvatar };
+  // data: { getAvatar: IGetAvatar };
   id: string | string[] | undefined;
+  children: React.ReactNode;
 }
-const AvatarContainer: FC<Props> = ({ data, id }) => {
+const AvatarContainer: FC<Props> = ({ children, id }) => {
   return (
     <form className={styles.avatarContainer}>
       <div className="flex flex-col">
-        <AvatarCardV2
-          src={data?.getAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero}
-          w="24rem"
-          h="24rem"
-        />
+        {children}
         {/* <AvatarCard src={WEARABLE_IMAGES.hero} w="24rem" h="24rem" /> */}
         <span className="text-xs text-c-gray300 mt-4">Code Name</span>
         {/* eslint-disable-next-line */}
