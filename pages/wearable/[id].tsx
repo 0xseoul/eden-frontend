@@ -66,7 +66,7 @@ const filterList = [
     name: "Background",
     type: "background",
   },
-];
+] as const;
 
 const Wearables = () => {
   // 2개 query
@@ -101,18 +101,22 @@ const Wearables = () => {
     [wallet]
   );
 
-  const filterListComponents = filterList.map((filter) => {
-    const isClicked = filter.type === clickedFilter;
-    if (isClicked) console.log(filter.type);
-    return (
-      <FilterBtn
-        text={filter.name}
-        key={filter.name}
-        onClick={() => handleClickFilter(filter.type)}
-        isClicked={isClicked}
-      />
-    );
-  });
+  const filterListComponents = useCallback(
+    () =>
+      filterList.map((filter) => {
+        const isClicked = filter.type === clickedFilter;
+        // if (isClicked) console.log(filter.type);
+        return (
+          <FilterBtn
+            text={filter.name}
+            key={filter.name}
+            onClick={() => handleClickFilter(filter.type)}
+            isClicked={isClicked}
+          />
+        );
+      }),
+    [clickedFilter]
+  );
 
   const inventoryItem = useCallback(() => {
     if (searchKeyword.length > 0) return searchedClothes;
@@ -120,23 +124,27 @@ const Wearables = () => {
     return clothes;
   }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
 
-  const inventoryListComponents = inventoryItem()?.map((item, index) => (
-    <InventoryCard
-      // src={item?.image_url ?? ""}
-      src={WEARABLE_IMAGES.shoes}
-      name={item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"}
-      // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
-      key={item?._id ?? "id"}
-      itemNumber={`#${item?.hash_number ?? 0}`}
-    />
-  ));
+  const inventoryListComponents = useCallback(
+    () =>
+      inventoryItem()?.map((item, index) => (
+        <InventoryCard
+          // src={item?.image_url ?? ""}
+          src={WEARABLE_IMAGES.shoes}
+          name={item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"}
+          // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
+          key={item?._id ?? "id"}
+          itemNumber={`#${item?.hash_number ?? 0}`}
+        />
+      )),
+    [inventoryItem]
+  );
   return (
     <>
       <WearableLayout>
         <div className={styles.container}>
           <AvatarContainer data={data as { getAvatar: IGetAvatar }} id={id} />
-          <FilterContainer>{filterListComponents}</FilterContainer>
-          <ItemsContainer>{inventoryListComponents}</ItemsContainer>
+          <FilterContainer>{filterListComponents()}</FilterContainer>
+          <ItemsContainer>{inventoryListComponents()}</ItemsContainer>
         </div>
       </WearableLayout>
       <div className={styles.downloadBtnContainer}>
