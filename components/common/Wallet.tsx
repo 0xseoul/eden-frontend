@@ -1,7 +1,11 @@
 import React, { CSSProperties } from "react";
 import { COMMON } from "../../constants";
-import { SET_WALLET } from "../../reducers/user";
-import { useTypedDispatch } from "../../store";
+import {
+  getIsClickedGoToMyInventory,
+  SET_IS_CLICKED_GO_TO_MY_INVENTORY,
+} from "../../reducers/common";
+import { getIsLoggedIn, SET_WALLET } from "../../reducers/user";
+import { useTypedDispatch, useTypedSelector } from "../../store";
 import { CuttinEdgeBtn } from "./Buttons";
 
 const styles = {
@@ -9,7 +13,7 @@ const styles = {
   title: `font-light text-5xl text-primary mb-8`,
   btnContainer: `flex gap-6 mb-[21px]`,
   subtitle: `text-xs cursor-pointer`,
-  btn: `w-[14rem] text-center cursor-pointer`,
+  btn: `w-[14rem] text-center cursor-pointer transition-all duration-300 ease-in-out`,
 };
 
 const cssStyles = {
@@ -30,6 +34,16 @@ const Wallet = () => {
   const dispatch = useTypedDispatch();
   const getWallet = async () => await dispatch(SET_WALLET());
 
+  const isClickedGoToMyInventory = useTypedSelector(
+    getIsClickedGoToMyInventory
+  );
+  const isLoggined = useTypedSelector(getIsLoggedIn);
+
+  const handleGoToMyInventory = () => {
+    if (!isLoggined) return;
+    dispatch(SET_IS_CLICKED_GO_TO_MY_INVENTORY(true));
+  };
+
   return (
     <div className={styles.section}>
       <div className={styles.title} style={cssStyles.text}>
@@ -41,7 +55,13 @@ const Wallet = () => {
             CONNECT MY WALLET
           </div>
         </CuttinEdgeBtn>
-        <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn} tw={styles.btn}>
+        <CuttinEdgeBtn
+          cssStyles={cssStyles.downloadBtn}
+          tw={`${styles.btn} ${
+            isLoggined ? "text-white" : "text-[#72777D] !cursor-default"
+          }`}
+          onClick={handleGoToMyInventory}
+        >
           GO TO MY INVENTORY
         </CuttinEdgeBtn>
       </div>

@@ -18,7 +18,7 @@ export const commonSlice = createSlice({
   name: "common",
   initialState,
   reducers: {
-    setIsClickedGoToMyInventory: (
+    SET_IS_CLICKED_GO_TO_MY_INVENTORY: (
       state,
       action: PayloadAction<boolean>
     ): void => {
@@ -28,7 +28,7 @@ export const commonSlice = createSlice({
 });
 
 export default commonSlice.reducer;
-export const { setIsClickedGoToMyInventory } = commonSlice.actions;
+export const { SET_IS_CLICKED_GO_TO_MY_INVENTORY } = commonSlice.actions;
 
 export const getIsClickedGoToMyInventory = (state: ISelector): boolean =>
   state.common.entities.isClickedGoToMyInventory;

@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import React, { CSSProperties, FC, useEffect, useState } from "react";
 import { api } from "../../api";
 import { LOGIN_USER_MUTATION } from "../../GraphQL/Mutations";
-import { useCaver } from "../../hooks/useCaver";
+import { getIsClickedGoToMyInventory } from "../../reducers/common";
 import {
   getIsLoggedIn,
   getSignature,
@@ -41,6 +41,10 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   const wallet = useTypedSelector(getWallet);
   const signature = useTypedSelector(getSignature);
   const isLoggined = useTypedSelector(getIsLoggedIn);
+  const isClickedGoToMyInventory = useTypedSelector(
+    getIsClickedGoToMyInventory
+  );
+
   const signMessage = `sign to login to eden ${wallet}`;
 
   // const headers = {
@@ -55,7 +59,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   // });
   const isWalletConnected = wallet.length > 5;
   const isSignatureValid = signature?.length > 2;
-  const isLoginValid = isWalletConnected && isSignatureValid;
+  // const isLoginValid = isWalletConnected && isSignatureValid;
 
   const dispatch = useTypedDispatch();
 
@@ -90,7 +94,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <section className={styles.layout}>
       <div className="h-full flex-1 z-30 w-full flex flex-col justify-center">
-        {isLoginValid ? (
+        {isClickedGoToMyInventory ? (
           <>
             <Top />
             <div style={cssStyles.container}>
