@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { CSSProperties } from "react";
-import { MAIN_IMAGES } from "../../constants/image";
+import { MAIN_IMAGES } from "../../constants";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import AutoHeightImage from "../common/AutoHeightImage";
 

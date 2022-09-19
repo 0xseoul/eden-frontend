@@ -5,8 +5,14 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import Caver from "caver-js";
-import { ILoading, ISelector, SetWalletProps } from "../interfaces/redux";
-import { IUserAvatar, IUserClothes, IUser } from "../interfaces/user";
+import {
+  ILoading,
+  ISelector,
+  SetWalletProps,
+  IUserAvatar,
+  IUserClothes,
+  IUser,
+} from "../interfaces";
 import { getSigner } from "../utils/caver-interact";
 
 const user: IUser = {

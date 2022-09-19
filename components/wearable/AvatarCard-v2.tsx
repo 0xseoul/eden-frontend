@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { WEARABLE_IMAGES } from "../../constants/image";
+import { WEARABLE_IMAGES } from "../../constants";
 import AutoHeightImage from "../common/AutoHeightImage";
 interface Props {
   src: string;

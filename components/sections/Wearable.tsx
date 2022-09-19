@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { CSSProperties } from "react";
-import { MAIN_IMAGES } from "../../constants/image";
+import { MAIN_IMAGES } from "../../constants";
 import AutoHeightImage from "../common/AutoHeightImage";
 const styles = {
   section: `min-h-screen w-full flex justify-center items-center relative`,

@@ -1,5 +1,5 @@
-import React, { CSSProperties, FC, useEffect, useState } from "react";
-import { MAIN_IMAGES } from "../../constants/image";
+import React, { FC, useEffect, useState } from "react";
+import { MAIN_IMAGES } from "../../constants";
 import useIntersection from "../../hooks/useIntersection";
 import AutoHeightImage from "../common/AutoHeightImage";
 
@@ -39,7 +39,9 @@ const About = () => {
       <div className={styles.wrapper}>
         <div className={`${styles.box} !justify-end`}>
           <div
-            className={`${styles.textWrapper} invisible ${shadowOnce && "shadow-down !visible"}`}
+            className={`${styles.textWrapper} invisible ${
+              shadowOnce && "shadow-down !visible"
+            }`}
           >
             <span
               style={{ fontWeight: 900 }}

@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { api } from "../../api";
-import { ICONS } from "../../constants/icons";
+import { ICONS } from "../../constants";
 import useSearch from "../../hooks/useSearch";
-import { IClothes } from "../../interfaces/inventory";
+import { IInventoryClothes } from "../../interfaces";
 import {
   SET_SEARCHED_CLOTHES,
   SET_SEARCHING,
@@ -54,7 +54,7 @@ const Tab = () => {
   });
 
   useEffect(() => {
-    dispatch(SET_SEARCHED_CLOTHES(data as IClothes[]));
+    dispatch(SET_SEARCHED_CLOTHES(data as IInventoryClothes[]));
   }, [data]);
 
   useEffect(() => {

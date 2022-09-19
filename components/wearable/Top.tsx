@@ -1,5 +1,5 @@
 import React from "react";
-import { ICONS } from "../../constants/icons";
+import { ICONS } from "../../constants";
 import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
 import { cutWallet } from "../../utils/common";

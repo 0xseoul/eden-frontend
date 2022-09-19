@@ -9,8 +9,7 @@ import AvatarCard from "../../components/wearable/AvatarCard";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
-import { ICONS } from "../../constants/icons";
-import { WEARABLE_IMAGES } from "../../constants/image";
+import { ICONS, WEARABLE_IMAGES } from "../../constants";
 import {
   GET_AVATAR,
   GET_AVAT_AND_INVENTORY,

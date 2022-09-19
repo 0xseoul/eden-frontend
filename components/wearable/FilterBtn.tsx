@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ICONS } from "../../constants/icons";
+import { ICONS } from "../../constants";
 interface FilterBtnProps {
   text: string;
   onClick: () => void;

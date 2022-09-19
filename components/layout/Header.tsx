@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { ICONS } from "../../constants/icons";
-import { MAIN_IMAGES } from "../../constants/image";
-import { HEADER_HEIGHT } from "../../constants/style";
+import { ICONS, HEADER_HEIGHT } from "../../constants";
 
 const styles = {
   section: `min-h-[${HEADER_HEIGHT}] w-full flex] fixed top-0 left-0 right-0 z-50 transition-all`,

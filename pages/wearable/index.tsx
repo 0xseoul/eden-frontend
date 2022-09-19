@@ -1,11 +1,10 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV3 from "../../components/wearable/AvatarCard-v3";
-import { WEARABLE_IMAGES } from "../../constants/image";
+import { WEARABLE_IMAGES } from "../../constants";
 import { getAvatars, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
-import { getSigner } from "../../utils/caver-interact";
 
 const styles = {
   container: `flex flex-1 h-[600px] max-h-[600px] w-full`,

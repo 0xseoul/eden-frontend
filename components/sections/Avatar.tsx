@@ -1,7 +1,5 @@
 import React, { CSSProperties, useEffect } from "react";
-import { MAIN_IMAGES } from "../../constants/image";
-import useElementScroll from "../../hooks/useElementScroll";
-import useScrolling from "../../hooks/useScroll";
+import { MAIN_IMAGES } from "../../constants";
 
 // wrapper: `flex flex-col items-center justify-center h-screen max-h-screen max-w-full`,
 const styles = {

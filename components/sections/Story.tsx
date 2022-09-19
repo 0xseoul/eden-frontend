@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 
-import { MAIN_IMAGES } from "../../constants/image";
+import { MAIN_IMAGES } from "../../constants";
 import useIntersection from "../../hooks/useIntersection";
 import useOS from "../../hooks/useOS";
 import AutoHeightImage from "../common/AutoHeightImage";

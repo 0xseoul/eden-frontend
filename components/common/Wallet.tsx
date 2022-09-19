@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { COMMON } from "../../constants/common";
+import { COMMON } from "../../constants";
 import { SET_WALLET } from "../../reducers/user";
 import { useTypedDispatch } from "../../store";
 import { CuttinEdgeBtn } from "./Buttons";

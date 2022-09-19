@@ -1,7 +1,7 @@
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AutoHeightImage from "../common/AutoHeightImage";
-import { MAIN_IMAGES } from "../../constants/image";
+import { MAIN_IMAGES } from "../../constants";
 import useOS from "../../hooks/useOS";
 
 const styles = {

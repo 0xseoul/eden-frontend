@@ -8,7 +8,7 @@ import Story from "../components/sections/Story";
 import Faq from "../components/sections/Faq";
 import Wearable from "../components/sections/Wearable";
 import { useFooter } from "../contexts/FooterContext";
-import { SECTION_NAME_ARR } from "../constants/navigation";
+import { SECTION_NAME_ARR } from "../constants";
 
 interface Props {
   children: React.ReactNode;

@@ -1,6 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IInventoryClothes, IInventory } from "../interfaces/inventory";
-import { ILoading, ISelector } from "../interfaces/redux";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  IInventoryClothes,
+  IInventory,
+  ILoading,
+  ISelector,
+} from "../interfaces";
 
 interface IInitialState {
   entities: IInventory;

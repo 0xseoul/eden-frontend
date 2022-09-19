@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { MAIN_IMAGES } from "../../constants/image";
-import { NAV_ORDER } from "../../constants/navigation";
+import { MAIN_IMAGES, NAV_ORDER } from "../../constants";
 import { useFooter } from "../../contexts/FooterContext";
 import useOS from "../../hooks/useOS";
 import AutoHeightImage from "../common/AutoHeightImage";
