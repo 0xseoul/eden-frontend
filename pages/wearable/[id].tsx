@@ -1,23 +1,15 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { CSSProperties, FC, useCallback } from "react";
+import React, { useCallback } from "react";
 import { api } from "../../api";
-import AutoHeightImage from "../../components/common/AutoHeightImage";
-import { CuttinEdgeBtn } from "../../components/common/Buttons";
 import WearableLayout from "../../components/layout/WearableLayout";
-import AvatarCard from "../../components/wearable/AvatarCard";
-import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
 import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
 import FilterContainer from "../../components/wearable/[id]/FilterContainer";
 import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import { ICONS, WEARABLE_IMAGES } from "../../constants";
-import {
-  GET_AVATAR,
-  GET_AVAT_AND_INVENTORY,
-  GET_FILTERD_CLOTHES,
-} from "../../GraphQL/Queries";
+import { WEARABLE_IMAGES } from "../../constants";
+import { GET_AVATAR } from "../../GraphQL/Queries";
 import { IGetAvatar } from "../../interfaces";
 import {
   getClickedFilter,
@@ -130,23 +122,20 @@ const Wearables = () => {
 
   const inventoryListComponents = inventoryItem()?.map((item, index) => (
     <InventoryCard
-      src={item.image_url}
-      // src={WEARABLE_IMAGES.shoes}
-      name={item.name}
+      // src={item?.image_url ?? ""}
+      src={WEARABLE_IMAGES.shoes}
+      name={item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"}
       // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
-      key={item._id}
-      itemNumber={`#${item.hash_number}`}
+      key={item?._id ?? "id"}
+      itemNumber={`#${item?.hash_number ?? 0}`}
     />
   ));
   return (
     <>
       <WearableLayout>
         <div className={styles.container}>
-          {/* avatars container */}
           <AvatarContainer data={data as { getAvatar: IGetAvatar }} id={id} />
-          {/* filters container */}
           <FilterContainer>{filterListComponents}</FilterContainer>
-          {/* items container */}
           <ItemsContainer>{inventoryListComponents}</ItemsContainer>
         </div>
       </WearableLayout>
