@@ -1,6 +1,4 @@
-// import { ITokens } from ".";
-import { IInventory } from "./inventory";
-import { IUser } from "./user";
+import { IInventory, IUser } from ".";
 
 export interface ILoading {
   loading: "idle" | "pending" | "succeeded" | "failed";
