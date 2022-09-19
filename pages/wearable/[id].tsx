@@ -136,16 +136,15 @@ const Wearables = () => {
     [clickedFilter]
   );
 
-  const getCurrAvatarSrc = () => {
+  const getCurrAvatarSrc = useCallback(() => {
     const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
       return (
         avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
         clickedClothes.sort((a, b) => a - b).join(",")
       );
     });
-    console.log(filteredAvatar);
     return filteredAvatar?.src;
-  };
+  }, [clickedClothes]);
 
   // const inventoryItem = useCallback(() => {
   //   if (searchKeyword.length > 0) return searchedClothes;
