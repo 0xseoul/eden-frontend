@@ -1,5 +1,6 @@
 [
   {
+    "_id": "1",
     "token_id": 1,
     "name": "hat",
     "hash_number": 1,
@@ -7,6 +8,7 @@
     "type": "hair"
   },
   {
+    "_id": "2",
     "token_id": 2,
     "name": "glasses",
     "hash_number": 2,
@@ -14,6 +16,7 @@
     "type": "eye_wear"
   },
   {
+    "_id": "3",
     "token_id": 3,
     "name": "cigarette",
     "hash_number": 3,

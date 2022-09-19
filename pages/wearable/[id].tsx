@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { api } from "../../api";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
@@ -9,8 +9,10 @@ import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
 import FilterContainer from "../../components/wearable/[id]/FilterContainer";
 import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import { WEARABLE_IMAGES } from "../../constants";
+import { TMP_IMAGES, WEARABLE_IMAGES } from "../../constants";
 import { GET_AVATAR } from "../../GraphQL/Queries";
+import { IClothes } from "../../interfaces";
+import fakeClothes from "../../data/rabbit/clothes.json";
 import {
   getClickedFilter,
   getFilteredClothes,
@@ -69,6 +71,7 @@ const filterList = [
 ] as const;
 
 const Wearables = () => {
+  const [clickedClothes, setClickedClothes] = useState<number[]>([]);
   // 2개 query
   // 아바타 정보 + 인벤토리 정보
   const dispatch = useTypedDispatch();
@@ -85,12 +88,27 @@ const Wearables = () => {
     variables: { token_id: Number(id) },
   });
 
+  const handleClickInventoryCard = useCallback(
+    (tokenId: number) => {
+      clickedClothes.includes(tokenId)
+        ? setClickedClothes((prev) => prev.filter((id) => id !== tokenId))
+        : setClickedClothes((prev) => [...prev, tokenId]);
+    },
+    [clickedClothes]
+  );
+
+  useEffect(() => {
+    console.log(clickedClothes);
+  }, [clickedClothes]);
+
   // const { data, loading, error } = useQuery(GET_AVAT_AND_INVENTORY, {
   //   variables: { tokenId: Number(id), walletAddress: wallet },
   // });
   // GET_AVATAR
 
   // console.log(data, loading);
+  // const rabbitImages = RABBIT_IMAGES;
+  // console.log(rabbitImages);
 
   const handleClickFilter = useCallback(
     async (type: string) => {
@@ -119,29 +137,35 @@ const Wearables = () => {
   );
 
   // const inventoryItem = useCallback(() => {
-  //    const tmpClothes = []
-  //   return tmpClothes;
+  //   if (searchKeyword.length > 0) return searchedClothes;
+  //   if (clickedFilter !== "all_items") return filteredClothes;
+  //   return clothes;
   // }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
 
   const inventoryItem = useCallback(() => {
-    if (searchKeyword.length > 0) return searchedClothes;
-    if (clickedFilter !== "all_items") return filteredClothes;
-    return clothes;
+    return fakeClothes;
   }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
 
   const inventoryListComponents = useCallback(
     () =>
-      inventoryItem()?.map((item, index) => (
-        <InventoryCard
-          // src={item?.image_url ?? ""}
-          src={WEARABLE_IMAGES.shoes}
-          name={item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"}
-          // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
-          key={item?._id ?? "id"}
-          itemNumber={`#${item?.hash_number ?? 0}`}
-        />
-      )),
-    [inventoryItem]
+      inventoryItem()?.map((item, index) => {
+        const isActivated = clickedClothes.includes(item.token_id);
+        return (
+          <InventoryCard
+            src={item?.image_url ?? ""}
+            // src={WEARABLE_IMAGES.shoes}
+            name={
+              item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"
+            }
+            // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
+            key={item?._id ?? "id"}
+            itemNumber={`#${item?.hash_number ?? 0}`}
+            isActivated={isActivated}
+            onClick={() => handleClickInventoryCard(item?.token_id ?? 0)}
+          />
+        );
+      }),
+    [inventoryItem, clickedClothes]
   );
 
   return (
@@ -151,9 +175,7 @@ const Wearables = () => {
           <AvatarContainer id={id}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
-              src={
-                data?.getAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero
-              }
+              src={TMP_IMAGES.avatars["1"].src}
               w="24rem"
               h="24rem"
             />
