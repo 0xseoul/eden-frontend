@@ -58,8 +58,9 @@ const Footer = () => {
   const currNavName = router.pathname;
   const isHome = currNavName === "/" || currNavName === "/full-page-test";
   const isWindow = currentOS === "Windows";
-  const isSectionFaq = currentSection === "faq";
-  const isWearableTagHidden = isWindow && isSectionFaq;
+  const isSectionFaqOrRoadmap =
+    currentSection === "faq" || currentSection === "roadmap";
+  const isWearableTagHidden = isWindow && isSectionFaqOrRoadmap;
 
   useEffect(() => {
     const dom = document.querySelector("#fp-nav > ul");

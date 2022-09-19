@@ -54,12 +54,14 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   //   context: { headers },
   // });
   const isWalletConnected = wallet.length > 5;
-  const isSignatureValid = signature.length > 2;
+  const isSignatureValid = signature?.length > 2;
+  const isLoginValid = isWalletConnected && isSignatureValid;
 
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
     if (!isSignatureValid || !isWalletConnected || isLoggined) return;
+    console.log(isSignatureValid, isWalletConnected, isLoggined);
     const init = async () => {
       try {
         const data = await loginUser({
@@ -70,6 +72,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
         dispatch(SET_LOGGED_IN(true));
       } catch (error: any) {
         console.log(error.message);
+        dispatch(SET_LOGGED_IN(false));
       }
     };
     init();
@@ -87,7 +90,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <section className={styles.layout}>
       <div className="h-full flex-1 z-30 w-full flex flex-col justify-center">
-        {isWalletConnected ? (
+        {isLoginValid ? (
           <>
             <Top />
             <div style={cssStyles.container}>
