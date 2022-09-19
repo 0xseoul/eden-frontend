@@ -37,7 +37,7 @@ const Wearable = () => {
           <div className="pt-6">ADAM #{item.token_id}</div>
         </div>
       )),
-    [avatars]
+    [avatars, cardRef]
   );
 
   return (
