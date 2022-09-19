@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import Caver from "caver-js";
 import { ILoading, ISelector, SetWalletProps } from "../interfaces/redux";
-import { IAvatar, IClothes, IUser } from "../interfaces/user";
+import { IUserAvatar, IUserClothes, IUser } from "../interfaces/user";
 import { getSigner } from "../utils/caver-interact";
 
 const user: IUser = {
@@ -55,10 +55,10 @@ export const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    SET_AVATARS: (state, action: PayloadAction<IAvatar[]>) => {
+    SET_AVATARS: (state, action: PayloadAction<IUserAvatar[]>) => {
       state.entities.holding_avatars = action.payload;
     },
-    SET_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
+    SET_CLOTHES: (state, action: PayloadAction<IUserClothes[]>) => {
       state.entities.holding_clothes = action.payload;
     },
     SET_LOGGED_IN: (state, action: PayloadAction<boolean>) => {

@@ -1,1 +1,2 @@
-export interface tmp {}
+export * from "./inventory";
+export * from "./user";

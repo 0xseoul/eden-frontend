@@ -6,7 +6,9 @@ export interface ILoading {
   loading: "idle" | "pending" | "succeeded" | "failed";
 }
 
-export interface ICommon {}
+export interface ICommon {
+  isClickedGoToMyInventory: boolean;
+}
 
 export interface ISelector {
   inventory: {

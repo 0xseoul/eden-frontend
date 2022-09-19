@@ -1,19 +1,19 @@
 export interface IUser {
   wallet: string;
-  holding_avatars: IAvatar[];
-  holding_clothes: IClothes[];
+  holding_avatars: IUserAvatar[];
+  holding_clothes: IUserClothes[];
   isAdmin?: boolean;
   signature: string[];
   isLoggedIn: boolean;
 }
 
-export interface IAvatar {
+export interface IUserAvatar {
   _id: string;
   token_id: string;
   overlapped_image_url: string;
 }
 
-export interface IClothes {
+export interface IUserClothes {
   _id: string;
   name: string;
   hash_number: number;

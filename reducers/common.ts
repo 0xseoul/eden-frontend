@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICommon, ILoading, ISelector } from "../interfaces/redux";
-const common: ICommon = {};
 
 interface IInitialState {
   entities: ICommon;
   loading: ILoading["loading"];
 }
+const common: ICommon = {
+  isClickedGoToMyInventory: false,
+};
 
 const initialState: IInitialState = {
   entities: common,
@@ -15,7 +17,18 @@ const initialState: IInitialState = {
 export const commonSlice = createSlice({
   name: "common",
   initialState,
-  reducers: {},
+  reducers: {
+    setIsClickedGoToMyInventory: (
+      state,
+      action: PayloadAction<boolean>
+    ): void => {
+      state.entities.isClickedGoToMyInventory = action.payload;
+    },
+  },
 });
 
 export default commonSlice.reducer;
+export const { setIsClickedGoToMyInventory } = commonSlice.actions;
+
+export const getIsClickedGoToMyInventory = (state: ISelector): boolean =>
+  state.common.entities.isClickedGoToMyInventory;

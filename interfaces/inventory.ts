@@ -1,14 +1,14 @@
 export interface IInventory {
-  avatar: IAvatar;
-  clothes: IClothes[];
-  searchedClothes: IClothes[];
-  searchedAvatars: IAvatar[];
+  avatar: IInventoryAvatar;
+  clothes: IInventoryClothes[];
+  searchedClothes: IInventoryClothes[];
+  searchedAvatars: IInventoryAvatar[];
   searching: boolean;
   searchKeyword: string;
   clickedFilter: string;
-  filteredClothes: IClothes[];
+  filteredClothes: IInventoryClothes[];
 }
-export interface IAvatar {
+export interface IInventoryAvatar {
   _id: string;
   owner: string;
   token_id: number;
@@ -23,7 +23,7 @@ export interface IAvatar {
   overlapped_image_url: string | null;
 }
 
-export interface IClothes {
+export interface IInventoryClothes {
   _id: string;
   name: string;
   hash_number: number;
