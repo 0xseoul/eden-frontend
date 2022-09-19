@@ -10,7 +10,7 @@ import {
   ISelector,
   SetWalletProps,
   IUserAvatar,
-  IUserClothes,
+  IClothes,
   IUser,
 } from "../interfaces";
 import { getSigner } from "../utils/caver-interact";
@@ -64,7 +64,7 @@ export const userSlice = createSlice({
     SET_AVATARS: (state, action: PayloadAction<IUserAvatar[]>) => {
       state.entities.holding_avatars = action.payload;
     },
-    SET_CLOTHES: (state, action: PayloadAction<IUserClothes[]>) => {
+    SET_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
       state.entities.holding_clothes = action.payload;
     },
     SET_LOGGED_IN: (state, action: PayloadAction<boolean>) => {

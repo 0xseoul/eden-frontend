@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { api } from "../../api";
 import { ICONS } from "../../constants";
 import useSearch from "../../hooks/useSearch";
-import { IInventoryClothes } from "../../interfaces";
+import { IClothes } from "../../interfaces";
 import {
   SET_SEARCHED_CLOTHES,
   SET_SEARCHING,
@@ -54,7 +54,7 @@ const Tab = () => {
   });
 
   useEffect(() => {
-    dispatch(SET_SEARCHED_CLOTHES(data as IInventoryClothes[]));
+    dispatch(SET_SEARCHED_CLOTHES(data as IClothes[]));
   }, [data]);
 
   useEffect(() => {

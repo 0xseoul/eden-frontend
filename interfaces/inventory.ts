@@ -1,12 +1,13 @@
+// IInventoryClothes
 export interface IInventory {
   avatar: IInventoryAvatar;
-  clothes: IInventoryClothes[];
-  searchedClothes: IInventoryClothes[];
+  clothes: IClothes[];
+  searchedClothes: IClothes[];
   searchedAvatars: IInventoryAvatar[];
   searching: boolean;
   searchKeyword: string;
   clickedFilter: string;
-  filteredClothes: IInventoryClothes[];
+  filteredClothes: IClothes[];
 }
 
 interface ICommonAvatar {
@@ -17,7 +18,7 @@ interface ICommonAvatar {
   overlapped_image_url: string | null;
 }
 
-export interface IInventoryClothes {
+export interface IClothes {
   _id: string;
   name: string;
   hash_number: number;
@@ -37,11 +38,11 @@ export interface IInventoryAvatar extends ICommonAvatar {
 }
 
 export interface IGetAvatar extends ICommonAvatar {
-  hair: IInventoryClothes;
-  clothing: IInventoryClothes;
-  eyes: IInventoryClothes;
-  mouth: IInventoryClothes;
-  off_hand: IInventoryClothes;
-  skin: IInventoryClothes;
-  background: IInventoryClothes;
+  hair: IClothes;
+  clothing: IClothes;
+  eyes: IClothes;
+  mouth: IClothes;
+  off_hand: IClothes;
+  skin: IClothes;
+  background: IClothes;
 }

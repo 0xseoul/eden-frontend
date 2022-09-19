@@ -118,6 +118,11 @@ const Wearables = () => {
     [clickedFilter]
   );
 
+  // const inventoryItem = useCallback(() => {
+  //    const tmpClothes = []
+  //   return tmpClothes;
+  // }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
+
   const inventoryItem = useCallback(() => {
     if (searchKeyword.length > 0) return searchedClothes;
     if (clickedFilter !== "all_items") return filteredClothes;

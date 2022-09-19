@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  IInventoryClothes,
-  IInventory,
-  ILoading,
-  ISelector,
-} from "../interfaces";
+import { IClothes, IInventory, ILoading, ISelector } from "../interfaces";
 
 interface IInitialState {
   entities: IInventory;
@@ -45,10 +40,7 @@ export const inventorySlice = createSlice({
   name: "inventory",
   initialState,
   reducers: {
-    SET_SEARCHED_CLOTHES: (
-      state,
-      action: PayloadAction<IInventoryClothes[]>
-    ) => {
+    SET_SEARCHED_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
       state.entities.searchedClothes = action.payload;
     },
     SET_SEARCH_KEYWORD: (state, action: PayloadAction<string>) => {
@@ -63,10 +55,7 @@ export const inventorySlice = createSlice({
         ? (state.entities.clickedFilter = "all_items")
         : (state.entities.clickedFilter = action.payload);
     },
-    SET_FILTERD_CLOTHES: (
-      state,
-      action: PayloadAction<IInventoryClothes[]>
-    ) => {
+    SET_FILTERD_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
       state.entities.filteredClothes = action.payload;
     },
   },
