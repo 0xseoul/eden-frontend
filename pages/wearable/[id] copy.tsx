@@ -134,6 +134,8 @@ const Wearables = () => {
           // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
           key={item?._id ?? "id"}
           itemNumber={`#${item?.hash_number ?? 0}`}
+          isActivated={false}
+          onClick={() => console.log("click")}
         />
       )),
     [inventoryItem]
