@@ -137,14 +137,14 @@ const Wearables = () => {
   );
 
   const getCurrAvatarSrc = () => {
-    const filteredAvatar = TMP_AVATARS_ARR.filter((avatar) => {
+    const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
       return (
         avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
         clickedClothes.sort((a, b) => a - b).join(",")
       );
     });
     console.log(filteredAvatar);
-    return filteredAvatar[0]?.src;
+    return filteredAvatar?.src;
   };
 
   // const inventoryItem = useCallback(() => {
