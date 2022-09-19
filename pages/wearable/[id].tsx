@@ -136,7 +136,7 @@ const Wearables = () => {
     [clickedFilter]
   );
 
-  const getCurrAvatarSrc = useCallback(() => {
+  const getCurrAvatarSrc = () => {
     const filteredAvatar = TMP_AVATARS_ARR.filter((avatar) => {
       return (
         avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
@@ -145,7 +145,7 @@ const Wearables = () => {
     });
     console.log(filteredAvatar);
     return filteredAvatar[0]?.src;
-  }, [clickedClothes]);
+  };
 
   // const inventoryItem = useCallback(() => {
   //   if (searchKeyword.length > 0) return searchedClothes;
