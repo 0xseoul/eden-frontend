@@ -9,7 +9,7 @@ import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
 import FilterContainer from "../../components/wearable/[id]/FilterContainer";
 import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import { TMP_IMAGES, WEARABLE_IMAGES } from "../../constants";
+import { TMP_IMAGES, WEARABLE_IMAGES, TMP_AVATARS_ARR } from "../../constants";
 import { GET_AVATAR } from "../../GraphQL/Queries";
 import { IClothes } from "../../interfaces";
 import fakeClothes from "../../data/rabbit/clothes.json";
@@ -136,6 +136,17 @@ const Wearables = () => {
     [clickedFilter]
   );
 
+  const getCurrAvatarSrc = useCallback(() => {
+    const filteredAvatar = TMP_AVATARS_ARR.filter((avatar) => {
+      return (
+        avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
+        clickedClothes.sort((a, b) => a - b).join(",")
+      );
+    });
+    console.log(filteredAvatar);
+    return filteredAvatar[0]?.src;
+  }, [clickedClothes]);
+
   // const inventoryItem = useCallback(() => {
   //   if (searchKeyword.length > 0) return searchedClothes;
   //   if (clickedFilter !== "all_items") return filteredClothes;
@@ -175,7 +186,8 @@ const Wearables = () => {
           <AvatarContainer id={id}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
-              src={TMP_IMAGES.avatars["1"].src}
+              src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars["1"].src}
+              // src={TMP_IMAGES.avatars["1"].src}
               w="24rem"
               h="24rem"
             />

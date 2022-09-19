@@ -56,6 +56,8 @@ export const TMP_IMAGES = {
   },
 };
 
+export const TMP_AVATARS_ARR = Object.values(TMP_IMAGES.avatars);
+
 // 1: hat
 // 2: glasses
 // 3: cigarette
