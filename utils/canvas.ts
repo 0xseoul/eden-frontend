@@ -17,15 +17,16 @@ class Canvas {
 
   private buildDir: string = `${BASE_PATH}/__test__`;
 
-  private canvas: C | undefined;
-  private ctx: CanvasRenderingContext2D | undefined;
+  private canvas: HTMLCanvasElement | undefined;
+  private ctx: CanvasRenderingContext2D | null = null;
   constructor() {
     this.init();
   }
 
   private init() {
-    this.canvas = createCanvas(this.format.width, this.format.height);
-    this.ctx = this.canvas.getContext("2d");
+    this.canvas = document.createElement("canvas");
+    // this.canvas = createCanvas(this.format.width, this.format.height);
+    this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.ctx.imageSmoothingEnabled = this.format.smoothing;
   }
 
@@ -61,21 +62,18 @@ class Canvas {
     this.ctx.clearRect(0, 0, this.format.width, this.format.height);
   }
 
-  public saveImage(_editionCount: number = 1) {
+  public getImageUrl(_editionCount: number = 1) {
     if (!this.canvas) return;
-    fs.writeFileSync(
-      `${this.buildDir}/${_editionCount}.png`,
-      this.canvas.toBuffer("image/png") // 지금까지 ctx에 쌓아서 저장한거를 이미지로 만드는 작업
-    );
+    const _url = this.canvas.toBlob(function (blob) {
+      if (!blob) return;
+      let url = URL.createObjectURL(blob);
+      return url;
+    });
+    return _url;
   }
 
   get getCanvas() {
     return this.canvas;
-  }
-
-  get buffer() {
-    if (!this.canvas) return;
-    return this.canvas.toBuffer("image/png");
   }
 
   get toImgSrc() {

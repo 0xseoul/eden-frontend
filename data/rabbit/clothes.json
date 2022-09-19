@@ -1,0 +1,23 @@
+[
+  {
+    "token_id": 1,
+    "name": "hat",
+    "hash_number": 1,
+    "image_url": "/images/tmp/rabbit/clothes/hat.png",
+    "type": "hair"
+  },
+  {
+    "token_id": 2,
+    "name": "glasses",
+    "hash_number": 2,
+    "image_url": "/images/tmp/rabbit/clothes/glasses.png",
+    "type": "eye_wear"
+  },
+  {
+    "token_id": 3,
+    "name": "cigarette",
+    "hash_number": 3,
+    "image_url": "/images/tmp/rabbit/clothes/cigarette.png",
+    "type": "mouth"
+  }
+]
