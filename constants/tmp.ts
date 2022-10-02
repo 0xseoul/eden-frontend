@@ -18,6 +18,7 @@ export const TMP_IMAGES = {
   avatars: {
     1: {
       src: "/images/tmp/rabbit/avatars/1.png",
+      // src: "/images/tmp/rabbit/avatars/1.png",
       holding_clothes: RABBIT_IMAGES[1],
     },
     2: {
