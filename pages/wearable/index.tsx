@@ -18,6 +18,7 @@ const Wearable = () => {
   // const arr = Array.from({ length: 10 }, (_, i) => i + 1);
   // const wallet = useTypedSelector(getWallet);
 
+  console.log(avatars);
   const cardComponent = useCallback(
     () =>
       avatars?.map((item, index) => (
@@ -27,7 +28,7 @@ const Wearable = () => {
               className={`flex cursor-pointer h-[${cardRef?.clientWidth}px] w-[${cardRef?.clientWidth}px]`}
             >
               <AvatarCardV3
-                src={TMP_IMAGES.avatars[1].src}
+                src={item.overlapped_image_url}
                 // src={WEARABLE_IMAGES.hero}
                 w={`${cardRef?.clientWidth}px`}
                 h={`${cardRef?.clientWidth}px`}

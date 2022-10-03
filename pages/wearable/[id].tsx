@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "../../api";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
@@ -22,7 +22,7 @@ import {
   SET_CLICKED_FILTER,
   SET_FILTERD_CLOTHES,
 } from "../../reducers/inventory";
-import { getClothes, getWallet } from "../../reducers/user";
+import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 
 const styles = {
@@ -84,9 +84,17 @@ const Wearables = () => {
   const searchKeyword = useTypedSelector(getSearchKeyword);
   const clickedFilter = useTypedSelector(getClickedFilter);
   const filteredClothes = useTypedSelector(getFilteredClothes);
-  const { data, loading, error } = useQuery(GET_AVATAR, {
-    variables: { token_id: Number(id) },
-  });
+  const avatars = useTypedSelector(getAvatars);
+
+  const currentAvatar = useMemo(
+    () => avatars.find((avatar) => Number(avatar.token_id) === Number(id)),
+    [avatars, id]
+  );
+
+  // const currentAvatar = useTypedSelector(get);
+  // const { data, loading, error } = useQuery(GET_AVATAR, {
+  //   variables: { token_id: Number(id) },
+  // });
 
   const handleClickInventoryCard = useCallback(
     (tokenId: number) => {
@@ -137,15 +145,15 @@ const Wearables = () => {
     [clickedFilter]
   );
 
-  const getCurrAvatarSrc = useCallback(() => {
-    const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
-      return (
-        avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
-        clickedClothes.sort((a, b) => a - b).join(",")
-      );
-    });
-    return filteredAvatar?.src;
-  }, [clickedClothes]);
+  // const getCurrAvatarSrc = useCallback(() => {
+  //   const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
+  //     return (
+  //       avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
+  //       clickedClothes.sort((a, b) => a - b).join(",")
+  //     );
+  //   });
+  //   return filteredAvatar?.src;
+  // }, [clickedClothes]);
 
   const inventoryItem = useCallback(() => {
     if (searchKeyword.length > 0) return searchedClothes;
@@ -186,7 +194,8 @@ const Wearables = () => {
           <AvatarContainer id={id}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
-              src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars["1"].src}
+              src={currentAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero}
+              // src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars["1"].src}
               // src={TMP_IMAGES.avatars["1"].src}
               w="24rem"
               h="24rem"
