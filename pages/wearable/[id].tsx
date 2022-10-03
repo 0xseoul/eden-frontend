@@ -24,6 +24,7 @@ import {
 } from "../../reducers/inventory";
 import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
+import { searchNotByDBInventory } from "../../utils/search";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -127,6 +128,13 @@ const Wearables = () => {
     },
     [wallet]
   );
+
+  useEffect(() => {
+    // clickedFilter
+    const data = searchNotByDBInventory(clickedFilter, clothes);
+    dispatch(SET_FILTERD_CLOTHES(data));
+    console.log(data);
+  }, [clickedFilter]);
 
   const filterListComponents = useCallback(
     () =>
