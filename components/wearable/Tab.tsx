@@ -3,15 +3,19 @@ import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { api } from "../../api";
 import { ICONS } from "../../constants";
 import useSearch from "../../hooks/useSearch";
-import { IClothes } from "../../interfaces";
+import { IClothes, IInventory, IUserAvatar } from "../../interfaces";
 import {
+  SET_SEARCHED_AVATARS,
   SET_SEARCHED_CLOTHES,
   SET_SEARCHING,
   SET_SEARCH_KEYWORD,
 } from "../../reducers/inventory";
 import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
-import { searchNotByDBInventory } from "../../utils/search";
+import {
+  searchNotByDBAvatar,
+  searchNotByDBInventory,
+} from "../../utils/search";
 
 const styles = {
   tab: `flex px-[1.5rem] py-[1rem] w-full justify-between items-center pb-[2.5625rem]`,
@@ -33,6 +37,8 @@ const Tab = () => {
   // /wearable
   const dispatch = useTypedDispatch();
   const clothes = useTypedSelector(getClothes);
+  const avatars = useTypedSelector(getAvatars);
+  // const avatarsTokenIds = avatars.map((avatar) => avatar.token_id);
 
   // const wallet = useTypedSelector(getWallet);
 
@@ -41,35 +47,42 @@ const Tab = () => {
     setData: Dispatch<SetStateAction<any>>,
     _keyword: string
   ) => {
-    const data = searchNotByDBInventory(_keyword, clothes);
+    const data = isCustomizePage
+      ? searchNotByDBInventory(_keyword, clothes)
+      : searchNotByDBAvatar(_keyword, avatars);
     setData(data);
   };
 
-  const handleSearchClothes = async (
+  const handleSearch = async (
     setData: Dispatch<SetStateAction<any>>,
     _keyword: string
   ): Promise<void> => {
-    isCustomizePage && handleCustomizePageSearch(setData, _keyword);
+    handleCustomizePageSearch(setData, _keyword);
   };
 
   const { data, keyword, setKeyword, loading, onChange } = useSearch({
-    api: handleSearchClothes,
+    api: handleSearch,
   });
 
   useEffect(() => {
-    dispatch(SET_SEARCHED_CLOTHES(data as IClothes[]));
+    if (isCustomizePage) {
+      dispatch(SET_SEARCHED_CLOTHES(data as IClothes[]));
+    } else {
+      dispatch(SET_SEARCHED_AVATARS(data as IUserAvatar[]));
+    }
   }, [data]);
 
   useEffect(() => {
     dispatch(SET_SEARCH_KEYWORD(keyword));
     if (keyword.length === 0) dispatch(SET_SEARCHED_CLOTHES([]));
+    if (keyword.length === 0) dispatch(SET_SEARCHED_AVATARS([]));
   }, [keyword]);
 
   useEffect(() => {
     dispatch(SET_SEARCHING(loading));
   }, [loading]);
 
-  const avatars = useTypedSelector(getAvatars);
+  // const avatars = useTypedSelector(getAvatars);
 
   const isSearching = keyword.length > 0;
 

@@ -2,7 +2,8 @@ import Link from "next/link";
 import React, { useCallback } from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV3 from "../../components/wearable/AvatarCard-v3";
-import { TMP_IMAGES, WEARABLE_IMAGES } from "../../constants";
+import { getSearchedAvatars, getSearchKeyword } from "../../reducers/inventory";
+// import { TMP_IMAGES, WEARABLE_IMAGES } from "../../constants";
 import { getAvatars, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
 
@@ -15,13 +16,21 @@ const styles = {
 const Wearable = () => {
   const [cardRef, setCardRef] = React.useState<HTMLDivElement | null>(null);
   const avatars = useTypedSelector(getAvatars);
+  const searchKeyword = useTypedSelector(getSearchKeyword);
+  const searchedAvatars = useTypedSelector(getSearchedAvatars);
+
   // const arr = Array.from({ length: 10 }, (_, i) => i + 1);
   // const wallet = useTypedSelector(getWallet);
 
-  console.log(avatars);
-  const cardComponent = useCallback(
+  // console.log(avatars);
+  const avatarItem = () => {
+    if (searchKeyword.length > 0) return searchedAvatars;
+    return avatars;
+  };
+
+  const avatarListComponents = useCallback(
     () =>
-      avatars?.map((item, index) => (
+      avatarItem()?.map((item, index) => (
         <div className={styles.cardContainer} key={item._id} ref={setCardRef}>
           <Link href={`/wearable/${item.token_id}`}>
             <div
@@ -38,13 +47,13 @@ const Wearable = () => {
           <div className="pt-6">ADAM #{item.token_id}</div>
         </div>
       )),
-    [avatars, cardRef]
+    [avatars, cardRef, searchedAvatars]
   );
 
   return (
     <WearableLayout>
       <div className={styles.container}>
-        <div className={styles.grid}>{cardComponent()}</div>
+        <div className={styles.grid}>{avatarListComponents()}</div>
       </div>
     </WearableLayout>
   );

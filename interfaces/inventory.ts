@@ -1,9 +1,11 @@
+import { IUserAvatar } from "./user";
+
 // IInventoryClothes
 export interface IInventory {
   avatar: IInventoryAvatar;
   clothes: IClothes[];
   searchedClothes: IClothes[];
-  searchedAvatars: IInventoryAvatar[];
+  searchedAvatars: IUserAvatar[];
   searching: boolean;
   searchKeyword: string;
   clickedFilter: string;

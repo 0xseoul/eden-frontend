@@ -110,15 +110,6 @@ const Wearables = () => {
     console.log(clickedClothes);
   }, [clickedClothes]);
 
-  // const { data, loading, error } = useQuery(GET_AVAT_AND_INVENTORY, {
-  //   variables: { tokenId: Number(id), walletAddress: wallet },
-  // });
-  // GET_AVATAR
-
-  // console.log(data, loading);
-  // const rabbitImages = RABBIT_IMAGES;
-  // console.log(rabbitImages);
-
   const handleClickFilter = useCallback(
     async (type: string) => {
       dispatch(SET_CLICKED_FILTER(type));

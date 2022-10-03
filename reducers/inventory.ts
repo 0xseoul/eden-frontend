@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IClothes, IInventory, ILoading, ISelector } from "../interfaces";
+import {
+  IClothes,
+  IInventory,
+  ILoading,
+  ISelector,
+  IUserAvatar,
+} from "../interfaces";
 
 interface IInitialState {
   entities: IInventory;
@@ -43,6 +49,9 @@ export const inventorySlice = createSlice({
     SET_SEARCHED_CLOTHES: (state, action: PayloadAction<IClothes[]>) => {
       state.entities.searchedClothes = action.payload;
     },
+    SET_SEARCHED_AVATARS: (state, action: PayloadAction<IUserAvatar[]>) => {
+      state.entities.searchedAvatars = action.payload;
+    },
     SET_SEARCH_KEYWORD: (state, action: PayloadAction<string>) => {
       state.entities.searchKeyword = action.payload;
     },
@@ -64,6 +73,7 @@ export const inventorySlice = createSlice({
 export default inventorySlice.reducer;
 
 export const {
+  SET_SEARCHED_AVATARS,
   SET_SEARCHED_CLOTHES,
   SET_SEARCH_KEYWORD,
   SET_SEARCHING,
@@ -87,3 +97,6 @@ export const getClickedFilter = (state: ISelector) =>
 
 export const getFilteredClothes = (state: ISelector) =>
   state.inventory.entities.filteredClothes;
+
+export const getSearchedAvatars = (state: ISelector) =>
+  state.inventory.entities.searchedAvatars;
