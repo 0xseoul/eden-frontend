@@ -1,67 +1,70 @@
 import axios from "axios";
-// const url = "http://localhost:4000/graphql";
-const url = "https://oseoul-eden.herokuapp.com/graphql";
-// https://oseoul-eden.herokuapp.com/
-const getUser = async () => {
-  const query = `
-  query GetAllUsers {
-    getAllUsers {
-      _id
-      wallet_address
-      createdAt
-      isAdmin
-    }
-  }
-  `;
+import * as user from "./user";
+export const baseApi = axios.create({ baseURL: "http://localhost:3001" });
 
-  const data = await axios.post(url, { query });
-  return data.data.data.getAllUsers;
-};
+export const api = { user };
+// const url = "https://oseoul-eden.herokuapp.com/graphql";
+// // https://oseoul-eden.herokuapp.com/
+// const getUser = async () => {
+//   const query = `
+//   query GetAllUsers {
+//     getAllUsers {
+//       _id
+//       wallet_address
+//       createdAt
+//       isAdmin
+//     }
+//   }
+//   `;
 
-const searchClothes = async (keyword: string, walletAddress: string) => {
-  const query = `
-  query GetAllUsers($keyword: String, $walletAddress: String) {
-    searchClothes(keyword: $keyword, wallet_address: $walletAddress) {
-      _id
-      name
-      hash_number
-      image_url
-      type
-      token_id
-      createdAt
-    }
-  }
-  `;
-  const data = await axios.post(url, {
-    query,
-    variables: { keyword, walletAddress },
-  });
-  return data.data.data.searchClothes;
-};
+//   const data = await axios.post(url, { query });
+//   return data.data.data.getAllUsers;
+// };
 
-const filterClothes = async (type: string, walletAddress: string) => {
-  const query = `
-  query FilterClothes($type: String, $walletAddress: String) {
-    filterClothes(type: $type, wallet_address: $walletAddress) {
-      _id
-      name
-      hash_number
-      image_url
-      type
-      token_id
-      createdAt
-    }
-  }
-`;
-  const data = await axios.post(url, {
-    query,
-    variables: { type, walletAddress },
-  });
-  return data.data.data.filterClothes;
-};
+// const searchClothes = async (keyword: string, walletAddress: string) => {
+//   const query = `
+//   query GetAllUsers($keyword: String, $walletAddress: String) {
+//     searchClothes(keyword: $keyword, wallet_address: $walletAddress) {
+//       _id
+//       name
+//       hash_number
+//       image_url
+//       type
+//       token_id
+//       createdAt
+//     }
+//   }
+//   `;
+//   const data = await axios.post(url, {
+//     query,
+//     variables: { keyword, walletAddress },
+//   });
+//   return data.data.data.searchClothes;
+// };
 
-export const api = {
-  filterClothes,
-  searchClothes,
-  getUser,
-};
+// const filterClothes = async (type: string, walletAddress: string) => {
+//   const query = `
+//   query FilterClothes($type: String, $walletAddress: String) {
+//     filterClothes(type: $type, wallet_address: $walletAddress) {
+//       _id
+//       name
+//       hash_number
+//       image_url
+//       type
+//       token_id
+//       createdAt
+//     }
+//   }
+// `;
+//   const data = await axios.post(url, {
+//     query,
+//     variables: { type, walletAddress },
+//   });
+//   return data.data.data.filterClothes;
+// };
+
+// export const api = {
+//   filterClothes,
+//   searchClothes,
+//   getUser,
+// };

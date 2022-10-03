@@ -42,11 +42,11 @@ const Top = () => {
           <div className={styles.titleItemContainer}>
             <div className={`${styles.titleItem} gap-[4px]`}>
               <span className={styles.subtitle}>Avatar</span>
-              <span>{avatars.length}</span>
+              <span>{avatars?.length ?? 0}</span>
             </div>
             <div className={`${styles.titleItem} gap-[4px]`}>
               <span className={styles.subtitle}>Item</span>
-              <span>{clothes.length}</span>
+              <span>{clothes?.length ?? 0}</span>
             </div>
           </div>
         </div>

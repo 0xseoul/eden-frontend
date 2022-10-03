@@ -95,8 +95,8 @@ const Wearables = () => {
   const handleClickFilter = useCallback(
     async (type: string) => {
       dispatch(SET_CLICKED_FILTER(type));
-      const _data = await api.filterClothes(type, wallet);
-      dispatch(SET_FILTERD_CLOTHES(_data));
+      // const _data = await api.filterClothes(type, wallet);
+      // dispatch(SET_FILTERD_CLOTHES(_data));
     },
     [wallet]
   );

@@ -113,8 +113,9 @@ const Wearables = () => {
   const handleClickFilter = useCallback(
     async (type: string) => {
       dispatch(SET_CLICKED_FILTER(type));
-      const _data = await api.filterClothes(type, wallet);
-      dispatch(SET_FILTERD_CLOTHES(_data));
+      // 여기서 수정하기
+      // const _data = await api.filterClothes(type, wallet);
+      // dispatch(SET_FILTERD_CLOTHES(_data));
     },
     [wallet]
   );
@@ -146,15 +147,15 @@ const Wearables = () => {
     return filteredAvatar?.src;
   }, [clickedClothes]);
 
-  // const inventoryItem = useCallback(() => {
-  //   if (searchKeyword.length > 0) return searchedClothes;
-  //   if (clickedFilter !== "all_items") return filteredClothes;
-  //   return clothes;
-  // }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
-
   const inventoryItem = useCallback(() => {
-    return fakeClothes;
+    if (searchKeyword.length > 0) return searchedClothes;
+    if (clickedFilter !== "all_items") return filteredClothes;
+    return clothes;
   }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
+
+  // const inventoryItem = useCallback(() => {
+  //   return fakeClothes;
+  // }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
 
   const inventoryListComponents = useCallback(
     () =>

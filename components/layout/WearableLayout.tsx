@@ -52,7 +52,7 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
   //   wallet_address: wallet,
   // };
 
-  const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION);
+  // const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION);
   // const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION, {
   //   context: { headers },
   // });
@@ -64,14 +64,23 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (!isSignatureValid || !isWalletConnected || isLoggined) return;
-    console.log(isSignatureValid, isWalletConnected, isLoggined);
+    // console.log(isSignatureValid, isWalletConnected, isLoggined);
     const init = async () => {
       try {
-        const data = await loginUser({
-          variables: { wallet_address: wallet, signature, signMessage },
-        });
-        dispatch(SET_AVATARS(data.data.loginUser.holding_avatars));
-        dispatch(SET_CLOTHES(data.data.loginUser.holding_clothes));
+        // const data = await loginUser({
+        //   variables: { wallet_address: wallet, signature, signMessage },
+        // });
+        const props = {
+          wallet_address: wallet,
+          signature,
+          signMessage,
+        };
+
+        // console.log(props);
+        const response = await api.user.loginUser(props);
+        console.log(response);
+        dispatch(SET_AVATARS(response.data.user.holding_avatars));
+        dispatch(SET_CLOTHES(response.data.user.holding_clothes));
         dispatch(SET_LOGGED_IN(true));
       } catch (error: any) {
         console.log(error.message);
@@ -83,9 +92,9 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     const init = async () => {
-      const data = await api.getUser();
-      console.log("data");
-      console.log(data);
+      // const data = await api.user.loginUser();
+      // console.log("data");
+      // console.log(data);
     };
     // init();
   }, []);

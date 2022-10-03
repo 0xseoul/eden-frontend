@@ -75,7 +75,7 @@ const Tab = () => {
       <div className={styles.container}>
         <span className="font-light">Select your ADAM to customize</span>
         <span className="font-bold text-primary">
-          {avatars.length} ADAM(S) Detected
+          {avatars?.length ?? 0} ADAM(S) Detected
         </span>
       </div>
       <div className={styles.container}>
