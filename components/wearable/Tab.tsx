@@ -9,8 +9,9 @@ import {
   SET_SEARCHING,
   SET_SEARCH_KEYWORD,
 } from "../../reducers/inventory";
-import { getAvatars, getWallet } from "../../reducers/user";
+import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
+import { searchNotByDBInventory } from "../../utils/search";
 
 const styles = {
   tab: `flex px-[1.5rem] py-[1rem] w-full justify-between items-center pb-[2.5625rem]`,
@@ -31,14 +32,16 @@ const Tab = () => {
   // /wearable/[id]
   // /wearable
   const dispatch = useTypedDispatch();
-  const wallet = useTypedSelector(getWallet);
+  const clothes = useTypedSelector(getClothes);
+
+  // const wallet = useTypedSelector(getWallet);
 
   // used in handleSearchClothes
   const handleCustomizePageSearch = async (
     setData: Dispatch<SetStateAction<any>>,
     _keyword: string
   ) => {
-    const data = await api.searchClothes(_keyword, wallet);
+    const data = searchNotByDBInventory(_keyword, clothes);
     setData(data);
   };
 
