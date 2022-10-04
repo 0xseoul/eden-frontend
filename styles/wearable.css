@@ -82,12 +82,18 @@
   position: absolute;
   z-index: 3;
 }
-.wearable-card-container-v2 :nth-child(1):hover ~ .avatarcard-overlay {
-  background: rgba(0, 0, 0, 0.5);
-}
 .wearable-card-container-v2 :nth-child(2) {
   z-index: 1;
   position: absolute;
+}
+.wearable-card-container-v2 :nth-child(1):hover ~ .avatarcard-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+.wearable-card-container-v2 :nth-child(1):hover ~ .avatarcard-overlay > span {
+  opacity: 1;
+}
+.wearable-card-container-v2 :nth-child(1):active ~ .avatarcard-overlay > span {
+  color: #b6ff00;
 }
 
 .filter-icon:hover {

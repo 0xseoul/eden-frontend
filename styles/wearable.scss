@@ -141,12 +141,21 @@ $primary: #b6ff00;
     position: absolute;
     z-index: 3;
   }
-  :nth-child(1):hover ~ .avatarcard-overlay {
-    background: rgba(0, 0, 0, 0.5);
-  }
+
   :nth-child(2) {
     z-index: 1;
     position: absolute;
+  }
+
+  :nth-child(1):hover ~ .avatarcard-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  :nth-child(1):hover ~ .avatarcard-overlay > span {
+    opacity: 1;
+  }
+  :nth-child(1):active ~ .avatarcard-overlay > span {
+    color: $primary;
   }
 }
 
