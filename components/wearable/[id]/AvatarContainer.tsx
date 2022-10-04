@@ -22,8 +22,9 @@ interface Props {
   // data: { getAvatar: IGetAvatar };
   id: string | string[] | undefined;
   children: React.ReactNode;
+  handleClickDownload: () => void;
 }
-const AvatarContainer: FC<Props> = ({ children, id }) => {
+const AvatarContainer: FC<Props> = ({ children, id, handleClickDownload }) => {
   return (
     <form className={styles.avatarContainer}>
       <div className="flex flex-col">
@@ -46,7 +47,10 @@ const AvatarContainer: FC<Props> = ({ children, id }) => {
       </div>
       <div className="flex-1 flex items-end w-full justify-center mt-[69px]">
         {/* TODO: cuttnig button container */}
-        <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn}>
+        <CuttinEdgeBtn
+          cssStyles={cssStyles.downloadBtn}
+          onClick={handleClickDownload}
+        >
           DOWNLOAD IMAGE
         </CuttinEdgeBtn>
       </div>

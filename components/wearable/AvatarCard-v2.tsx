@@ -5,12 +5,13 @@ interface Props {
   src: string;
   w?: string;
   h?: string;
+  avatarId?: string;
 }
 
 const styles = {
   container: `flex flex-col justify-center items-center w-full`,
 };
-const AvatarCardV2: FC<Props> = ({ src, w, h }) => {
+const AvatarCardV2: FC<Props> = ({ src, w, h, avatarId }) => {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const size = () => {
     if (!w || !h) return "";
@@ -33,7 +34,7 @@ const AvatarCardV2: FC<Props> = ({ src, w, h }) => {
       >
         <AutoHeightImage src={WEARABLE_IMAGES["avatar-frame"]} />
         <div className="w-full h-full" key={src}>
-          <AutoHeightImage src={src} />
+          <AutoHeightImage src={src} id={avatarId} />
         </div>
       </div>
     </div>

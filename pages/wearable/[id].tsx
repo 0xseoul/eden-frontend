@@ -70,7 +70,7 @@ const filterList = [
 
 const Wearables = () => {
   const [clickedClothes, setClickedClothes] = useState<number[]>([]);
-  const [downloadStatus, setDownloadStatus] = useState<boolean>(true);
+  const [downloadStatus, setDownloadStatus] = useState<boolean>(false);
   // 2개 query
   // 아바타 정보 + 인벤토리 정보
   const dispatch = useTypedDispatch();
@@ -90,11 +90,6 @@ const Wearables = () => {
     [avatars, id]
   );
 
-  // const currentAvatar = useTypedSelector(get);
-  // const { data, loading, error } = useQuery(GET_AVATAR, {
-  //   variables: { token_id: Number(id) },
-  // });
-
   const handleClickInventoryCard = useCallback(
     (tokenId: number) => {
       clickedClothes.includes(tokenId)
@@ -104,25 +99,46 @@ const Wearables = () => {
     [clickedClothes]
   );
 
-  useEffect(() => {
-    console.log(clickedClothes);
-  }, [clickedClothes]);
-
   const handleClickFilter = useCallback(
     async (type: string) => {
       dispatch(SET_CLICKED_FILTER(type));
-      // 여기서 수정하기
-      // const _data = await api.filterClothes(type, wallet);
-      // dispatch(SET_FILTERD_CLOTHES(_data));
     },
     [wallet]
   );
 
+  const handleClickDownload = useCallback(async () => {
+    setDownloadStatus(true);
+    try {
+      const downloadImage = document.getElementById("download-image");
+
+      if (downloadImage) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const img = downloadImage as HTMLImageElement;
+        // get original image size
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+        // set canvas size
+        canvas.width = width;
+        canvas.height = height;
+        // draw image
+        ctx?.drawImage(img, 0, 0, width, height);
+        // get image data
+        const a = document.createElement("a");
+        a.href = canvas.toDataURL("image/png");
+        a.download = "wearable.png";
+        a.click();
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setTimeout(() => setDownloadStatus(false), 3000);
+    }
+  }, [downloadStatus]);
+
   useEffect(() => {
-    // clickedFilter
     const data = searchNotByDBInventory(clickedFilter, clothes);
     dispatch(SET_FILTERD_CLOTHES(data));
-    console.log(data);
   }, [clickedFilter]);
 
   const filterListComponents = useCallback(
@@ -142,25 +158,11 @@ const Wearables = () => {
     [clickedFilter]
   );
 
-  // const getCurrAvatarSrc = useCallback(() => {
-  //   const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
-  //     return (
-  //       avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
-  //       clickedClothes.sort((a, b) => a - b).join(",")
-  //     );
-  //   });
-  //   return filteredAvatar?.src;
-  // }, [clickedClothes]);
-
   const inventoryItem = useCallback(() => {
     if (searchKeyword.length > 0) return searchedClothes;
     if (clickedFilter !== "all_items") return filteredClothes;
     return clothes;
   }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
-
-  // const inventoryItem = useCallback(() => {
-  //   return fakeClothes;
-  // }, [searchKeyword, clickedFilter, searchedClothes, filteredClothes]);
 
   const inventoryListComponents = useCallback(
     () =>
@@ -188,7 +190,7 @@ const Wearables = () => {
     <>
       <WearableLayout>
         <div className={styles.container}>
-          <AvatarContainer id={id}>
+          <AvatarContainer id={id} handleClickDownload={handleClickDownload}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
               src={currentAvatar?.overlapped_image_url ?? WEARABLE_IMAGES.hero}
@@ -196,6 +198,7 @@ const Wearables = () => {
               // src={TMP_IMAGES.avatars["1"].src}
               w="24rem"
               h="24rem"
+              avatarId="download-image"
             />
           </AvatarContainer>
           <FilterContainer>{filterListComponents()}</FilterContainer>
