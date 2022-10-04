@@ -1,7 +1,5 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { api } from "../../api";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
@@ -9,10 +7,9 @@ import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
 import FilterContainer from "../../components/wearable/[id]/FilterContainer";
 import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import { TMP_IMAGES, WEARABLE_IMAGES, TMP_AVATARS_ARR } from "../../constants";
-import { GET_AVATAR } from "../../GraphQL/Queries";
-import { IClothes } from "../../interfaces";
-import fakeClothes from "../../data/rabbit/clothes.json";
+import { WEARABLE_IMAGES } from "../../constants";
+import { AnimatePresence, motion } from "framer-motion";
+
 import {
   getClickedFilter,
   getFilteredClothes,
@@ -73,6 +70,7 @@ const filterList = [
 
 const Wearables = () => {
   const [clickedClothes, setClickedClothes] = useState<number[]>([]);
+  const [downloadStatus, setDownloadStatus] = useState<boolean>(true);
   // 2개 query
   // 아바타 정보 + 인벤토리 정보
   const dispatch = useTypedDispatch();
@@ -205,9 +203,19 @@ const Wearables = () => {
         </div>
       </WearableLayout>
       <div className={styles.downloadBtnContainer}>
-        <div className={styles.downloadBtnWrapper}>
-          <span>Download Complate</span>
-        </div>
+        <AnimatePresence>
+          {downloadStatus && (
+            <motion.div
+              className={styles.downloadBtnWrapper}
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              exit={{ y: 100 }}
+              transition={{ type: "spring", bounce: 0.25 }}
+            >
+              <span>Download Complate</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
