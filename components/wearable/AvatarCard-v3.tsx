@@ -8,7 +8,8 @@ interface Props {
 }
 
 const styles = {
-  container: `flex flex-col justify-center items-center w-full`,
+  container: `flex flex-col justify-center items-center w-full relative`,
+  overlay: `absolute top-0 left-0 w-full h-full flex justify-center items-center transition-all avatarcard-overlay`,
 };
 const AvatarCardV3: FC<Props> = ({ src, w, h }) => {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
@@ -24,15 +25,6 @@ const AvatarCardV3: FC<Props> = ({ src, w, h }) => {
     },
   };
 
-  // useEffect(() => {
-  //   if (!container) return;
-  //   // set css variable
-  //   container.style.setProperty("--background-color", `url(${src})`);
-  //   return () => {
-  //     container.style.removeProperty("--background-color");
-  //   };
-  // }, [container]);
-
   return (
     <div className={styles.container} ref={setContainer}>
       <div
@@ -41,6 +33,7 @@ const AvatarCardV3: FC<Props> = ({ src, w, h }) => {
       >
         <AutoHeightImage src={WEARABLE_IMAGES["avatar-frame"]} />
         <AutoHeightImage src={src} />
+        <div className={styles.overlay} style={{ zIndex: 2 }} />
       </div>
     </div>
   );

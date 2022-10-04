@@ -137,11 +137,14 @@ $primary: #b6ff00;
 
 .wearable-card-container-v2 {
   position: relative;
-  :first-child {
+  :nth-child(1) {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
   }
-  :last-child {
+  :nth-child(1):hover ~ .avatarcard-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  :nth-child(2) {
     z-index: 1;
     position: absolute;
   }
