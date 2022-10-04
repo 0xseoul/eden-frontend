@@ -109,26 +109,20 @@ const Wearables = () => {
   const handleClickDownload = useCallback(async () => {
     setDownloadStatus(true);
     try {
-      const downloadImage = document.getElementById("download-image");
-
-      if (downloadImage) {
+      const image = new Image();
+      image.src = currentAvatar?.overlapped_image_url ?? "";
+      image.crossOrigin = "Anonymous";
+      image.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        const img = downloadImage as HTMLImageElement;
-        // get original image size
-        const width = img.naturalWidth;
-        const height = img.naturalHeight;
-        // set canvas size
-        canvas.width = width;
-        canvas.height = height;
-        // draw image
-        ctx?.drawImage(img, 0, 0, width, height);
-        // get image data
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx?.drawImage(image, 0, 0);
         const a = document.createElement("a");
         a.href = canvas.toDataURL("image/png");
         a.download = "wearable.png";
         a.click();
-      }
+      };
     } catch (error: any) {
       console.error(error.message);
     } finally {
