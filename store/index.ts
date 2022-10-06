@@ -18,12 +18,10 @@ const pm = createPromise({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .prepend(pm)
-      // prepend and concat calls can be chained
-      .concat(logger),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(pm),
+  // prepend and concat calls can be chained
 });
+// .concat(logger),
 //middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, pm],
 /* Types */
 export type AppDispatch = typeof store.dispatch;

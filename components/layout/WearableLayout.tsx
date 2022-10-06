@@ -1,7 +1,5 @@
-import { useMutation } from "@apollo/client";
-import React, { CSSProperties, FC, useEffect, useState } from "react";
+import React, { CSSProperties, FC, useEffect, useMemo, useState } from "react";
 import { api } from "../../api";
-import { LOGIN_USER_MUTATION } from "../../GraphQL/Mutations";
 import { getIsClickedGoToMyInventory } from "../../reducers/common";
 import {
   getIsLoggedIn,
@@ -10,7 +8,6 @@ import {
   SET_AVATARS,
   SET_CLOTHES,
   SET_LOGGED_IN,
-  SET_WALLET,
 } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Wallet from "../common/Wallet";
@@ -44,27 +41,17 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
     getIsClickedGoToMyInventory
   );
 
-  const signMessage = `sign to login to eden ${wallet}`;
-
-  // const headers = {
-  //   signMessage,
-  //   signature: saveJson(signature),
-  //   wallet_address: wallet,
-  // };
-
-  // const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION);
-  // const [loginUser, loginErr] = useMutation(LOGIN_USER_MUTATION, {
-  //   context: { headers },
-  // });
-  const isWalletConnected = wallet.length > 5;
-  const isSignatureValid = signature?.length > 2;
-  // const isLoginValid = isWalletConnected && isSignatureValid;
+  const signMessage = useMemo(
+    () => `sign to login to eden ${wallet}`,
+    [wallet]
+  );
+  const isWalletConnected = useMemo(() => wallet.length > 5, [wallet]);
+  const isSignatureValid = useMemo(() => signature?.length > 2, [signature]);
 
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
     if (!isSignatureValid || !isWalletConnected || isLoggined) return;
-    // console.log(isSignatureValid, isWalletConnected, isLoggined);
     const init = async () => {
       try {
         const props = {
@@ -74,7 +61,6 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
         };
 
         const response = await api.user.loginUser(props);
-        // console.log(response);
         dispatch(SET_AVATARS(response.data.user.holding_avatars));
         dispatch(SET_CLOTHES(response.data.user.holding_clothes));
         dispatch(SET_LOGGED_IN(true));
@@ -85,15 +71,6 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
     };
     init();
   }, [signature, wallet]);
-
-  useEffect(() => {
-    const init = async () => {
-      // const data = await api.user.loginUser();
-      // console.log("data");
-      // console.log(data);
-    };
-    // init();
-  }, []);
 
   return (
     <section className={styles.layout}>

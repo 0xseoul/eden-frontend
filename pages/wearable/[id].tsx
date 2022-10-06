@@ -75,19 +75,19 @@ const filterList = [
   },
 ] as const;
 
-interface IWearableDetailPageProps {
-  isResetClicked: boolean;
-  setIsResetClicked: React.Dispatch<React.SetStateAction<boolean>>;
-}
-const wearableDetailPageInit: IWearableDetailPageProps = {
-  isResetClicked: false,
-  setIsResetClicked: () => {},
-};
-export const WearableDetailPageContext =
-  createContext<IWearableDetailPageProps>(wearableDetailPageInit);
+// interface IWearableDetailPageProps {
+//   isResetClicked: boolean;
+//   setIsResetClicked: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+// const wearableDetailPageInit: IWearableDetailPageProps = {
+//   isResetClicked: false,
+//   setIsResetClicked: () => {},
+// };
+// export const WearableDetailPageContext =
+//   createContext<IWearableDetailPageProps>(wearableDetailPageInit);
 
-export const useWearableDetailPageContext = () =>
-  useContext(WearableDetailPageContext);
+// export const useWearableDetailPageContext = () =>
+//   useContext(WearableDetailPageContext);
 
 const Wearables = () => {
   const [clickedClothes, setClickedClothes] = useState<number[]>([]);
@@ -152,9 +152,10 @@ const Wearables = () => {
     }
   }, [downloadStatus]);
 
-  const handleToggleLock = useCallback(() => {
-    setIsResetClicked((prev) => !prev);
-  }, []);
+  const handleToggleLock = useCallback(
+    () => setIsResetClicked((prev) => !prev),
+    [isResetClicked]
+  );
   useEffect(() => {
     const data = searchNotByDBInventory(clickedFilter, clothes);
     dispatch(SET_FILTERD_CLOTHES(data));
@@ -205,10 +206,8 @@ const Wearables = () => {
     [inventoryItem, clickedClothes]
   );
 
-  const value: IWearableDetailPageProps = { isResetClicked, setIsResetClicked };
-
   return (
-    <WearableDetailPageContext.Provider value={value}>
+    <>
       <WearableLayout>
         <div className={styles.container}>
           <AvatarContainer id={id} handleClickDownload={handleClickDownload}>
@@ -246,7 +245,7 @@ const Wearables = () => {
           )}
         </AnimatePresence>
       </div>
-    </WearableDetailPageContext.Provider>
+    </>
   );
 };
 

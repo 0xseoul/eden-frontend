@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { ICONS } from "../../constants";
 import { getAvatars, getClothes, getWallet } from "../../reducers/user";
 import { useTypedSelector } from "../../store";
@@ -22,9 +22,43 @@ const Top = () => {
   const wallet = useTypedSelector(getWallet);
   const avatars = useTypedSelector(getAvatars);
   const clothes = useTypedSelector(getClothes);
-  const pathname = useRouter().pathname;
-  const isSlugPage = pathname === "/wearable/[id]";
-  // console.log(pathname);
+  const router = useRouter();
+  const pathname = router.pathname;
+  const isSlugPage = useMemo(() => pathname === "/wearable/[id]", [pathname]);
+  const currId = useMemo(() => router.query.id, [router.query]);
+  const currAvatar = useMemo(
+    () => avatars.find((avatar) => Number(avatar.token_id) === Number(currId)),
+    [currId, avatars]
+  );
+
+  const getIndexes = useCallback(() => {
+    const sortedById =
+      [...avatars].sort((a, b) => Number(a.token_id) - Number(b.token_id)) ??
+      [];
+    const currIndex = sortedById.findIndex(
+      (avatar) => Number(avatar.token_id) === Number(currId)
+    );
+    const nextIndex = currIndex + 1;
+    const beforeIndex = currIndex - 1;
+    const nextTokenId = sortedById[nextIndex]?.token_id;
+    const beforeTokenId = sortedById[beforeIndex]?.token_id;
+
+    return { nextTokenId, beforeTokenId };
+  }, [currId, avatars]);
+
+  const handleClickNextAvatar = useCallback(() => {
+    if (!currAvatar) return;
+    const { nextTokenId } = getIndexes();
+    if (!nextTokenId) return;
+    router.push(`/wearable/${nextTokenId}`);
+  }, [currAvatar, getIndexes, router]);
+
+  const handleClickBeforeAvatar = useCallback(() => {
+    if (!currAvatar) return;
+    const { beforeTokenId } = getIndexes();
+    if (!beforeTokenId) return;
+    router.push(`/wearable/${beforeTokenId}`);
+  }, [currAvatar, getIndexes, router]);
 
   return (
     <div className={styles.section}>
@@ -55,10 +89,13 @@ const Top = () => {
         </div>
       </form>
       <form className={styles.iconContainer}>
-        <span className={styles.icon}>
+        <span className={styles.icon} onClick={handleClickBeforeAvatar}>
           <ICONS.arrow />
         </span>
-        <span className={`${styles.icon} rotate-180`}>
+        <span
+          className={`${styles.icon} rotate-180`}
+          onClick={handleClickNextAvatar}
+        >
           <ICONS.arrow />
         </span>
         <Link href={isSlugPage ? "/wearable" : "/"}>
