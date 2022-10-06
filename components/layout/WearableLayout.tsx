@@ -67,18 +67,14 @@ const WearableLayout: FC<LayoutProps> = ({ children }) => {
     // console.log(isSignatureValid, isWalletConnected, isLoggined);
     const init = async () => {
       try {
-        // const data = await loginUser({
-        //   variables: { wallet_address: wallet, signature, signMessage },
-        // });
         const props = {
           wallet_address: wallet,
           signature,
           signMessage,
         };
 
-        // console.log(props);
         const response = await api.user.loginUser(props);
-        console.log(response);
+        // console.log(response);
         dispatch(SET_AVATARS(response.data.user.holding_avatars));
         dispatch(SET_CLOTHES(response.data.user.holding_clothes));
         dispatch(SET_LOGGED_IN(true));

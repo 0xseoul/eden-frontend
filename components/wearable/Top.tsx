@@ -8,9 +8,9 @@ import { cutWallet } from "../../utils/common";
 
 const styles = {
   section: `flex justify-between w-full pb-[3rem]`,
-  titleContainer: `flex flex-col w-[24rem]`,
+  titleContainer: `flex flex-col w-[24rem] gap-2`,
   iconContainer: `flex`,
-  titleTop: `flex flex-row text-lg font-light`,
+  titleTop: `flex flex-row text-lg font-light relative`,
   titleBottom: `flex flex-row text-xs justify-between`,
   titleItem: `flex gap-[0.75rem]`,
   titleItemContainer: `flex gap-[1.5rem]`,
@@ -31,6 +31,9 @@ const Top = () => {
       <form className={styles.titleContainer}>
         <div className={styles.titleTop}>
           <span>WEARABLES</span>
+          <div className="w-full bg-[#72777D] h-[0.5px] absolute bottom-0">
+            <div className="w-1/4 h-full bg-primary"></div>
+          </div>
         </div>
         <div className={styles.titleBottom}>
           <div className={styles.titleItemContainer}>

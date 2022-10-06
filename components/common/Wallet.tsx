@@ -50,10 +50,12 @@ const Wallet = () => {
         KLAYTN KAIKAS
       </div>
       <div className={styles.btnContainer}>
-        <CuttinEdgeBtn cssStyles={cssStyles.downloadBtn} tw={styles.btn}>
-          <div className="w-full h-full" onClick={getWallet}>
-            CONNECT MY WALLET
-          </div>
+        <CuttinEdgeBtn
+          cssStyles={cssStyles.downloadBtn}
+          tw={styles.btn}
+          onClick={getWallet}
+        >
+          <div className="w-full h-full">CONNECT MY WALLET</div>
         </CuttinEdgeBtn>
         <CuttinEdgeBtn
           cssStyles={cssStyles.downloadBtn}
