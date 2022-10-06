@@ -1,5 +1,12 @@
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import WearableLayout from "../../components/layout/WearableLayout";
 import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
 import FilterBtn from "../../components/wearable/FilterBtn";
@@ -68,9 +75,24 @@ const filterList = [
   },
 ] as const;
 
+interface IWearableDetailPageProps {
+  isResetClicked: boolean;
+  setIsResetClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const wearableDetailPageInit: IWearableDetailPageProps = {
+  isResetClicked: false,
+  setIsResetClicked: () => {},
+};
+export const WearableDetailPageContext =
+  createContext<IWearableDetailPageProps>(wearableDetailPageInit);
+
+export const useWearableDetailPageContext = () =>
+  useContext(WearableDetailPageContext);
+
 const Wearables = () => {
   const [clickedClothes, setClickedClothes] = useState<number[]>([]);
   const [downloadStatus, setDownloadStatus] = useState<boolean>(false);
+  const [isResetClicked, setIsResetClicked] = useState<boolean>(false);
   // 2개 query
   // 아바타 정보 + 인벤토리 정보
   const dispatch = useTypedDispatch();
@@ -130,6 +152,9 @@ const Wearables = () => {
     }
   }, [downloadStatus]);
 
+  const handleToggleLock = useCallback(() => {
+    setIsResetClicked((prev) => !prev);
+  }, []);
   useEffect(() => {
     const data = searchNotByDBInventory(clickedFilter, clothes);
     dispatch(SET_FILTERD_CLOTHES(data));
@@ -180,8 +205,10 @@ const Wearables = () => {
     [inventoryItem, clickedClothes]
   );
 
+  const value: IWearableDetailPageProps = { isResetClicked, setIsResetClicked };
+
   return (
-    <>
+    <WearableDetailPageContext.Provider value={value}>
       <WearableLayout>
         <div className={styles.container}>
           <AvatarContainer id={id} handleClickDownload={handleClickDownload}>
@@ -196,7 +223,12 @@ const Wearables = () => {
             />
           </AvatarContainer>
           <FilterContainer>{filterListComponents()}</FilterContainer>
-          <ItemsContainer>{inventoryListComponents()}</ItemsContainer>
+          <ItemsContainer
+            handleToggleLock={handleToggleLock}
+            isResetClicked={isResetClicked}
+          >
+            {inventoryListComponents()}
+          </ItemsContainer>
         </div>
       </WearableLayout>
       <div className={styles.downloadBtnContainer}>
@@ -214,7 +246,7 @@ const Wearables = () => {
           )}
         </AnimatePresence>
       </div>
-    </>
+    </WearableDetailPageContext.Provider>
   );
 };
 

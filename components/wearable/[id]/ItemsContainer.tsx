@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { ICONS } from "../../../constants";
+import { useWearableDetailPageContext } from "../../../pages/wearable/[id]";
 
 const styles = {
   inventoryContainer: `flex-1 flex h-full overflow-y-auto wearable-custom-scrollbar- `,
@@ -9,8 +10,14 @@ const styles = {
 
 interface Props {
   children: React.ReactNode;
+  handleToggleLock: () => void;
+  isResetClicked: boolean;
 }
-const ItemsContainer: FC<Props> = ({ children }) => {
+const ItemsContainer: FC<Props> = ({
+  children,
+  handleToggleLock,
+  isResetClicked,
+}) => {
   return (
     <section className={styles.inventoryWrapper}>
       <form className={styles.inventoryContainer}>
@@ -19,8 +26,13 @@ const ItemsContainer: FC<Props> = ({ children }) => {
       <div>
         <div className="flex justify-end w-full">
           <div className="flex w-[228px] wearable-reset-button overflow-hidden cursor-pointer">
-            <span className="btn- h-[3rem] w-[3rem] flex items-center justify-center">
-              <ICONS.lock />
+            <span
+              className={`btn- h-[3rem] w-[3rem] flex items-center justify-center ${
+                isResetClicked && "bg-primary"
+              } transition-all`}
+              onClick={handleToggleLock}
+            >
+              {isResetClicked ? <ICONS.lockOpen /> : <ICONS.lock />}
             </span>
             <div className="uppercase btn-text h-[3rem] flex-1 flex items-center justify-center font-black text-c-gray300">
               <span className="translate-y-0.5">RESET</span>
