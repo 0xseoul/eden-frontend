@@ -25,6 +25,8 @@ import {
 import { getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import { AnimatePresence, motion } from "framer-motion";
+import axios from "axios";
+import { downloadFile } from "../../utils";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -124,18 +126,13 @@ const Wearables = () => {
   const handleClickDownload = useCallback(async () => {
     setDownloadStatus(true);
     try {
-      const url = `https://0xseoul-eden.s3.ap-northeast-2.amazonaws.com/0xSEOUL_TEST.unitypackage`;
-      window.open(url);
-      // const res = await fetch(url);
-      // const blob = await res.blob();
-      // const link = document.createElement("a");
-      // link.href = window.URL.createObjectURL(blob);
-      // link.download = "0xSEOUL_TEST.unitypackage";
-      // link.click();
+      const endpoint = `${process.env.NEXT_PUBLIC_URL}/api/file`;
+      const { data: awsS3Url } = await axios.get(endpoint);
+      downloadFile(awsS3Url, "0xSEOUL_TEST.unitypackage");
     } catch (error: any) {
       console.error(error);
     } finally {
-      setTimeout(() => setDownloadStatus(false), 3000);
+      setDownloadStatus(false);
     }
   }, [downloadStatus]);
 

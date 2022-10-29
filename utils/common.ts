@@ -15,3 +15,10 @@ export const cutWallet = (wallet: string) =>
 
 export const saveJson = (value: Object) => JSON.stringify(value);
 export const readJson = (value: string) => JSON.parse(value);
+
+export const downloadFile = (url: string, filename: string) => {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+};
