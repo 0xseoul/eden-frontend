@@ -124,13 +124,14 @@ const Wearables = () => {
   const handleClickDownload = useCallback(async () => {
     setDownloadStatus(true);
     try {
-      const url = `${process.env.NEXT_PUBLIC_URL}/files/0xSEOUL_TEST.unitypackage`;
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.download = "0xSEOUL_TEST.unitypackage";
-      link.click();
+      const url = `https://0xseoul-eden.s3.ap-northeast-2.amazonaws.com/0xSEOUL_TEST.unitypackage`;
+      window.open(url);
+      // const res = await fetch(url);
+      // const blob = await res.blob();
+      // const link = document.createElement("a");
+      // link.href = window.URL.createObjectURL(blob);
+      // link.download = "0xSEOUL_TEST.unitypackage";
+      // link.click();
     } catch (error: any) {
       console.error(error);
     } finally {
