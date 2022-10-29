@@ -24,6 +24,7 @@ import {
 } from "../../reducers/inventory";
 import { getClothes, getWallet } from "../../reducers/user";
 import { useTypedDispatch, useTypedSelector } from "../../store";
+import { AnimatePresence, motion } from "framer-motion";
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -72,6 +73,7 @@ const filterList = [
 
 const Wearables = () => {
   const [clickedClothes, setClickedClothes] = useState<number[]>([]);
+  const [downloadStatus, setDownloadStatus] = useState<boolean>(false);
   // 2개 query
   // 아바타 정보 + 인벤토리 정보
   const dispatch = useTypedDispatch();
@@ -118,6 +120,23 @@ const Wearables = () => {
     },
     [wallet]
   );
+
+  const handleClickDownload = useCallback(async () => {
+    setDownloadStatus(true);
+    try {
+      const url = `${process.env.NEXT_PUBLIC_URL}/files/0xSEOUL_TEST.unitypackage`;
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = "0xSEOUL_TEST.unitypackage";
+      link.click();
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setTimeout(() => setDownloadStatus(false), 3000);
+    }
+  }, [downloadStatus]);
 
   const filterListComponents = useCallback(
     () =>
@@ -182,7 +201,7 @@ const Wearables = () => {
     <>
       <WearableLayout>
         <div className={styles.container}>
-          <AvatarContainer id={id}>
+          <AvatarContainer id={id} handleClickDownload={handleClickDownload}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
               src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars["1"].src}
@@ -196,9 +215,19 @@ const Wearables = () => {
         </div>
       </WearableLayout>
       <div className={styles.downloadBtnContainer}>
-        <div className={styles.downloadBtnWrapper}>
-          <span>Download Complate</span>
-        </div>
+        <AnimatePresence>
+          {downloadStatus && (
+            <motion.div
+              className={styles.downloadBtnWrapper}
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              exit={{ y: 100 }}
+              transition={{ type: "spring", bounce: 0.25 }}
+            >
+              <span>Download Complate</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
