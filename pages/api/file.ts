@@ -14,6 +14,6 @@ export default async function handler(
     const endpoint = await getObjectSignedUrl("0xSEOUL_Test01.7z");
     res.status(200).send(endpoint);
   } catch (error: any) {
-    res.status(500).send(error.message);
+    res.status(401).send(error.message);
   }
 }
