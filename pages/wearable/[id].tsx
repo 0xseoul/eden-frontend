@@ -9,10 +9,16 @@ import InventoryCard from "../../components/wearable/InventoryCard";
 import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
 import FilterContainer from "../../components/wearable/[id]/FilterContainer";
 import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import { TMP_IMAGES, WEARABLE_IMAGES, TMP_AVATARS_ARR } from "../../constants";
+import {
+  TMP_IMAGES,
+  WEARABLE_IMAGES,
+  TMP_AVATARS_ARR,
+  EDEN_TMP_AVATARS_ARR,
+} from "../../constants";
 import { GET_AVATAR } from "../../GraphQL/Queries";
 import { IClothes } from "../../interfaces";
-import fakeClothes from "../../data/rabbit/clothes.json";
+import fakeClothes from "../../data/eden-test/clothes.json";
+// import fakeClothes from "../../data/rabbit/clothes.json";
 import {
   getClickedFilter,
   getFilteredClothes,
@@ -154,7 +160,7 @@ const Wearables = () => {
   );
 
   const getCurrAvatarSrc = useCallback(() => {
-    const filteredAvatar = TMP_AVATARS_ARR.find((avatar) => {
+    const filteredAvatar = EDEN_TMP_AVATARS_ARR.find((avatar) => {
       return (
         avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
         clickedClothes.sort((a, b) => a - b).join(",")

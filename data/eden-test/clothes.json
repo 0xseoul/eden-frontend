@@ -1,0 +1,10 @@
+[
+  {
+    "_id": "1",
+    "token_id": 1,
+    "name": "T-shirts",
+    "hash_number": 1,
+    "image_url": "/images/tmp/eden-test/clothes/shirts.png",
+    "type": "clothing"
+  }
+]
