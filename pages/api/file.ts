@@ -10,7 +10,8 @@ export default async function handler(
 ) {
   try {
     // const endpoint = "tmp";
-    const endpoint = await getObjectSignedUrl("0xSEOUL_Test01.7z");
+    const endpoint = "https://s3.amazonaws.com";
+    // const endpoint = await getObjectSignedUrl("0xSEOUL_Test01.7z");
     res.status(200).send(endpoint);
   } catch (error: any) {
     res.status(500).send(error.message);
