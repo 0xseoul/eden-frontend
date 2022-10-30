@@ -134,7 +134,7 @@ const Wearables = () => {
     try {
       const endpoint = `${process.env.NEXT_PUBLIC_URL}/api/file`;
       const { data: awsS3Url } = await axios.get(endpoint);
-      downloadFile(awsS3Url, "0xSEOUL_TEST.unitypackage");
+      downloadFile(awsS3Url, "0xSEOUL_Test01.7z");
     } catch (error: any) {
       console.error(error);
     } finally {
