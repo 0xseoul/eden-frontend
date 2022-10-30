@@ -23,7 +23,6 @@ const s3Client = new S3Client({
 
 export async function getObjectSignedUrl(key: string) {
   // const { bucketName, s3Client } = init();
-  console.log("accessKeyId", accessKeyId);
   if (!bucketName || !region || !accessKeyId || !secretAccessKey)
     throw new Error("Missing AWS credentials");
 
