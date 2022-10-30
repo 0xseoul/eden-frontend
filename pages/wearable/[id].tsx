@@ -132,8 +132,10 @@ const Wearables = () => {
   const handleClickDownload = useCallback(async () => {
     setDownloadStatus(true);
     try {
-      const endpoint = `${process.env.NEXT_PUBLIC_URL}/api/file`;
-      const { data: awsS3Url } = await axios.get(endpoint);
+      // const endpoint = `${process.env.NEXT_PUBLIC_URL}/api/file`;
+      // const { data: awsS3Url } = await axios.get(endpoint);
+      const awsS3Url =
+        "https://0xseoul-eden.s3.ap-northeast-2.amazonaws.com/0xSEOUL_Test01.7z";
       downloadFile(awsS3Url, "0xSEOUL_Test01.7z");
     } catch (error: any) {
       console.error(error);
