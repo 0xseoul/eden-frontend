@@ -1,23 +1,18 @@
-import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
-import { api } from "../../api";
-import WearableLayout from "../../components/layout/WearableLayout";
-import AvatarCardV2 from "../../components/wearable/AvatarCard-v2";
-import FilterBtn from "../../components/wearable/FilterBtn";
-import InventoryCard from "../../components/wearable/InventoryCard";
-import AvatarContainer from "../../components/wearable/[id]/AvatarContainer";
-import FilterContainer from "../../components/wearable/[id]/FilterContainer";
-import ItemsContainer from "../../components/wearable/[id]/ItemsContainer";
-import {
-  TMP_IMAGES,
-  WEARABLE_IMAGES,
-  TMP_AVATARS_ARR,
-  EDEN_TMP_AVATARS_ARR,
-} from "../../constants";
-import { GET_AVATAR } from "../../GraphQL/Queries";
-import { IClothes } from "../../interfaces";
-import fakeClothes from "../../data/eden-test/clothes.json";
+import { useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
+import React, { useCallback, useEffect, useState } from 'react';
+import { api } from '../../api';
+import WearableLayout from '../../components/layout/WearableLayout';
+import AvatarCardV2 from '../../components/wearable/AvatarCard-v2';
+import FilterBtn from '../../components/wearable/FilterBtn';
+import InventoryCard from '../../components/wearable/InventoryCard';
+import AvatarContainer from '../../components/wearable/[id]/AvatarContainer';
+import FilterContainer from '../../components/wearable/[id]/FilterContainer';
+import ItemsContainer from '../../components/wearable/[id]/ItemsContainer';
+import { TMP_IMAGES, WEARABLE_IMAGES, TMP_AVATARS_ARR, EDEN_TMP_AVATARS_ARR } from '../../constants';
+import { GET_AVATAR } from '../../GraphQL/Queries';
+import { IClothes } from '../../interfaces';
+import fakeClothes from '../../data/eden-test/clothes.json';
 // import fakeClothes from "../../data/rabbit/clothes.json";
 import {
   getClickedFilter,
@@ -27,12 +22,12 @@ import {
   getSearchKeyword,
   SET_CLICKED_FILTER,
   SET_FILTERD_CLOTHES,
-} from "../../reducers/inventory";
-import { getClothes, getWallet } from "../../reducers/user";
-import { useTypedDispatch, useTypedSelector } from "../../store";
-import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios";
-import { downloadFile } from "../../utils";
+} from '../../reducers/inventory';
+import { getClothes, getWallet } from '../../reducers/user';
+import { useTypedDispatch, useTypedSelector } from '../../store';
+import { AnimatePresence, motion } from 'framer-motion';
+import axios from 'axios';
+import { downloadFile } from '../../utils';
 
 const styles = {
   container: `w-full h-full flex justify-center items-center min-h-[38.5rem] h-[38.5rem] mx-[1.5rem] my-[1.5rem] gap-[2rem]`,
@@ -42,40 +37,40 @@ const styles = {
 
 const filterList = [
   {
-    name: "All Items",
-    type: "all_items",
+    name: 'All Items',
+    type: 'all_items',
   },
   {
-    name: "Hair",
-    type: "hair",
+    name: 'Hair',
+    type: 'hair',
   },
   {
-    name: "Clothing",
-    type: "clothing",
+    name: 'Clothing',
+    type: 'clothing',
   },
   {
-    name: "Eyes",
-    type: "eyes",
+    name: 'Eyes',
+    type: 'eyes',
   },
   {
-    name: "Mouth",
-    type: "mouth",
+    name: 'Mouth',
+    type: 'mouth',
   },
   {
-    name: "Off hand",
-    type: "off_hand",
+    name: 'Off hand',
+    type: 'off_hand',
   },
   {
-    name: "Eye wear",
-    type: "eye_wear",
+    name: 'Eye wear',
+    type: 'eye_wear',
   },
   {
-    name: "Skin",
-    type: "skin",
+    name: 'Skin',
+    type: 'skin',
   },
   {
-    name: "Background",
-    type: "background",
+    name: 'Background',
+    type: 'background',
   },
 ] as const;
 
@@ -132,16 +127,22 @@ const Wearables = () => {
   const handleClickDownload = useCallback(async () => {
     setDownloadStatus(true);
     try {
-      // const endpoint = `${process.env.NEXT_PUBLIC_URL}/api/file`;
-      // const { data: awsS3Url } = await axios.get(endpoint);
-      const awsS3Url =
-        "https://0xseoul-eden.s3.ap-northeast-2.amazonaws.com/0xSEOUL_Test01.7z";
-      downloadFile(awsS3Url, "0xSEOUL_Test01.7z");
+      // download file /public/avatars/1.png
+      const res = await axios.get(`0xSEOUL_Test01.7z`, {
+        responseType: 'blob',
+      });
+      const blob = new Blob([res.data], { type: 'application/zip' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `0xSEOUL_Test01.7z`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error: any) {
       console.error(error);
-    } finally {
-      setDownloadStatus(false);
     }
+    Promise.resolve().then(() => setTimeout(() => setDownloadStatus(false), 3000));
   }, [downloadStatus]);
 
   const filterListComponents = useCallback(
@@ -164,8 +165,8 @@ const Wearables = () => {
   const getCurrAvatarSrc = useCallback(() => {
     const filteredAvatar = EDEN_TMP_AVATARS_ARR.find((avatar) => {
       return (
-        avatar.holding_clothes.sort((a, b) => a - b).join(",") ===
-        clickedClothes.sort((a, b) => a - b).join(",")
+        avatar.holding_clothes.sort((a, b) => a - b).join(',') ===
+        clickedClothes.sort((a, b) => a - b).join(',')
       );
     });
     return filteredAvatar?.src;
@@ -187,13 +188,11 @@ const Wearables = () => {
         const isActivated = clickedClothes.includes(item.token_id);
         return (
           <InventoryCard
-            src={item?.image_url ?? ""}
+            src={item?.image_url ?? ''}
             // src={WEARABLE_IMAGES.shoes}
-            name={
-              item?.name ?? "Louis Vuitton x Nike Air Force 1 Green | Size 7"
-            }
+            name={item?.name ?? 'Louis Vuitton x Nike Air Force 1 Green | Size 7'}
             // name="Louis Vuitton x Nike Air Force 1 Green | Size 7"
-            key={item?._id ?? "id"}
+            key={item?._id ?? 'id'}
             itemNumber={`#${item?.hash_number ?? 0}`}
             isActivated={isActivated}
             onClick={() => handleClickInventoryCard(item?.token_id ?? 0)}
@@ -210,7 +209,7 @@ const Wearables = () => {
           <AvatarContainer id={id} handleClickDownload={handleClickDownload}>
             <AvatarCardV2
               // src={canvas.toImgSrc ?? WEARABLE_IMAGES.hero}
-              src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars["1"].src}
+              src={getCurrAvatarSrc() ?? TMP_IMAGES.avatars['1'].src}
               // src={TMP_IMAGES.avatars["1"].src}
               w="24rem"
               h="24rem"
@@ -228,7 +227,7 @@ const Wearables = () => {
               initial={{ y: 100 }}
               animate={{ y: 0 }}
               exit={{ y: 100 }}
-              transition={{ type: "spring", bounce: 0.25 }}
+              transition={{ type: 'spring', bounce: 0.25 }}
             >
               <span>Download Complate</span>
             </motion.div>
